@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="box.css" />
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="640"
+      height="260"
+      style="border: 1px solid #550233"
+      ;
+    ></canvas>
+    <button id="button1" onclick="insertNow()">insert</button>
+
+
+
+    <div class = "test">test_text</div>
+
+
+    <script>
+      var ctx;
+      var gX = 20;
+      var gY = 20;
+    var textArray = new Array();
+
+      var canvas = document.getElementById('canvas')
+
+      document.addEventListener('keydown', function (e) {
+        let key = e.key;
+        controlInput(key);
+      })
+
+      
+
+
+
+      /////////
+
+      function controlInput(key) {
+        textArray = textArray + key;
+        //ctx.clearRect(0,0,300,300);
+        gX = gX + 0;
+        //ctx.clearRect(0,0,300,300);
+        ctx.fillStyle = 'black';
+
+        drawText();
+      }
+
+      function clearArray() {
+        ctx.clearRect(0,0,100,100);
+        ctx.fillStyle = '#bada55';
+        ctx.fillRect(0,0, canvas.width, canvas.height);
+        ctx.fillStyle = '#ffffff';
+      }
+      var indexX = 0;
+      var currentKeyPress = '';
+      
+      
+      function drawText() {
+        clearArray();
+        //let length = textArray.length;
+        
+        
+        gX = 20;
+        for (i = 0; i < textArray.length; i++) {
+          ctx.fillText(textArray[i], gX, gY);
+          //console.log("1. ", textArray[i]);
+          gX=gX + 5;
+
+          //currentKeyPress = textArray[i];
+          
+        }
+        
+        
+      }
+      var xValuetoInsertAt = 2;
+      newArray = [];
+      
+      
+
+
+
+
+      ////////
+
+      ////////
+
+      var canvas = document.getElementById('canvas');
+      ctx = canvas.getContext('2d');
+      // Set display size (css pixels).
+      var size = 300;
+      canvas.style.width = size + 'px';
+      canvas.style.height = size + 'px';
+
+      // Set actual size in memory (scaled to account for extra pixel density).
+      var scale = window.devicePixelRatio; // Change to 1 on retina screens to see blurry canvas.
+      canvas.width = size * scale;
+      canvas.height = size * scale;
+
+      // Normalize coordinate system to use css pixels.
+      ctx.scale(scale, scale);
+
+      ctx.fillStyle = '#bada55';
+      ctx.fillRect(0, 0, 300, 300);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '9px Monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      var x = size / 2;
+      var y = size / 2;
+
+      //var textString = "I love MDN";
+      //ctx.fillText(textString, x, y);
+
+
+      function insertNow(){
+        let con = insert(textArray, 1, '5');
+        console.log(con);
+        drawText();
+      }
+
+      const insert = (arr, index, newItem) => [
+      
+        ...arr.slice(0, index),
+        newItem,
+        ...arr.slice(index)
+        
+    ]
+
+      
+      
+      
+
+      
+      
+
+
+
+
+      </script>
+      </body>
+    </html>
