@@ -15,11 +15,11 @@
       style="border: 1px solid #550233"
       ;
     ></canvas>
-    <button id="button1" onclick="insertNow()">insert</button>
+    <button id="button1" onclick="insertNow()">insert position 2</button>
 
 
 
-    <div class = "test">test_text</div>
+    <div class = "test"></div>
 
 
     <script>
@@ -55,7 +55,7 @@
         ctx.clearRect(0,0,100,100);
         ctx.fillStyle = '#bada55';
         ctx.fillRect(0,0, canvas.width, canvas.height);
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#000000';
       }
       var indexX = 0;
       var currentKeyPress = '';
@@ -107,7 +107,7 @@
 
       ctx.fillStyle = '#bada55';
       ctx.fillRect(0, 0, 300, 300);
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = '#000000';
       ctx.font = '9px Monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -121,7 +121,18 @@
 
       function insertNow(){
         let con = insert(textArray, 1, '5');
-        console.log(con);
+        console.log("con",con.length);
+
+
+        //for(var i = 0 , len =con.length; i < len; i++){
+        //textArray[i] = con[i];
+        //console.log("1", textArray);
+        textArray = [...con];
+      
+        
+
+          
+        
         drawText();
       }
 
