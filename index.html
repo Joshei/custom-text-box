@@ -29,6 +29,9 @@
       var gY = 20;
       var flag = 0;
       var  DELTAX = 5;
+      var DELTAY = 5;
+
+
     var textArray = new Array();
 
       var canvas = document.getElementById('canvas_id')
@@ -47,12 +50,22 @@
 
       function controlInput(key) {
 
-        //if (e == )ArrowRight
-        textArray = textArray + key;
-        //ctx.clearRect(0,0,300,300);
+        
+        
+
+        if(key == "ArrowRight")
+        {
+          moveRight();
+          return(-1);
+        }else{
+
+          textArray = textArray + key;
+        
         gX = gX + 0;
-        //ctx.clearRect(0,0,300,300);
+        
         ctx.fillStyle = 'black';
+
+        }
 
         drawText();
       }
@@ -69,6 +82,8 @@
       
       let wrapAtX = 20;
       const MAXWIDTH = 5; 
+
+      
       function drawText() {
         clearArray();
 
@@ -93,7 +108,7 @@
             //sets new positioning for cursor
             
             gX = DELTAX;
-            gY = gY + 5;
+            gY = gY + DELTAY;
             
             ctx.fillText(textArray[i], gX, gY);
             
@@ -205,7 +220,15 @@ ctx.fillText('_', gX+ DELTAX, gY+0);
 }
 
       
-      
+    function moveRight(){
+
+      alert("called move right");
+      ctx.fillText('A', gX+ DELTAX, gY+0);
+
+      drawText();
+
+
+    }  
       
 
       
