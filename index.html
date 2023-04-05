@@ -25,7 +25,7 @@
     <script>
       var ctx;
       var gX = 20;
-      let DELTAX = 5;
+      
       var gY = 20;
       var flag = 0;
     var textArray = new Array();
@@ -91,7 +91,7 @@
             
             //sets new positioning for cursor
             
-            gX = DELTAX;
+            gX = 5;
             gY = gY + 5;
             
             ctx.fillText(textArray[i], gX, gY);
@@ -103,7 +103,7 @@
 
           //prints one character
           
-          gX=DELTAX + 5; 
+          gX=gX + 5; 
           ctx.fillText(textArray[i], gX, gY);
          
           console.log("i1 " , i )
@@ -198,7 +198,7 @@
 //cursorImage.src = "images/cursor.bmp";
 //ctx.drawImage(cursorImage, 40,40,40,40);
 
-ctx.fillText('_', gX+DELTAX, gY+0);
+ctx.fillText('_', gX+5, gY+0);
 
 
 }
