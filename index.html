@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="box.css" />
+    <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <canvas
-      id="canvas"
-      width="640"
-      height="260"
+      id="canvas_id"
+      width= "220"
+      height="240"
       style="border: 1px solid #550233"
       ;
     ></canvas>
@@ -28,7 +28,7 @@
       var gY = 20;
     var textArray = new Array();
 
-      var canvas = document.getElementById('canvas')
+      var canvas = document.getElementById('canvas_id')
 
       document.addEventListener('keydown', function (e) {
         let key = e.key;
@@ -42,6 +42,8 @@
       /////////
 
       function controlInput(key) {
+
+        //if (e == )ArrowRight
         textArray = textArray + key;
         //ctx.clearRect(0,0,300,300);
         gX = gX + 0;
@@ -61,8 +63,11 @@
       var currentKeyPress = '';
       
       
+
       function drawText() {
         clearArray();
+
+        
         //let length = textArray.length;
         
         
@@ -90,10 +95,11 @@
 
       ////////
 
-      var canvas = document.getElementById('canvas');
+      //var canvas = document.getElementById('canvas_id');
       ctx = canvas.getContext('2d');
       // Set display size (css pixels).
-      var size = 300;
+      //get width of canvasvar size = 300;
+      var size = 220;
       canvas.style.width = size + 'px';
       canvas.style.height = size + 'px';
 
