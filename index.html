@@ -26,11 +26,13 @@
       var ctx;
       var gX = 20;
       var gY = 20;
+      var flag = 0;
     var textArray = new Array();
 
       var canvas = document.getElementById('canvas_id')
 
       document.addEventListener('keydown', function (e) {
+        //alert("keypress");
         let key = e.key;
         controlInput(key);
       })
@@ -63,26 +65,64 @@
       var currentKeyPress = '';
       
       
-
+      let wrapAtX = 20;
+      const MAXWIDTH = 5; 
       function drawText() {
         clearArray();
 
         
-        //let length = textArray.length;
         
         
-        gX = 20;
-        for (i = 0; i < textArray.length; i++) {
-          ctx.fillText(textArray[i], gX, gY);
-          //console.log("1. ", textArray[i]);
-          gX=gX + 5;
+        
+        gX = 0;
+        
 
-          //currentKeyPress = textArray[i];
+
+        gY = 20;
+        
+        //loops through entire string
+        for (i = 0; i < textArray.length; i++) {
+
+
+          //alert(i);
+          //in here, at end 3,6,9,12 , etc.
+          if((( i % 3) == 0) && (i != "0")){
+            
+            //sets new positioning for cursor
+            
+            gX = 5;
+            gY = gY + 5;
+            
+            ctx.fillText(textArray[i], gX, gY);
+            
+           
+            console.log("i2 " , gY );
+          }
+          else{
+
+          //prints one character
+          
+          gX=gX + 5; 
+          ctx.fillText(textArray[i], gX, gY);
+         
+          console.log("i1 " , i )
+          console.log("gx", gX);
+          
+          
+          }
           
         }
         
+        drawCursor();
+        
+        
+        
         
       }
+
+      
+
+
       var xValuetoInsertAt = 2;
       newArray = [];
       
@@ -149,6 +189,18 @@
         ...arr.slice(index)
         
     ]
+
+
+    function drawCursor(){
+
+//cursorImage = new Image();
+//cursorImage.src = "images/cursor.bmp";
+//ctx.drawImage(cursorImage, 40,40,40,40);
+
+ctx.fillText('_', gX+5, gY+0);
+
+
+}
 
       
       
