@@ -23,6 +23,7 @@
 
 
     <script>
+      var arrayContentLength = 0;
       var ctx;
       var gX = 20;
       
@@ -34,126 +35,15 @@
 
     var textArray = new Array();
 
+   
+
       var canvas = document.getElementById('canvas_id')
 
-      document.addEventListener('keydown', function (e) {
-        //alert("keypress");
-        let key = e.key;
-        controlInput(key);
-      })
-
       
 
-
-
-      /////////
-
-      function controlInput(key) {
-
-        
-        
-
-        if(key == "ArrowRight")
-        {
-          moveRight();
-          return(-1);
-        }else{
-
-          textArray = textArray + key;
-        
-        gX = gX + 0;
-        
-        ctx.fillStyle = 'black';
-
-        }
-
-        drawText();
-      }
-
-      function clearArray() {
-        ctx.clearRect(0,0,100,100);
-        ctx.fillStyle = '#bada55';
-        ctx.fillRect(0,0, canvas.width, canvas.height);
-        ctx.fillStyle = '#000000';
-      }
-      var indexX = 0;
-      var currentKeyPress = '';
       
-      
-      let wrapAtX = 20;
-      const MAXWIDTH = 5; 
-
-      
-      function drawText() {
-        clearArray();
-
-        
-        
-        
-        
-        gX = 0;
-        
-
-
-        gY = 20;
-        
-        //loops through entire string
-        for (i = 0; i < textArray.length; i++) {
-
-
-          //alert(i);
-          //in here, at end 3,6,9,12 , etc.
-          if((( i % 3) == 0) && (i != "0")){
-            
-            //sets new positioning for cursor
-            
-            gX = DELTAX;
-            gY = gY + DELTAY;
-            
-            ctx.fillText(textArray[i], gX, gY);
-            
-           
-            console.log("i2 " , gY );
-          }
-          else{
-
-          //prints one character
-          
-          gX=gX + DELTAX; 
-          ctx.fillText(textArray[i], gX, gY);
-         
-          console.log("i1 " , i )
-          console.log("gx", gX);
-          
-          
-          }
-          
-        }
-        
-        drawCursor();
-        
-        
-        
-        
-      }
-
-      
-
-
-      var xValuetoInsertAt = 2;
-      newArray = [];
-      
-      
-
-
-
-
-      ////////
-
-      ////////
-
-      //var canvas = document.getElementById('canvas_id');
-      ctx = canvas.getContext('2d');
+    //var canvas = document.getElementById('canvas_id');
+    ctx = canvas.getContext('2d');
       // Set display size (css pixels).
       //get width of canvasvar size = 300;
       var size = 220;
@@ -178,11 +68,126 @@
       var x = size / 2;
       var y = size / 2;
 
-      //var textString = "I love MDN";
-      //ctx.fillText(textString, x, y);
+      
+
+      var indexX = 0;
+      var currentKeyPress = '';
+      
+      
+      let wrapAtX = 20;
+      const MAXWIDTH = 5; 
+
+      var xValuetoInsertAt = 2;
+      newArray = [];
+
+      const insert = (arr, index, newItem) => [
+      
+        ...arr.slice(0, index),
+        newItem,
+        ...arr.slice(index)
+        
+    ]
 
 
-      function insertNow(){
+    
+
+class CustomBoxClass{
+
+
+setNulls(){
+  for(let i=0; i < 1000 ; i++){
+
+    textArray.push("");
+    //onsole.log("array: ",textArray[i]);
+
+ 
+}
+
+alert(textArray[1]);
+}
+      /////////
+
+    controlInput(key) {
+
+        if(key == "ArrowRight")
+        {
+          moveRight();
+          return(-1);
+        }else{
+
+          textArray[arrayContentLength] =  key;
+        
+        gX = gX + 0;
+        
+        ctx.fillStyle = 'black';
+
+        }
+
+        customBox1.drawText();
+        arrayContentLength = arrayContentLength + 1;
+      }
+
+      clearArray() {
+        ctx.clearRect(0,0,100,100);
+        ctx.fillStyle = '#bada55';
+        ctx.fillRect(0,0, canvas.width, canvas.height);
+        ctx.fillStyle = '#000000';
+      }
+      
+
+      
+      
+      
+      
+      drawText() {
+        
+        this.clearArray();
+        gX = 0;
+        
+        gY = 20;
+        
+        //loops through entire string
+        for (let i = 0; i < arrayContentLength; i++) {
+
+
+          //alert(i);
+          //in here, at end 3,6,9,12 , etc.
+          if((( i % 3) == 0) && (i != "0")){
+            
+            //sets new positioning for cursor
+            
+            gX = DELTAX;
+            gY = gY + DELTAY;
+            
+            ctx.fillText(textArray[i], gX, gY);
+            
+           
+            //console.log("i2 " , gY );
+          }
+          else{
+
+          //prints one character
+          
+          gX=gX + DELTAX; 
+          ctx.fillText(textArray[i], gX, gY);
+         
+          console.log("1: " , textArray[i] );
+          //console.log("gx", gX);
+          
+          
+          }
+          
+        }
+        
+        this.drawCursor();
+        
+        
+        
+        
+      }
+
+      
+insertNow(){
         let con = insert(textArray, 1, '5');
         console.log("con",con.length);
 
@@ -196,31 +201,20 @@
 
           
         
-        drawText();
+        this.drawText();
       }
 
-      const insert = (arr, index, newItem) => [
       
-        ...arr.slice(0, index),
-        newItem,
-        ...arr.slice(index)
-        
-    ]
 
 
-    function drawCursor(){
-
-//cursorImage = new Image();
-//cursorImage.src = "images/cursor.bmp";
-//ctx.drawImage(cursorImage, 40,40,40,40);
+drawCursor(){
 
 ctx.fillText('_', gX+ DELTAX, gY+0);
-
 
 }
 
       
-    function moveRight(){
+ moveRight(){
 
       alert("called move right");
       ctx.fillText('A', gX+ DELTAX, gY+0);
@@ -234,7 +228,18 @@ ctx.fillText('_', gX+ DELTAX, gY+0);
       
       
 
+  }
 
+  const customBox1 = new CustomBoxClass ();
+
+  customBox1.setNulls();
+  
+
+  document.addEventListener('keydown', function (e) {
+        //alert("keypress");
+        let key = e.key;
+        customBox1.controlInput(key);
+      })
 
 
       </script>
