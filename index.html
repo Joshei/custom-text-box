@@ -24,9 +24,9 @@
 
     <script>
       var arrayContentLength = 0;
-      var ctx;
-      var gX = 20;
       
+      var gX = 0;
+      var cursorX = 0
       var gY = 20;
       var flag = 0;
       var  DELTAX = 5;
@@ -43,7 +43,7 @@
 
       
     //var canvas = document.getElementById('canvas_id');
-    ctx = canvas.getContext('2d');
+    let ctx = canvas.getContext('2d');
       // Set display size (css pixels).
       //get width of canvasvar size = 300;
       var size = 220;
@@ -58,7 +58,7 @@
       // Normalize coordinate system to use css pixels.
       ctx.scale(scale, scale);
 
-      ctx.fillStyle = '#bada55';
+      ctx.fillStyle = '#ffffff';
       ctx.fillRect(0, 0, 300, 300);
       ctx.fillStyle = '#000000';
       ctx.font = '9px Monospace';
@@ -91,7 +91,11 @@
 
     
 
+
+  let cursorXAdjuster = 0;
 class CustomBoxClass{
+
+  //CursorMov = new CursorMovement();
 
 
 setNulls(){
@@ -103,17 +107,24 @@ setNulls(){
  
 }
 
-alert(textArray[1]);
+//alert(textArray[1]);
 }
       /////////
 
     controlInput(key) {
 
-        if(key == "ArrowRight")
+        if(key == "ArrowLeft")
         {
-          moveRight();
+          this.moveLeft();
           return(-1);
-        }else{
+        }
+        else if(key == "ArrowRight")
+        {
+          this.moveRight();
+          return(-1);
+        }
+        // a regular text character added
+        else{
 
           textArray[arrayContentLength] =  key;
         
@@ -123,13 +134,17 @@ alert(textArray[1]);
 
         }
 
-        customBox1.drawText();
+        
         arrayContentLength = arrayContentLength + 1;
+        this.drawText();
       }
+
+
+
 
       clearArray() {
         ctx.clearRect(0,0,100,100);
-        ctx.fillStyle = '#bada55';
+        ctx.fillStyle = '#ffffff';
         ctx.fillRect(0,0, canvas.width, canvas.height);
         ctx.fillStyle = '#000000';
       }
@@ -139,11 +154,12 @@ alert(textArray[1]);
       
       
       
-      drawText() {
+      drawText(cursorMoved) {
         
-        this.clearArray();
+       
+        //this.clearArray();
         gX = 0;
-        
+        cursorX = 0;
         gY = 20;
         
         //loops through entire string
@@ -152,11 +168,11 @@ alert(textArray[1]);
 
           //alert(i);
           //in here, at end 3,6,9,12 , etc.
-          if((( i % 3) == 0) && (i != "0")){
+          if((( i % 3000) == 0) && (i != "0")){
             
-            //sets new positioning for cursor
             
-            gX = DELTAX;
+            
+            gX = 0;
             gY = gY + DELTAY;
             
             ctx.fillText(textArray[i], gX, gY);
@@ -169,6 +185,8 @@ alert(textArray[1]);
           //prints one character
           
           gX=gX + DELTAX; 
+          cursorX = cursorX + DELTAX;
+          
           ctx.fillText(textArray[i], gX, gY);
          
           console.log("1: " , textArray[i] );
@@ -176,15 +194,24 @@ alert(textArray[1]);
           
           
           }
-          
+          if(cursorMoved != "moved"){
+          //cursorX = cursorX + 5;
+          }
+
         }
         
+
+
+        cursorX = cursorX + cursorXAdjuster;
+
         this.drawCursor();
         
         
         
         
       }
+
+
 
       
 insertNow(){
@@ -207,28 +234,71 @@ insertNow(){
       
 
 
+      //find positioning of cursor, gX is where the farthest positioing of text is
 drawCursor(){
-
-ctx.fillText('_', gX+ DELTAX, gY+0);
-
+ctx.fillText('_', cursorX, gY+0);
 }
 
+drawCursor1(x,y){
+//  ctx.fillStyle = '#000000';
+//ctx.fillText('A', 20, 20);
+ctx.fillText('_', 20 , gY+30);
+alert("!");
+}
+
+
+  
+
+
       
- moveRight(){
-
-      alert("called move right");
-      ctx.fillText('A', gX+ DELTAX, gY+0);
-
-      drawText();
-
-
-    }  
       
 
+  
       
-      
+  
 
+  
+ 
+    
+ ////////////////
+
+    moveRight(){
+      if (textArray[cursorX+5] == null){
+    return(-1);
+
+}
+      cursorX = cursorX + 5
+   
+  this.drawText("moved");
+
+   // CustomBoxClass.drawText();
+
+
+}  
+
+moveLeft(){
+
+  alert(((cursorX)/5 ));
+  if ((((cursorX)/5)) % 10 == 0)
+  {
+    alert("11th space");
+    this.drawCursor1(500,40);
   }
+ cursorXAdjuster = cursorXAdjuster - 5;
+
+this.drawText("moved");
+
+
+}  
+  
+////////////////
+}
+
+
+  
+  
+  
+ // const cursorMove = new CursorMovement ();
 
   const customBox1 = new CustomBoxClass ();
 
