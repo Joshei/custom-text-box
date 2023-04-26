@@ -83,7 +83,7 @@ for (let i = 0; i< 1000; i = i + 10){
           //rows
           for (let j = 0; j < 35; j++) {
             //nestedArray[i][j] = "X";
-            ctx.fillText(nestedArray[i][j], i * 5 + 25, j + 25)
+            ctx.fillText(nestedArray[i][j], i * 5 + 25, j * 10 + 25)
           }
         }
 
@@ -157,7 +157,7 @@ for (let i = 0; i< 1000; i = i + 10){
           //    return(-1);
           //}
           drawGrid(100, 100)
-          verticalCursorPosition = verticalCursorPosition - 50;
+          verticalCursorPosition = verticalCursorPosition - 10;
           
           this.drawCursor(
             horizontalCursorPosition + 30,
@@ -173,7 +173,7 @@ for (let i = 0; i< 1000; i = i + 10){
           //}
 
           drawGrid(100, 100)
-          verticalCursorPosition = verticalCursorPosition + 50;
+          verticalCursorPosition = verticalCursorPosition + 10;
           this.drawCursor(
             horizontalCursorPosition + 30,
             verticalCursorPosition + 25 
@@ -183,27 +183,27 @@ for (let i = 0; i< 1000; i = i + 10){
         drawCursor(x, y) {
           ctx.font = '10px Monospace'
           ctx.fillStyle = 'red'
-          ctx.fillText('_', x , y);
+          ctx.fillText('_', x-5 , y);
         }
       }
 
       function printCharacter(key) {
         ctx.clearRect(0, 0, 300, 300)
 
-        nestedArray[horizontalCursorPosition / 5][verticalCursorPosition / 8] =
-          'E'
+        //nestedArray[horizontalCursorPosition / 5][verticalCursorPosition / 8] =
+        //  'E'
 
         console.log('v ', verticalCursorPosition)
         console.log('h ', horizontalCursorPosition)
 
         //try setting nested array for drawgrid
         
-          nestedArray[horizontalCursorPosition/5][verticalCursorPosition/5] = 'K'
+          nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = 'K'
           
         
           
         drawGrid()
-
+        
         horizontalCursorPosition = horizontalCursorPosition + 5
         customBox1.drawCursor(
           horizontalCursorPosition + 30,
