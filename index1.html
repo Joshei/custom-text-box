@@ -14,7 +14,7 @@
       style="border: 1px solid #550233"
       ;
     ></canvas>
-    <button id="button1" onclick="insertNow()">insert position 2</button>
+    <button id="button1" onclick="makeOneDimArray()">insert position 2</button>
 
 
 
@@ -22,6 +22,7 @@
 
 
     <script>
+        //nestedarray holds values with an array - 35 by 35
 var canvas = document.getElementById('canvas_id')
 
 let textBox = [[]];
@@ -65,10 +66,10 @@ for (let i = 0; i< 1000; i = i + 10){
 }*/
 
 const nestedArray = Array.from({length: rows}, () =>
-Array.from({length: cols}, () => '1')
+Array.from({length: cols}, () => ' ')
 );
 
-console.log(nestedArray);
+//console.log(nestedArray);
 
         function clearArray() {
         ctx.clearRect(0,0,100,100);
@@ -81,18 +82,22 @@ function drawGrid(){
 //cols
 clearArray();
 ctx.fillStyle = 'black';
-for (let i = 0; i< 35; i = i + 1){
+for (let i = 0; i< 35; i++){
 
     //rows
-    for(let j=0; j< 35; j = j + 1){
+    for(let j=0; j< 35; j++){
         //nestedArray[i][j] = "X";
-        ctx.fillText(nestedArray[i][j], i*5+25, j*5+25);
+        ctx.fillText(nestedArray[i][j], (i*5)+25, j+25);
     }
 }
+
+//console.log(nestedArray);
+
+return(1);
 }
 
-let horizontalCursorPosition  = 100;
-let verticalCursorPosition = 100;
+let horizontalCursorPosition  = 0;
+let verticalCursorPosition = 0;
 
 
 
@@ -101,13 +106,20 @@ class CustomBoxClass{
     constructor(){
 
         drawGrid();
-        this.drawCursor(100,100);
+        this.drawCursor(25,25);
 
     }
 
     controlInput(key){
+
+        
+ 
         if(key == "ArrowLeft")
         {
+            
+           
+
+            
           this.cursorLeft();
           return(-1);
         }
@@ -126,70 +138,75 @@ class CustomBoxClass{
           this.cursorDown();
           return(-1);
         }
+        else
+        {
+            printCharacter(key);
+        }
         
     }
 
     cursorRight(){
 
        
-        console.log(horizontalCursorPosition);
-        if (horizontalCursorPosition >= 195){
-            //alert(horizontalCursorPosition);
-            horizontalCursorPosition = 195;
-            return(-1);
-        }
+       /// console.log(horizontalCursorPosition);
+        //if (horizontalCursorPosition >= 195){
+        //    //alert(horizontalCursorPosition);
+        //    horizontalCursorPosition = 195;
+        //    return(-1);
+        //}
 
         drawGrid(100,100);
         horizontalCursorPosition = horizontalCursorPosition + 5;
-        this.drawCursor(horizontalCursorPosition, verticalCursorPosition);
+        this.drawCursor(horizontalCursorPosition+30, verticalCursorPosition+25);
         
     }
 
     cursorLeft(){
 
         
-        console.log(horizontalCursorPosition);
-        if (horizontalCursorPosition <= 25){
-            horizontalCursorPosition = 25;
-            return(-1);
-        }
+       // console.log(horizontalCursorPosition);
+       // if (horizontalCursorPosition <= 25){
+       //     horizontalCursorPosition = 25;
+       //     return(-1);
+       // }
         
         drawGrid(100,100);
         horizontalCursorPosition = horizontalCursorPosition - 5;
         
         
-        this.drawCursor(horizontalCursorPosition, verticalCursorPosition);
+        this.drawCursor(horizontalCursorPosition+30, verticalCursorPosition+25);
 
     }
     cursorUp(){
 
         
 
-        if(verticalCursorPosition <= 25){
-            verticalCursorPosition = 25;
-            return(-1);
-        }
+        //if(verticalCursorPosition <= 25){
+        //    verticalCursorPosition = 25;
+        //    return(-1);
+        //}
 
         
+        
+        verticalCursorPosition = verticalCursorPosition - 8;
         drawGrid(100,100);
-        verticalCursorPosition = verticalCursorPosition - 5;
-        this.drawCursor(horizontalCursorPosition, verticalCursorPosition);
+        this.drawCursor(horizontalCursorPosition+30, verticalCursorPosition+25);
         
         
     }
     cursorDown(){
         
         //alert(verticalCursorPosition);
-        if(verticalCursorPosition >= 195)
-        {
-            verticalCursorPosition = 195;
-            return(-1);
-        }
+        //if(verticalCursorPosition >= 195)
+        //{
+        //    verticalCursorPosition = 195;
+        //    return(-1);
+        //}
 
 
         drawGrid(100,100);
-        verticalCursorPosition = verticalCursorPosition + 5;
-        this.drawCursor(horizontalCursorPosition, verticalCursorPosition);
+        verticalCursorPosition = verticalCursorPosition + 8;
+        this.drawCursor(horizontalCursorPosition+30, verticalCursorPosition+25);
        
 
     }
@@ -198,10 +215,64 @@ class CustomBoxClass{
 
     }
     drawCursor(x, y){
-        ctx.font = '5px Monospace';
+        ctx.font = '10px Monospace';
         ctx.fillStyle = 'red';
         ctx.fillText('_', x , y);
     }
+
+
+}
+
+function printCharacter(key){
+
+    
+
+        ctx.clearRect(0,0, 300, 300);
+        
+        
+        nestedArray[(horizontalCursorPosition/5)][(verticalCursorPosition/5)] = 'E';
+        
+        
+        console.log ("v ", verticalCursorPosition );
+        console.log("h ", horizontalCursorPosition);
+
+        ctx.fillText(nestedArray[horizontalCursorPosition/5][verticalCursorPosition/5], horizontalCursorPosition+30, verticalCursorPosition+25);
+        
+        drawGrid();
+        
+        horizontalCursorPosition = horizontalCursorPosition + 5;
+        customBox1.drawCursor(horizontalCursorPosition+30, verticalCursorPosition+25);
+        
+}
+
+
+let oneDimArray= [];
+
+function makeOneDimArray(){
+
+    for (let i = 0; i< 35; i = i + 1){
+
+    //rows
+    for(i=0, j=0; i< 35; i = i + 1, j = j + 1){
+        
+        oneDimArray.push( nestedArray[i][j]);
+    }
+    
+
+    }
+
+    //console.log (oneDimArray );
+}
+
+    
+function insertTextRight(){
+
+//let horizontalCursorPosition  = 100;
+//let verticalCursorPosition = 100;
+
+let oneDimArray = [];
+
+
 
 
 }
