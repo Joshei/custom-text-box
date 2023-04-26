@@ -129,7 +129,7 @@ for (let i = 0; i< 1000; i = i + 10){
           //}
 
           drawGrid(100, 100)
-          horizontalCursorPosition = horizontalCursorPosition + 5
+          horizontalCursorPosition = horizontalCursorPosition + 5;
           this.drawCursor(
             horizontalCursorPosition + 30,
             verticalCursorPosition + 25
@@ -144,7 +144,7 @@ for (let i = 0; i< 1000; i = i + 10){
           // }
 
           drawGrid(100, 100)
-          horizontalCursorPosition = horizontalCursorPosition - 5
+          horizontalCursorPosition = horizontalCursorPosition - 5;
 
           this.drawCursor(
             horizontalCursorPosition + 30,
@@ -156,12 +156,12 @@ for (let i = 0; i< 1000; i = i + 10){
           //    verticalCursorPosition = 25;
           //    return(-1);
           //}
-
-          verticalCursorPosition = verticalCursorPosition - 8
           drawGrid(100, 100)
+          verticalCursorPosition = verticalCursorPosition - 50;
+          
           this.drawCursor(
             horizontalCursorPosition + 30,
-            verticalCursorPosition + 25
+            verticalCursorPosition + 25 
           )
         }
         cursorDown() {
@@ -173,17 +173,17 @@ for (let i = 0; i< 1000; i = i + 10){
           //}
 
           drawGrid(100, 100)
-          verticalCursorPosition = verticalCursorPosition + 8
+          verticalCursorPosition = verticalCursorPosition + 50;
           this.drawCursor(
             horizontalCursorPosition + 30,
-            verticalCursorPosition + 25
+            verticalCursorPosition + 25 
           )
         }
         redrawGrid() {}
         drawCursor(x, y) {
           ctx.font = '10px Monospace'
           ctx.fillStyle = 'red'
-          ctx.fillText('_', x, y)
+          ctx.fillText('_', x , y);
         }
       }
 
@@ -197,12 +197,11 @@ for (let i = 0; i< 1000; i = i + 10){
         console.log('h ', horizontalCursorPosition)
 
         //try setting nested array for drawgrid
-        ctx.fillText(
-          nestedArray[horizontalCursorPosition / 5][verticalCursorPosition / 8],
-          horizontalCursorPosition + 30,
-          verticalCursorPosition + 25
-        )
-
+        
+          nestedArray[horizontalCursorPosition/5][verticalCursorPosition/5] = 'K'
+          
+        
+          
         drawGrid()
 
         horizontalCursorPosition = horizontalCursorPosition + 5
