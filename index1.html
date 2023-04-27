@@ -15,6 +15,7 @@
       ;
     ></canvas>
     <button id="button1" onclick="makeOneDimArray()">insert position 2</button>
+    <button id="button2" onclick="deleteFormerCharacter()">delete</button>
 
     <div class="test"></div>
 
@@ -79,6 +80,7 @@ for (let i = 0; i< 1000; i = i + 10){
         //cols
         clearArray()
         ctx.fillStyle = 'black'
+        //columns
         for (let i = 0; i < 35; i++) {
           //rows
           for (let j = 0; j < 35; j++) {
@@ -87,9 +89,25 @@ for (let i = 0; i< 1000; i = i + 10){
           }
         }
 
-        //console.log(nestedArray);
+        
 
         return 1
+      }
+
+      function deleteFormerCharacter(){
+
+      
+      //  change current cursor space to blank 
+      //  change previous character with under score amd space
+      
+      nestedArray[(horizontalCursorPosition/5)-1][verticalCursorPosition] = '_';
+      nestedArray[horizontalCursorPosition/5][verticalCursorPosition/5] = ' ';
+      horizontalCursorPosition = horizontalCursorPosition -5; 
+
+      drawGrid();
+      
+
+
       }
 
       let horizontalCursorPosition = 0
