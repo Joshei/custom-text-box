@@ -20,6 +20,9 @@
     <div class="test"></div>
 
     <script>
+
+      const VOFFSET = 25;
+      const HOFFSET = 30;
       //nestedarray holds values with an array - 35 by 35
       var canvas = document.getElementById('canvas_id')
 
@@ -60,8 +63,7 @@
         Array.from({ length: cols }, () => ' ')
       )
 
-      //console.log(nestedArray);
-
+      
       function clearArray() {
         ctx.clearRect(0, 0, 100, 100)
         ctx.fillStyle = '#ffffff'
@@ -142,8 +144,8 @@
           drawGrid(100, 100)
           horizontalCursorPosition = horizontalCursorPosition + 5;
           this.drawCursor(
-            horizontalCursorPosition + 30,
-            verticalCursorPosition + 25
+            horizontalCursorPosition + HOFFSET,
+            verticalCursorPosition + VOFFSET
           )
         }
 
@@ -158,9 +160,8 @@
           horizontalCursorPosition = horizontalCursorPosition - 5;
 
           this.drawCursor(
-            horizontalCursorPosition + 30,
-            verticalCursorPosition + 25
-          )
+            horizontalCursorPosition + HOFFSET,
+            verticalCursorPosition + VOFFSET)
         }
         cursorUp() {
           //if(verticalCursorPosition <= 25){
@@ -171,9 +172,9 @@
           verticalCursorPosition = verticalCursorPosition - 10;
           
           this.drawCursor(
-            horizontalCursorPosition + 30,
-            verticalCursorPosition + 25 
-          )
+            horizontalCursorPosition + HOFFSET,
+            verticalCursorPosition + VOFFSET)
+          
         }
         cursorDown() {
           //alert(verticalCursorPosition);
@@ -186,9 +187,9 @@
           drawGrid(100, 100)
           verticalCursorPosition = verticalCursorPosition + 10;
           this.drawCursor(
-            horizontalCursorPosition + 30,
-            verticalCursorPosition + 25 
-          )
+            horizontalCursorPosition + HOFFSET,
+            verticalCursorPosition + VOFFSET)
+          
         }
         redrawGrid() {}
         drawCursor(x, y) {
@@ -217,8 +218,8 @@
         
         horizontalCursorPosition = horizontalCursorPosition + 5
         customBox1.drawCursor(
-          horizontalCursorPosition + 30,
-          verticalCursorPosition + 25
+          horizontalCursorPosition + HOFFSET,
+          verticalCursorPosition + VOFFSET
         )
       }
 
@@ -236,16 +237,14 @@
       }
 
       function insertTextRight() {
-        //let horizontalCursorPosition  = 100;
-        //let verticalCursorPosition = 100;
-
+        
         let oneDimArray = []
       }
 
       const customBox1 = new CustomBoxClass()
 
       document.addEventListener('keydown', function (e) {
-        //alert("keypress");
+        
         let key = e.key
         customBox1.controlInput(key)
       })
