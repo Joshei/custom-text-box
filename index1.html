@@ -13,10 +13,13 @@
       height="240"
       style="border: 1px solid #550233"
       ;
+
+      
     ></canvas>
     <button id="button1" onclick="makeOneDimArray()">insert position 2</button>
     <button id="button2" onclick="deleteFormerCharacter()">delete</button>
-
+    
+    
     <div class="test"></div>
 
     <script>
@@ -105,6 +108,69 @@
 
       }
 
+
+
+      let oneDimArray = [];
+      //temp out of class
+
+      let flag = false;
+      function makeOneDimArray() {
+        for (let i = 0; i < 35; i = i + 1) {
+          //rows
+          for (j = 0; j < 35; j = j + 1) {
+            oneDimArray.push(nestedArray[j][i])
+          }
+        }
+        
+        insertCharacter();
+
+        
+      }
+
+      function insertCharacter(){
+      oneDimArray.splice((horizontalCursorPosition/5),0, 'Z'); 
+      makeTwoDimArrayWithInsertion();
+      }
+
+
+      let a = 0;
+      function makeTwoDimArrayWithInsertion(){
+        for (let i = 0; i < 35; i = i + 1) {
+           
+          //rows
+          //a++;
+          for (j = 0; j < 35; j = j + 1) {
+          
+          //set array with ints
+          nestedArray[j][i] = oneDimArray[j];
+          //a++;
+        }     
+        }  //  i = rows, j = col
+       
+
+
+
+
+
+
+        //Tested arrays here!
+        for (let i = 0; i < 35; i = i + 1) {
+          //rows
+          for (let j = 0; j < 35; j = j + 1) {
+            //pushes nestedArray into onedimarray
+            oneDimArray.push(nestedArray[j][i]);
+
+            //console.log(oneDimArray);// - correct
+          }
+       }
+       
+        console.log(oneDimArray);// - correct
+        // oneDimArray();
+
+      }
+
+
+      
       let horizontalCursorPosition = 0
       let verticalCursorPosition = 0
 
@@ -112,21 +178,11 @@
 
         constructor(){
 
-          let oneDimArray = [];
+          //let oneDimArray = [];
         }
         
 
-      makeOneDimArray() {
-        for (let i = 0; i < 35; i = i + 1) {
-          //rows
-          for (i = 0, j = 0; i < 35; i = i + 1, j = j + 1) {
-            oneDimArray.push(nestedArray[i][j])
-          }
-        }
-
-        //console.log (oneDimArray );
-      }
-
+      
       insertTextRight() {
         
         let oneDimArray = []
@@ -136,7 +192,7 @@
       }
 
 
-      
+
       class  CursorMovementsClass{
 
         
