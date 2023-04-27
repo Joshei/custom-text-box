@@ -28,7 +28,7 @@
       let rows = 35
       let cols = 35
 
-      //var canvas = document.getElementById('canvas_id');
+      
       let ctx = canvas.getContext('2d')
       // Set display size (css pixels).
       //get width of canvasvar size = 300;
@@ -54,14 +54,7 @@
       var x = size / 2
       var y = size / 2
 
-      /*
-for (let i = 0; i< 1000; i = i + 10){
-    for(let j=0; j< 1000; j = j + 10){
-        textBox[i][j] = "X";
-        ctx.fillText(textBox[i][j], i+50, j+50);
-    }
-
-}*/
+      
 
       const nestedArray = Array.from({ length: rows }, () =>
         Array.from({ length: cols }, () => ' ')
