@@ -83,7 +83,7 @@
           //rows
           for (let j = 0; j < 35; j++) {
             //nestedArray[i][j] = "X";
-            ctx.fillText(nestedArray[i][j], i * 5 + 25, j * 10 + 25)
+            ctx.fillText(nestedArray[j][i], j * 5 + 25, i * 10 + 25)
           }
         }
 
@@ -99,7 +99,7 @@
       //  change previous character with under score amd space
       
       nestedArray[(horizontalCursorPosition/5)-1][verticalCursorPosition] = '_';
-      nestedArray[horizontalCursorPosition/5][verticalCursorPosition/5] = ' ';
+      nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = ' ';
       horizontalCursorPosition = horizontalCursorPosition -5; 
 
       drawGrid();
@@ -117,7 +117,7 @@
       function makeOneDimArray() {
         for (let i = 0; i < 35; i = i + 1) {
           //rows
-          for (j = 0; j < 35; j = j + 1) {
+          for (let j = 0; j < 35; j = j + 1) {
             oneDimArray.push(nestedArray[j][i])
           }
         }
@@ -128,31 +128,45 @@
       }
 
       function insertCharacter(){
-      oneDimArray.splice((horizontalCursorPosition/5),0, 'Z'); 
+        console.log("2: ", oneDimArray);
+       
+      //oneDimArray.splice((horizontalCursorPosition/5+35  ),0, 'Z'); 
+      oneDimArray.splice((horizontalCursorPosition/5+(35 * verticalCursorPosition/10)  ),0, 'Z');
+      console.log("h: ", horizontalCursorPosition);
+      console.log("v: ", verticalCursorPosition);
+      console.log("3: ", oneDimArray);      
       makeTwoDimArrayWithInsertion();
       }
 
 
       let a = 0;
+      let z =0;
       function makeTwoDimArrayWithInsertion(){
         for (let i = 0; i < 35; i = i + 1) {
-           
+          
+          
           //rows
           //a++;
-          for (j = 0; j < 35; j = j + 1) {
-          
+          for (j = 0; j < 35; j = j + 1, z++) {
+          console.log("i: ", i);
+          console.log("j: ", j);
           //set array with ints
-          nestedArray[j][i] = oneDimArray[j];
+          nestedArray[j][i] = oneDimArray[z];
           //a++;
         }     
         }  //  i = rows, j = col
-       
+        z=0;
+       console.log("A: ", nestedArray);
+       console.log("B: ", oneDimArray);
 
 
+        drawGrid();
+        CursorMovements.drawCursor(horizontalCursorPosition+ HOFFSET, verticalCursorPosition + VOFFSET);
 
 
+        
 
-
+/*
         //Tested arrays here!
         for (let i = 0; i < 35; i = i + 1) {
           //rows
@@ -166,7 +180,7 @@
        
         console.log(oneDimArray);// - correct
         // oneDimArray();
-
+*/
       }
 
 
@@ -178,7 +192,7 @@
 
         constructor(){
 
-          //let oneDimArray = [];
+          
         }
         
 
@@ -302,7 +316,7 @@
 
         //try setting nested array for drawgrid
         
-          nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = 'K'
+          nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = key
           
         
           
