@@ -19,8 +19,8 @@
     <!--<button id="button1" onclick="makeOneDimArray()">insert position 2</button>-->
     <button id="button2" onclick="backspaceFormerCharacter()">Back Space</button>
     <button id="button3" onclick="deleteIt()">Delete</button>
-    <button id="button4" onclick="cursorRight()">Delete</button>
-    <button id="button5" onclick="cursorLeft()">Delete</button>
+    <button id="button4" onclick="cursorRight()">Cursor Right</button>
+    <button id="button5" onclick="cursorLeft()">Cursor Left</button>
     
 
     
@@ -33,31 +33,82 @@ const WIDTH = 35;
 
 function cursorLeft(){
 
+  
+  horizontalCursorPosition = horizontalCursorPosition - 5;
+  if(horizontalCursorPosition == -5)
+  {
+    alert("a");
+    verticalCursorPosition = verticalCursorPosition - 10;
+    
+    
+    if (verticalCursorPosition == 0)
+    {
+      horizontalCursorPosition = 34 * 5;
+      for(let i = horizontalCursorPosition; i >= 0; i--)
+      {
+        if ((nestedArray[0][i]) == "")
+        {
+          horizontalCursorPosition = horizontalCursorPosition - 5;
+        }
+        
+      }
+    
+      horizontalCursorPosition = horizontalCursorPosition + 10;
+    }
+    
+    
+    else{
+    horizontalCursorPosition = verticalCursorPosition/10 * (WIDTH-1);
+    horizontalCursorPosition = horizontalCursorPosition * 5;
+    }
+    alert(horizontalCursorPosition);
+    for(let i = horizontalCursorPosition; nestedArray[verticalCursorPosition/10][horizontalCursorPosition/5] == ""; i--)
+    {
+      //alert("in");
+      horizontalCursorPosition = (horizontalCursorPosition - 5) + 1;
+      
+    }
+  }
+
+  xAndY.innerHTML = "X: " + horizontalCursorPosition + "  &nbsp&nbsp&nbsp   Y: " + verticalCursorPosition;
+  console.log("horiz " ,horizontalCursorPosition);
+  console.log("vert ", verticalCursorPosition);
+
+  drawGrid(100, 100)
+      //horizontalCursorPosition = horizontalCursorPosition + 5;
+      
+      CursorMovements.drawCursor(
+      horizontalCursorPosition + HOFFSET,
+      verticalCursorPosition + VOFFSET
+          )
+
+
 }
 function cursorRight(){
 
-  nestedArray[j][i]
-    if(nestedArray[horizontalCursorPosition + 5][verticalCursorPosition] != null)
+  
+  console.log("check" , nestedArray[0][1]);
+  console.log(horizontalCursorPosition);
+  console.log(verticalCursorPosition);
+
+  //console.log(nestedArray[(horizontalCursorPosition)/5][verticalCursorPosition]);
+  console.log(nestedArray[(verticalCursorPosition)][(horizontalCursorPosition)/5]);
+    if(nestedArray[(verticalCursorPosition)][horizontalCursorPosition/5] != "")
     {
-
-    }
-          for(let i = horizontalCursorPosition; i <= WIDTH*5; i = i + 5){
-
-          }
-
-          /// console.log(horizontalCursorPosition);
-          if (horizontalCursorPosition >= 170){
-              //alert(horizontalCursorPosition);
-              horizontalCursorPosition = 170;
-              return(-1);
-          }
-
-          drawGrid(100, 100)
-          horizontalCursorPosition = horizontalCursorPosition + 5;
-          this.drawCursor(
-            horizontalCursorPosition + HOFFSET,
-            verticalCursorPosition + VOFFSET
+      alert("here!");
+      drawGrid(100, 100)
+      //horizontalCursorPosition = horizontalCursorPosition + 5;
+      
+      CursorMovements.drawCursor(
+      horizontalCursorPosition + HOFFSET,
+      verticalCursorPosition + VOFFSET
           )
+    }
+    else{
+      alert("here");
+      return;
+    }
+          
         
 
 }
@@ -138,7 +189,7 @@ function deleteIt(){
       
 
       const nestedArray = Array.from({ length: rows }, () =>
-        Array.from({ length: cols }, () => ' ')
+        Array.from({ length: cols }, () => '')
       )
 
       insertOn.innerHTML = 'Insert Off';
@@ -163,7 +214,7 @@ function deleteIt(){
             //nestedArray[i][j] = "X";
 
             
-            ctx.fillText(nestedArray[j][i], j * 5 + 25, i * 10 + 25)
+            ctx.fillText(nestedArray[i][j], j * 5 + 25, i * 10 + 25)
           }
         }
 
@@ -413,7 +464,12 @@ function deleteIt(){
           } else if (gKey == 'ArrowDown') {
             CursorMovements.cursorDown()
             
-          } else if (gInsert) {
+          } else if (gKey == 'Enter'){
+            lineReturn();
+
+          } 
+          
+          else if (gInsert) {
             makeOneDimArray()
           }else{
             printCharacter()
@@ -423,6 +479,23 @@ function deleteIt(){
 
       }
 
+      function lineReturn(){
+        verticalCursorPosition = verticalCursorPosition + 10;
+        horizontalCursorPosition = 0;
+        for(let i = 0 ; i ++ ; i < 35){
+          if(nestedArray[verticalCursorPosition][i] = ""){
+            return;
+          }
+        }
+
+        drawGrid()
+        
+        
+          CursorMovements.drawCursor(
+          horizontalCursorPosition + HOFFSET,
+          verticalCursorPosition + VOFFSET)
+        
+      }
       function printCharacter() {
         ctx.clearRect(0, 0, 300, 300)
 
@@ -434,8 +507,9 @@ function deleteIt(){
 
         //try setting nested array for drawgrid
         
-          nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = gKey
-          
+          nestedArray[verticalCursorPosition/10][horizontalCursorPosition/5] = gKey
+          //nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = gKey
+          console.log("1", nestedArray);
         
           
         drawGrid()
