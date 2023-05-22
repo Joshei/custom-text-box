@@ -16,18 +16,93 @@
 
       
     ></canvas>
-    <button id="button1" onclick="makeOneDimArray()">insert position 2</button>
-    <button id="button2" onclick="deleteFormerCharacter()">delete</button>
+    <!--<button id="button1" onclick="makeOneDimArray()">insert position 2</button>-->
+    <button id="button2" onclick="backspaceFormerCharacter()">Back Space</button>
+    <button id="button3" onclick="deleteIt()">Delete</button>
+    <button id="button4" onclick="cursorRight()">Delete</button>
+    <button id="button5" onclick="cursorLeft()">Delete</button>
     
+
     
-    <div class="test"></div>
+    <div id="insert"></div>
+    <div id = "xAndY"></div>
 
     <script>
 
+const WIDTH = 35;
+
+function cursorLeft(){
+
+}
+function cursorRight(){
+
+  nestedArray[j][i]
+    if(nestedArray[horizontalCursorPosition + 5][verticalCursorPosition] != null)
+    {
+
+    }
+          for(let i = horizontalCursorPosition; i <= WIDTH*5; i = i + 5){
+
+          }
+
+          /// console.log(horizontalCursorPosition);
+          if (horizontalCursorPosition >= 170){
+              //alert(horizontalCursorPosition);
+              horizontalCursorPosition = 170;
+              return(-1);
+          }
+
+          drawGrid(100, 100)
+          horizontalCursorPosition = horizontalCursorPosition + 5;
+          this.drawCursor(
+            horizontalCursorPosition + HOFFSET,
+            verticalCursorPosition + VOFFSET
+          )
+        
+
+}
+
+function deleteIt(){
+
+  //if cursor before deletes that character
+  //if delete on last character, move all characters there and after one above (character is deleted)
+  //if line not full
+
+//internal
+  for (let j = horizontalCursorPosition; j < WIDTH; j = j + 1) {
+            for (let i = 0; i < WIDTH; i = i + 1, z++) {
+
+              //not at loacation zero
+            
+            if (oneDimArray[z] == NULL)
+            {
+              continue;
+            }
+            if (z > 0)
+            {
+              nestedArray[j][i] = oneDimArray[z-1];
+            }
+            else{
+
+              nestedArray[j][i] = oneDimArray[z];
+            }
+
+
+
+      }
+
+      
+    }
+
+    printCharacter();
+
+
+}
       const VOFFSET = 25;
       const HOFFSET = 30;
       //nestedarray holds values with an array - 35 by 35
-      var canvas = document.getElementById('canvas_id')
+      var canvas = document.getElementById('canvas_id');
+      var insertOn = document.getElementById('insert');
 
       let textBox = [[]]
 
@@ -66,6 +141,9 @@
         Array.from({ length: cols }, () => ' ')
       )
 
+      insertOn.innerHTML = 'Insert Off';
+      
+
       
       function clearArray() {
         ctx.clearRect(0, 0, 100, 100)
@@ -83,6 +161,8 @@
           //rows
           for (let j = 0; j < 35; j++) {
             //nestedArray[i][j] = "X";
+
+            
             ctx.fillText(nestedArray[j][i], j * 5 + 25, i * 10 + 25)
           }
         }
@@ -92,18 +172,21 @@
         return 1
       }
 
-      function deleteFormerCharacter(){
+      function backspaceFormerCharacter(){
 
       
       //  change current cursor space to blank 
       //  change previous character with under score amd space
       
-      nestedArray[(horizontalCursorPosition/5)-1][verticalCursorPosition] = '_';
+
+      
+      //nestedArray[(horizontalCursorPosition/5)-1][verticalCursorPosition] = '_';
       nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = ' ';
       horizontalCursorPosition = horizontalCursorPosition -5; 
+      
 
       drawGrid();
-      
+      CursorMovements.drawCursor(horizontalCursorPosition+ HOFFSET, verticalCursorPosition + VOFFSET);
 
 
       }
@@ -131,7 +214,9 @@
         console.log("2: ", oneDimArray);
        
       //oneDimArray.splice((horizontalCursorPosition/5+35  ),0, 'Z'); 
-      oneDimArray.splice((horizontalCursorPosition/5+(35 * verticalCursorPosition/10)  ),0, 'Z');
+      oneDimArray.splice((horizontalCursorPosition/5+(35 * verticalCursorPosition/10)  ),0, gKey);
+      
+      
       console.log("h: ", horizontalCursorPosition);
       console.log("v: ", verticalCursorPosition);
       console.log("3: ", oneDimArray);      
@@ -183,6 +268,19 @@
 */
       }
 
+      function moveAllcharactersRight(){
+
+          //first row
+          for (let j = horizontalCursorPosition; j < 35; j = j + 1) {
+            for (j = 0; j < 35; j = j + 1, z++) {
+
+            
+            nestedArray[j][i] = oneDimArray[z];
+
+
+      }
+    }
+  }
 
       
       let horizontalCursorPosition = 0
@@ -212,11 +310,11 @@
         
         cursorRight() {
           /// console.log(horizontalCursorPosition);
-          //if (horizontalCursorPosition >= 195){
-          //    //alert(horizontalCursorPosition);
-          //    horizontalCursorPosition = 195;
-          //    return(-1);
-          //}
+          if (horizontalCursorPosition >= 170){
+              //alert(horizontalCursorPosition);
+              horizontalCursorPosition = 170;
+              return(-1);
+          }
 
           drawGrid(100, 100)
           horizontalCursorPosition = horizontalCursorPosition + 5;
@@ -228,10 +326,10 @@
 
         cursorLeft() {
           // console.log(horizontalCursorPosition);
-          // if (horizontalCursorPosition <= 25){
-          //     horizontalCursorPosition = 25;
-          //     return(-1);
-          // }
+           if (horizontalCursorPosition <= 0){
+               horizontalCursorPosition = 0;
+               return(-1);
+           }
 
           drawGrid(100, 100)
           horizontalCursorPosition = horizontalCursorPosition - 5;
@@ -241,10 +339,10 @@
             verticalCursorPosition + VOFFSET)
         }
         cursorUp() {
-          //if(verticalCursorPosition <= 25){
-          //    verticalCursorPosition = 25;
-          //    return(-1);
-          //}
+          if(verticalCursorPosition <= 0){
+              verticalCursorPosition = 0;
+              return(-1);
+          }
           drawGrid(100, 100)
           verticalCursorPosition = verticalCursorPosition - 10;
           
@@ -254,12 +352,12 @@
           
         }
         cursorDown() {
-          //alert(verticalCursorPosition);
-          //if(verticalCursorPosition >= 195)
-          //{
-          //    verticalCursorPosition = 195;
-          //    return(-1);
-          //}
+          
+          if(verticalCursorPosition >= 170)
+          {
+              verticalCursorPosition = 170;
+              return(-1);
+          }
 
           drawGrid(100, 100)
           verticalCursorPosition = verticalCursorPosition + 10;
@@ -277,6 +375,8 @@
 
       }
       
+      let gKey = '';
+      let gInsert = false;
       
       class CustomBoxClass {
         constructor() {
@@ -284,28 +384,46 @@
           CursorMovements.drawCursor(25, 25)
         }
 
-        controlInput(key) {
-          if (key == 'ArrowLeft') {
+        controlInput() {
+
+          if(gKey == 'Insert')
+          {
+            gInsert = !(gInsert);
+
+            if (gInsert){
+              
+              insertOn.innerHTML = 'Insert On';
+              
+            }
+            else{
+              insertOn.innerHTML = 'Insert Off';
+            }
+            
+          }
+          if (gKey == 'ArrowLeft') {
             CursorMovements.cursorLeft()
-            return -1
-          } else if (key == 'ArrowRight') {
+            
+          } else if (gKey == 'ArrowRight') {
             CursorMovements.cursorRight()
-            return -1
+            
           }
-          if (key == 'ArrowUp') {
+          else if (gKey == 'ArrowUp') {
             CursorMovements.cursorUp()
-            return -1
-          } else if (key == 'ArrowDown') {
+            
+          } else if (gKey == 'ArrowDown') {
             CursorMovements.cursorDown()
-            return -1
-          } else {
-            printCharacter(key)
+            
+          } else if (gInsert) {
+            makeOneDimArray()
+          }else{
+            printCharacter()
           }
+          xAndY.innerHTML = "X: " + horizontalCursorPosition + "  &nbsp&nbsp&nbsp   Y: " + verticalCursorPosition;
         }
 
       }
 
-      function printCharacter(key) {
+      function printCharacter() {
         ctx.clearRect(0, 0, 300, 300)
 
         //nestedArray[horizontalCursorPosition / 5][verticalCursorPosition / 8] =
@@ -316,29 +434,43 @@
 
         //try setting nested array for drawgrid
         
-          nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = key
+          nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = gKey
           
         
           
         drawGrid()
         
-        horizontalCursorPosition = horizontalCursorPosition + 5
+        if(horizontalCursorPosition < 170){
+          horizontalCursorPosition = horizontalCursorPosition + 5
+        }
           CursorMovements.drawCursor(
           horizontalCursorPosition + HOFFSET,
           verticalCursorPosition + VOFFSET
         )
       }
 
-      
+
+      //if line or lines are completely filled than cursor right to next available width (on that line)
+      function checkForLastCharacter(){
+
+        //if full check next line
+        for (let j = horizontalCursorPosition; j < 35; j = j + 1) {
+            for (j = 0; j < 35; j = j + 1, z++) {
+              
+      }
+    }
+  }
       const CursorMovements = new CursorMovementsClass();
       const customBox1 = new CustomBoxClass();
       
 
       document.addEventListener('keydown', function (e) {
         
-        let key = e.key
-        customBox1.controlInput(key)
+        gKey = e.key
+        customBox1.controlInput()
       })
+
+      xAndY.innerHTML = "X: " + horizontalCursorPosition + "  &nbsp&nbsp&nbsp   Y: " + verticalCursorPosition;
     </script>
   </body>
 </html>
