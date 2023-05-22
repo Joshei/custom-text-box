@@ -13,154 +13,146 @@
       height="240"
       style="border: 1px solid #550233"
       ;
-
-      
     ></canvas>
     <!--<button id="button1" onclick="makeOneDimArray()">insert position 2</button>-->
-    <button id="button2" onclick="backspaceFormerCharacter()">Back Space</button>
+    <button id="button2" onclick="backspaceFormerCharacter()">
+      Back Space
+    </button>
     <button id="button3" onclick="deleteIt()">Delete</button>
     <button id="button4" onclick="cursorRight()">Cursor Right</button>
     <button id="button5" onclick="cursorLeft()">Cursor Left</button>
-    
 
-    
     <div id="insert"></div>
-    <div id = "xAndY"></div>
+    <div id="xAndY"></div>
 
     <script>
+      const WIDTH = 35
 
-const WIDTH = 35;
+      function cursorLeft() {
+        horizontalCursorPosition = horizontalCursorPosition - 5
 
-function cursorLeft(){
+        //Ready to move up one row
 
-  
-  horizontalCursorPosition = horizontalCursorPosition - 5;
-  if(horizontalCursorPosition == -5)
-  {
-    alert("a");
-    verticalCursorPosition = verticalCursorPosition - 10;
-    
-    
-    if (verticalCursorPosition == 0)
-    {
-      horizontalCursorPosition = 34 * 5;
-      for(let i = horizontalCursorPosition; i >= 0; i--)
-      {
-        if ((nestedArray[0][i]) == "")
-        {
-          horizontalCursorPosition = horizontalCursorPosition - 5;
+        if (horizontalCursorPosition == -5) {
+          alert('a')
+          verticalCursorPosition = verticalCursorPosition - 10
+
+          //row 1, here because you can't divide by zero
+          if (verticalCursorPosition == 0) {
+            //last column
+            horizontalCursorPosition = 34 * 5
+
+            //move cursor to first character to the left
+            for (let i = horizontalCursorPosition; i >= 0; i--) {
+              if (nestedArray[0][i] == '') {
+                horizontalCursorPosition = horizontalCursorPosition - 5
+              }
+            }
+            //move cursor up a row
+            horizontalCursorPosition = horizontalCursorPosition + 10
+          } else {
+            //move cursor to last column
+            horizontalCursorPosition =
+              (verticalCursorPosition / 10) * (WIDTH - 1)
+            horizontalCursorPosition = horizontalCursorPosition * 5
+          }
+          alert(horizontalCursorPosition)
+
+          //moves to first character not null, checks from right to left
+          for (
+            let i = horizontalCursorPosition;
+            nestedArray[verticalCursorPosition / 10][
+              horizontalCursorPosition / 5
+            ] == '';
+            i--
+          ) {
+            //alert("in");
+            horizontalCursorPosition = horizontalCursorPosition - 5 + 1
+          }
         }
-        
+
+        xAndY.innerHTML =
+          'X: ' +
+          horizontalCursorPosition +
+          '  &nbsp&nbsp&nbsp   Y: ' +
+          verticalCursorPosition
+        console.log('horiz ', horizontalCursorPosition)
+        console.log('vert ', verticalCursorPosition)
+
+        drawGrid(100, 100)
+        //horizontalCursorPosition = horizontalCursorPosition + 5;
+
+        CursorMovements.drawCursor(
+          horizontalCursorPosition + HOFFSET,
+          verticalCursorPosition + VOFFSET
+        )
       }
-    
-      horizontalCursorPosition = horizontalCursorPosition + 10;
-    }
-    
-    
-    else{
-    horizontalCursorPosition = verticalCursorPosition/10 * (WIDTH-1);
-    horizontalCursorPosition = horizontalCursorPosition * 5;
-    }
-    alert(horizontalCursorPosition);
-    for(let i = horizontalCursorPosition; nestedArray[verticalCursorPosition/10][horizontalCursorPosition/5] == ""; i--)
-    {
-      //alert("in");
-      horizontalCursorPosition = (horizontalCursorPosition - 5) + 1;
-      
-    }
-  }
+      function cursorRight() {
+        console.log('check', nestedArray[0][1])
+        console.log(horizontalCursorPosition)
+        console.log(verticalCursorPosition)
 
-  xAndY.innerHTML = "X: " + horizontalCursorPosition + "  &nbsp&nbsp&nbsp   Y: " + verticalCursorPosition;
-  console.log("horiz " ,horizontalCursorPosition);
-  console.log("vert ", verticalCursorPosition);
+        console.log(
+          nestedArray[verticalCursorPosition][horizontalCursorPosition / 5]
+        )
 
-  drawGrid(100, 100)
-      //horizontalCursorPosition = horizontalCursorPosition + 5;
-      
-      CursorMovements.drawCursor(
-      horizontalCursorPosition + HOFFSET,
-      verticalCursorPosition + VOFFSET
+        //moves to left until a null value is next character
+        if (
+          nestedArray[verticalCursorPosition][horizontalCursorPosition / 5] !=
+          ''
+        ) {
+          alert('here!')
+          drawGrid(100, 100)
+          //horizontalCursorPosition = horizontalCursorPosition + 5;
+
+          CursorMovements.drawCursor(
+            horizontalCursorPosition + HOFFSET,
+            verticalCursorPosition + VOFFSET
           )
-
-
-}
-function cursorRight(){
-
-  
-  console.log("check" , nestedArray[0][1]);
-  console.log(horizontalCursorPosition);
-  console.log(verticalCursorPosition);
-
-  //console.log(nestedArray[(horizontalCursorPosition)/5][verticalCursorPosition]);
-  console.log(nestedArray[(verticalCursorPosition)][(horizontalCursorPosition)/5]);
-    if(nestedArray[(verticalCursorPosition)][horizontalCursorPosition/5] != "")
-    {
-      alert("here!");
-      drawGrid(100, 100)
-      //horizontalCursorPosition = horizontalCursorPosition + 5;
-      
-      CursorMovements.drawCursor(
-      horizontalCursorPosition + HOFFSET,
-      verticalCursorPosition + VOFFSET
-          )
-    }
-    else{
-      alert("here");
-      return;
-    }
-          
-        
-
-}
-
-function deleteIt(){
-
-  //if cursor before deletes that character
-  //if delete on last character, move all characters there and after one above (character is deleted)
-  //if line not full
-
-//internal
-  for (let j = horizontalCursorPosition; j < WIDTH; j = j + 1) {
-            for (let i = 0; i < WIDTH; i = i + 1, z++) {
-
-              //not at loacation zero
-            
-            if (oneDimArray[z] == NULL)
-            {
-              continue;
-            }
-            if (z > 0)
-            {
-              nestedArray[j][i] = oneDimArray[z-1];
-            }
-            else{
-
-              nestedArray[j][i] = oneDimArray[z];
-            }
-
-
-
+        } else {
+          alert('here')
+          return
+        }
       }
 
-      
-    }
+      function deleteIt() {
+        //if cursor before deletes that character
+        //if delete on last character, move all characters there and after one above (character is deleted)
+        //if line not full
 
-    printCharacter();
+        //internal
+        for (let j = horizontalCursorPosition; j < WIDTH; j = j + 1) {
+          for (let i = 0; i < WIDTH; i = i + 1, z++) {
+            //not at loacation zero
 
+            if (oneDimArray[z] == NULL) {
+              continue
+            }
+            if (z > 0) {
+              nestedArray[j][i] = oneDimArray[z - 1]
+            } else {
+              nestedArray[j][i] = oneDimArray[z]
+            }
+          }
+        }
 
-}
-      const VOFFSET = 25;
-      const HOFFSET = 30;
+        printCharacter()
+      }
+      //vertical and horizontal offset of canvas
+      const VOFFSET = 25
+      const HOFFSET = 30
       //nestedarray holds values with an array - 35 by 35
-      var canvas = document.getElementById('canvas_id');
-      var insertOn = document.getElementById('insert');
+      var canvas = document.getElementById('canvas_id')
+      //insert is on or off
+      var insertOn = document.getElementById('insert')
 
       let textBox = [[]]
 
+      //rows and columns of canvas
       let rows = 35
       let cols = 35
 
-      
+      //this is so that the canvas will look okay on a big display
       let ctx = canvas.getContext('2d')
       // Set display size (css pixels).
       //get width of canvasvar size = 300;
@@ -186,16 +178,13 @@ function deleteIt(){
       var x = size / 2
       var y = size / 2
 
-      
-
+      //fill array wiht no values - set up the two dimensional array
       const nestedArray = Array.from({ length: rows }, () =>
         Array.from({ length: cols }, () => '')
       )
 
-      insertOn.innerHTML = 'Insert Off';
-      
+      insertOn.innerHTML = 'Insert Off'
 
-      
       function clearArray() {
         ctx.clearRect(0, 0, 100, 100)
         ctx.fillStyle = '#ffffff'
@@ -213,41 +202,38 @@ function deleteIt(){
           for (let j = 0; j < 35; j++) {
             //nestedArray[i][j] = "X";
 
-            
+            //fill a square canvas with letter values
             ctx.fillText(nestedArray[i][j], j * 5 + 25, i * 10 + 25)
           }
         }
 
-        
-
         return 1
       }
 
-      function backspaceFormerCharacter(){
+      //deletes a character without pulling all the values
+      function backspaceFormerCharacter() {
+        //  change current cursor space to blank
+        //  change previous character with under score amd space
 
-      
-      //  change current cursor space to blank 
-      //  change previous character with under score amd space
-      
+        //nestedArray[(horizontalCursorPosition/5)-1][verticalCursorPosition] = '_';
+        nestedArray[horizontalCursorPosition / 5][verticalCursorPosition / 10] =
+          ' '
+        horizontalCursorPosition = horizontalCursorPosition - 5
 
-      
-      //nestedArray[(horizontalCursorPosition/5)-1][verticalCursorPosition] = '_';
-      nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = ' ';
-      horizontalCursorPosition = horizontalCursorPosition -5; 
-      
-
-      drawGrid();
-      CursorMovements.drawCursor(horizontalCursorPosition+ HOFFSET, verticalCursorPosition + VOFFSET);
-
-
+        drawGrid()
+        CursorMovements.drawCursor(
+          horizontalCursorPosition + HOFFSET,
+          verticalCursorPosition + VOFFSET
+        )
       }
 
-
-
-      let oneDimArray = [];
+      //the array of the grid as one dimensional.
+      let oneDimArray = []
       //temp out of class
 
-      let flag = false;
+      let flag = false
+
+      //turn two dimensional array into one dimensional array
       function makeOneDimArray() {
         for (let i = 0; i < 35; i = i + 1) {
           //rows
@@ -255,120 +241,87 @@ function deleteIt(){
             oneDimArray.push(nestedArray[j][i])
           }
         }
-        
-        insertCharacter();
 
-        
+        insertCharacter()
       }
 
-      function insertCharacter(){
-        console.log("2: ", oneDimArray);
-       
-      //oneDimArray.splice((horizontalCursorPosition/5+35  ),0, 'Z'); 
-      oneDimArray.splice((horizontalCursorPosition/5+(35 * verticalCursorPosition/10)  ),0, gKey);
-      
-      
-      console.log("h: ", horizontalCursorPosition);
-      console.log("v: ", verticalCursorPosition);
-      console.log("3: ", oneDimArray);      
-      makeTwoDimArrayWithInsertion();
+      //inserts a character into array using splice
+      function insertCharacter() {
+        console.log('2: ', oneDimArray)
+
+        //oneDimArray.splice((horizontalCursorPosition/5+35  ),0, 'Z');
+        oneDimArray.splice(
+          horizontalCursorPosition / 5 + (35 * verticalCursorPosition) / 10,
+          0,
+          gKey
+        )
+
+        console.log('h: ', horizontalCursorPosition)
+        console.log('v: ', verticalCursorPosition)
+        console.log('3: ', oneDimArray)
+        makeTwoDimArrayWithInsertion()
       }
 
+      let a = 0
+      let z = 0
 
-      let a = 0;
-      let z =0;
-      function makeTwoDimArrayWithInsertion(){
+      //second function for inserting, changes one dimenensional array into two dimensions
+      //draws grid
+      //draws cursor
+      function makeTwoDimArrayWithInsertion() {
         for (let i = 0; i < 35; i = i + 1) {
-          
-          
           //rows
           //a++;
           for (j = 0; j < 35; j = j + 1, z++) {
-          console.log("i: ", i);
-          console.log("j: ", j);
-          //set array with ints
-          nestedArray[j][i] = oneDimArray[z];
-          //a++;
-        }     
-        }  //  i = rows, j = col
-        z=0;
-       console.log("A: ", nestedArray);
-       console.log("B: ", oneDimArray);
-
-
-        drawGrid();
-        CursorMovements.drawCursor(horizontalCursorPosition+ HOFFSET, verticalCursorPosition + VOFFSET);
-
-
-        
-
-/*
-        //Tested arrays here!
-        for (let i = 0; i < 35; i = i + 1) {
-          //rows
-          for (let j = 0; j < 35; j = j + 1) {
-            //pushes nestedArray into onedimarray
-            oneDimArray.push(nestedArray[j][i]);
-
-            //console.log(oneDimArray);// - correct
+            console.log('i: ', i)
+            console.log('j: ', j)
+            //set array with ints
+            nestedArray[j][i] = oneDimArray[z]
+            //a++;
           }
-       }
-       
-        console.log(oneDimArray);// - correct
-        // oneDimArray();
-*/
+        } //  i = rows, j = col
+        z = 0
+        console.log('A: ', nestedArray)
+        console.log('B: ', oneDimArray)
+
+        drawGrid()
+        CursorMovements.drawCursor(
+          horizontalCursorPosition + HOFFSET,
+          verticalCursorPosition + VOFFSET
+        )
       }
 
-      function moveAllcharactersRight(){
-
-          //first row
-          for (let j = horizontalCursorPosition; j < 35; j = j + 1) {
-            for (j = 0; j < 35; j = j + 1, z++) {
-
-            
-            nestedArray[j][i] = oneDimArray[z];
-
-
+      function moveAllcharactersRight() {
+        //first row
+        for (let j = horizontalCursorPosition; j < 35; j = j + 1) {
+          for (j = 0; j < 35; j = j + 1, z++) {
+            nestedArray[j][i] = oneDimArray[z]
+          }
+        }
       }
-    }
-  }
 
-      
       let horizontalCursorPosition = 0
       let verticalCursorPosition = 0
 
-      class InsertCharacters{
+      class InsertCharacters {
+        constructor() {}
 
-        constructor(){
-
-          
+        insertTextRight() {
+          let oneDimArray = []
         }
-        
-
-      
-      insertTextRight() {
-        
-        let oneDimArray = []
       }
 
-
-      }
-
-
-
-      class  CursorMovementsClass{
-
-        
+      class CursorMovementsClass {
         cursorRight() {
-          /// console.log(horizontalCursorPosition);
-          if (horizontalCursorPosition >= 170){
-              //alert(horizontalCursorPosition);
-              horizontalCursorPosition = 170;
-              return(-1);
+          //35 width times 5 to accomodate size of font's wodth
+          if (horizontalCursorPosition >= 170) {
+            //alert(horizontalCursorPosition);
+            horizontalCursorPosition = 170
+            return -1
           }
 
           drawGrid(100, 100)
-          horizontalCursorPosition = horizontalCursorPosition + 5;
+          horizontalCursorPosition = horizontalCursorPosition + 5
           this.drawCursor(
             horizontalCursorPosition + HOFFSET,
             verticalCursorPosition + VOFFSET
@@ -377,58 +330,57 @@ function deleteIt(){
 
         cursorLeft() {
           // console.log(horizontalCursorPosition);
-           if (horizontalCursorPosition <= 0){
-               horizontalCursorPosition = 0;
-               return(-1);
-           }
+          if (horizontalCursorPosition <= 0) {
+            horizontalCursorPosition = 0
+            return -1
+          }
 
           drawGrid(100, 100)
-          horizontalCursorPosition = horizontalCursorPosition - 5;
+          horizontalCursorPosition = horizontalCursorPosition - 5
 
           this.drawCursor(
             horizontalCursorPosition + HOFFSET,
-            verticalCursorPosition + VOFFSET)
+            verticalCursorPosition + VOFFSET
+          )
         }
         cursorUp() {
-          if(verticalCursorPosition <= 0){
-              verticalCursorPosition = 0;
-              return(-1);
+          if (verticalCursorPosition <= 0) {
+            verticalCursorPosition = 0
+            return -1
           }
           drawGrid(100, 100)
-          verticalCursorPosition = verticalCursorPosition - 10;
-          
+          verticalCursorPosition = verticalCursorPosition - 10
+
           this.drawCursor(
             horizontalCursorPosition + HOFFSET,
-            verticalCursorPosition + VOFFSET)
-          
+            verticalCursorPosition + VOFFSET
+          )
         }
         cursorDown() {
-          
-          if(verticalCursorPosition >= 170)
-          {
-              verticalCursorPosition = 170;
-              return(-1);
+          if (verticalCursorPosition >= 170) {
+            verticalCursorPosition = 170
+            return -1
           }
 
           drawGrid(100, 100)
-          verticalCursorPosition = verticalCursorPosition + 10;
+          verticalCursorPosition = verticalCursorPosition + 10
           this.drawCursor(
             horizontalCursorPosition + HOFFSET,
-            verticalCursorPosition + VOFFSET)
-          
+            verticalCursorPosition + VOFFSET
+          )
         }
-        redrawGrid() {}
+
         drawCursor(x, y) {
           ctx.font = '10px Monospace'
           ctx.fillStyle = 'red'
-          ctx.fillText('_', x-5 , y);
+          ctx.fillText('_', x - 5, y)
         }
-
       }
-      
-      let gKey = '';
-      let gInsert = false;
-      
+
+      let gKey = ''
+      let gInsert = false
+
+      //handles key presses
       class CustomBoxClass {
         constructor() {
           drawGrid()
@@ -436,66 +388,57 @@ function deleteIt(){
         }
 
         controlInput() {
+          if (gKey == 'Insert') {
+            gInsert = !gInsert
 
-          if(gKey == 'Insert')
-          {
-            gInsert = !(gInsert);
-
-            if (gInsert){
-              
-              insertOn.innerHTML = 'Insert On';
-              
+            if (gInsert) {
+              insertOn.innerHTML = 'Insert On'
+            } else {
+              insertOn.innerHTML = 'Insert Off'
             }
-            else{
-              insertOn.innerHTML = 'Insert Off';
-            }
-            
           }
           if (gKey == 'ArrowLeft') {
             CursorMovements.cursorLeft()
-            
           } else if (gKey == 'ArrowRight') {
             CursorMovements.cursorRight()
-            
-          }
-          else if (gKey == 'ArrowUp') {
+          } else if (gKey == 'ArrowUp') {
             CursorMovements.cursorUp()
-            
           } else if (gKey == 'ArrowDown') {
             CursorMovements.cursorDown()
-            
-          } else if (gKey == 'Enter'){
-            lineReturn();
-
-          } 
-          
-          else if (gInsert) {
+          } else if (gKey == 'Enter') {
+            lineReturn()
+          } else if (gInsert) {
             makeOneDimArray()
-          }else{
+          } else {
             printCharacter()
           }
-          xAndY.innerHTML = "X: " + horizontalCursorPosition + "  &nbsp&nbsp&nbsp   Y: " + verticalCursorPosition;
+          //dispalys x and y for testing
+          xAndY.innerHTML =
+            'X: ' +
+            horizontalCursorPosition +
+            '  &nbsp&nbsp&nbsp   Y: ' +
+            verticalCursorPosition
         }
-
       }
 
-      function lineReturn(){
-        verticalCursorPosition = verticalCursorPosition + 10;
-        horizontalCursorPosition = 0;
-        for(let i = 0 ; i ++ ; i < 35){
-          if(nestedArray[verticalCursorPosition][i] = ""){
-            return;
+      //returns the cursor to next row
+      function lineReturn() {
+        verticalCursorPosition = verticalCursorPosition + 10
+        horizontalCursorPosition = 0
+        for (let i = 0; i++; i < 35) {
+          if ((nestedArray[verticalCursorPosition][i] = '')) {
+            return
           }
         }
 
         drawGrid()
-        
-        
-          CursorMovements.drawCursor(
+
+        CursorMovements.drawCursor(
           horizontalCursorPosition + HOFFSET,
-          verticalCursorPosition + VOFFSET)
-        
+          verticalCursorPosition + VOFFSET
+        )
       }
+      //if not a special key, come here and display character
       function printCharacter() {
         ctx.clearRect(0, 0, 300, 300)
 
@@ -506,45 +449,46 @@ function deleteIt(){
         console.log('h ', horizontalCursorPosition)
 
         //try setting nested array for drawgrid
-        
-          nestedArray[verticalCursorPosition/10][horizontalCursorPosition/5] = gKey
-          //nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = gKey
-          console.log("1", nestedArray);
-        
-          
+
+        nestedArray[verticalCursorPosition / 10][horizontalCursorPosition / 5] =
+          gKey
+        //nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = gKey
+        console.log('1', nestedArray)
+
         drawGrid()
-        
-        if(horizontalCursorPosition < 170){
+
+        //At edge of canavs
+        if (horizontalCursorPosition < 170) {
           horizontalCursorPosition = horizontalCursorPosition + 5
         }
-          CursorMovements.drawCursor(
+        CursorMovements.drawCursor(
           horizontalCursorPosition + HOFFSET,
           verticalCursorPosition + VOFFSET
-        )
+        )P
       }
-
 
       //if line or lines are completely filled than cursor right to next available width (on that line)
-      function checkForLastCharacter(){
-
+      function checkForLastCharacter() {
         //if full check next line
         for (let j = horizontalCursorPosition; j < 35; j = j + 1) {
-            for (j = 0; j < 35; j = j + 1, z++) {
-              
+          for (j = 0; j < 35; j = j + 1, z++) {}
+        }
       }
-    }
-  }
-      const CursorMovements = new CursorMovementsClass();
-      const customBox1 = new CustomBoxClass();
-      
+
+      //instantiate the classes
+      const CursorMovements = new CursorMovementsClass()
+      const customBox1 = new CustomBoxClass()
 
       document.addEventListener('keydown', function (e) {
-        
         gKey = e.key
         customBox1.controlInput()
       })
 
-      xAndY.innerHTML = "X: " + horizontalCursorPosition + "  &nbsp&nbsp&nbsp   Y: " + verticalCursorPosition;
+      xAndY.innerHTML =
+        'X: ' +
+        horizontalCursorPosition +
+        '  &nbsp&nbsp&nbsp   Y: ' +
+        verticalCursorPosition
     </script>
   </body>
 </html>
