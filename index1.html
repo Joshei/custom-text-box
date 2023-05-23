@@ -34,9 +34,12 @@
         //Ready to move up one row
 
         if (horizontalCursorPosition == -5) {
-          alert('a')
+          
+          
           verticalCursorPosition = verticalCursorPosition - 10
 
+          
+          
           //row 1, here because you can't divide by zero
           if (verticalCursorPosition == 0) {
             //last column
@@ -50,25 +53,27 @@
             }
             //move cursor up a row
             horizontalCursorPosition = horizontalCursorPosition + 10
-          } else {
+          }
+          
+          
+          
+
+          else {
             //move cursor to last column
-            horizontalCursorPosition =
-              (verticalCursorPosition / 10) * (WIDTH - 1)
+            horizontalCursorPosition =  (WIDTH - 1)
+            
+            alert(horizontalCursorPosition);
             horizontalCursorPosition = horizontalCursorPosition * 5
           }
           alert(horizontalCursorPosition)
 
           //moves to first character not null, checks from right to left
-          for (
-            let i = horizontalCursorPosition;
-            nestedArray[verticalCursorPosition / 10][
-              horizontalCursorPosition / 5
-            ] == '';
-            i--
-          ) {
+          for (let i = horizontalCursorPosition; nestedArray[verticalCursorPosition / 10][horizontalCursorPosition / 5] == '';i--) {
             //alert("in");
-            horizontalCursorPosition = horizontalCursorPosition - 5 + 1
+            horizontalCursorPosition = horizontalCursorPosition - 5;
           }
+
+          horizontalCursorPosition = horizontalCursorPosition + 5
         }
 
         xAndY.innerHTML =
@@ -96,23 +101,35 @@
           nestedArray[verticalCursorPosition][horizontalCursorPosition / 5]
         )
 
+
+        
+       
         //moves to left until a null value is next character
-        if (
-          nestedArray[verticalCursorPosition][horizontalCursorPosition / 5] !=
-          ''
-        ) {
-          alert('here!')
-          drawGrid(100, 100)
+        if (nestedArray[verticalCursorPosition/10][horizontalCursorPosition / 5] == '') {
+          
+          
+
+          //break;
+        } else {
+          
+          horizontalCursorPosition = horizontalCursorPosition + 5;
+
+          
+
+
+          //break;
+        }
+
+        drawGrid(100, 100)
           //horizontalCursorPosition = horizontalCursorPosition + 5;
 
           CursorMovements.drawCursor(
             horizontalCursorPosition + HOFFSET,
             verticalCursorPosition + VOFFSET
           )
-        } else {
-          alert('here')
-          return
-        }
+
+     
+
       }
 
       function deleteIt() {
@@ -421,7 +438,55 @@
         }
       }
 
+      gLastLine = 0;
+      //use gCurrentline
+
+
+      function lineReturn() {
+      
+    //left off here -  WORKING ON THIS
+
+      /////  currentline is last line
+
+        verticalCursorPosition = verticalCursorPosition + 10
+        horizontalCursorPosition = 0
+        for (let i = 0; i++; i < 35) {
+          if ((nestedArray[verticalCursorPosition][i] = '')) {
+            return
+          }
+        }
+
+        drawGrid()
+
+        CursorMovements.drawCursor(
+          horizontalCursorPosition + HOFFSET,
+          verticalCursorPosition + VOFFSET
+        )
+
+
+        /////////currentline is smaller than lastline 
+
+
+        for(let i = verticalCursorPosition ; i<35; i++){
+          for(let j = 1; j <35; j++){
+            nestedArray[j][i] = nestedArray[j][i];
+            console.log("a", nestedArray);
+          }
+
+        }
+
+        drawGrid()
+
+        CursorMovements.drawCursor(
+          horizontalCursorPosition + HOFFSET,
+          verticalCursorPosition + VOFFSET
+        )
+
+      }
+
       //returns the cursor to next row
+     
+     /*
       function lineReturn() {
         verticalCursorPosition = verticalCursorPosition + 10
         horizontalCursorPosition = 0
@@ -438,6 +503,8 @@
           verticalCursorPosition + VOFFSET
         )
       }
+
+      */
       //if not a special key, come here and display character
       function printCharacter() {
         ctx.clearRect(0, 0, 300, 300)
@@ -464,7 +531,7 @@
         CursorMovements.drawCursor(
           horizontalCursorPosition + HOFFSET,
           verticalCursorPosition + VOFFSET
-        )P
+        )
       }
 
       //if line or lines are completely filled than cursor right to next available width (on that line)
