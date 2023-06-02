@@ -21,12 +21,43 @@
     <button id="button3" onclick="deleteIt()">Delete</button>
     <button id="button4" onclick="cursorRight()">Cursor Right</button>
     <button id="button5" onclick="cursorLeft()">Cursor Left</button>
+    <button id="button6" onclick="displayTextBoxCopy()">Display Text</button>
+    
+
+    
 
     <div id="insert"></div>
     <div id="xAndY"></div>
+    <textarea title = "Text Box" rows = "35" id="mytext" cols = "35"> </textarea> 
 
+    <script scr = "class.js"></script>
     <script>
+
+      
       const WIDTH = 35
+
+      let oneDimArray = [];
+      let oneDimArray2 = [];
+      let blanks = [];
+      
+      //let oneDimArray2 = [];
+      function displayTextBoxCopy(){
+
+        //fills with blanks
+        makeOneDimArrayWithoutCommas2();
+        makeOneDimArrayWithoutCommas();
+        
+        
+          
+          
+          
+        
+       //document.getElementById("mytext").value = oneDimArray2;//.join('');
+      }
+
+      
+     
+
 
       function cursorLeft() {
         horizontalCursorPosition = horizontalCursorPosition - 5
@@ -245,22 +276,95 @@
       }
 
       //the array of the grid as one dimensional.
-      let oneDimArray = []
+      
       //temp out of class
 
       let flag = false
 
       //turn two dimensional array into one dimensional array
       function makeOneDimArray() {
+        
         for (let i = 0; i < 35; i = i + 1) {
           //rows
           for (let j = 0; j < 35; j = j + 1) {
-            oneDimArray.push(nestedArray[j][i])
+            oneDimArray.push(nestedArray[i][j])
+            
           }
         }
 
-        insertCharacter()
+        console.log("na: ", nestedArray);
+        console.log("od: ", oneDimArray);
+
+        //document.getElementById("mytext").value = oneDimArray.join("");
+        
+
+        //insertCharacter()
       }
+
+      //draw characters in textarea
+      function makeOneDimArrayWithoutCommas() {
+        
+        let value1 = nestedArray[0][3];
+        
+        let j = 0;
+        
+        
+        oneDimArray2.length = 0;
+
+        for (let i = 0; i < 35; i = i + 1) {
+          //rows
+          for (let j = 0; j < 35; j = j + 1) {
+            oneDimArray2.push(nestedArray[i][j]);
+            
+          }
+        }
+
+        console.log("od2: ", oneDimArray2);
+        console.log("na1: ", nestedArray);
+
+        document.getElementById("mytext").value = oneDimArray2.join("");
+        console.log("1a ", document.getElementById("mytext").value);
+
+        for (let i = 0; i < 35; i = i + 1) {
+          //rows
+          for (let j = 0; j < 35; j = j + 1) {
+            
+            //if ((i = 0 && j == 0) || (i = 0 && j == 1) || (i == 0 && j == 2 ) )
+            //{
+            //  continue;
+            //}
+            //nestedArray[i][j] = " ";
+            
+          }
+        }
+        console.log("na2: ", nestedArray);
+      }
+
+
+
+      function makeOneDimArrayWithoutCommas2() {
+       
+          //rows
+          for (let j = 0; j < 35; j = j + 1) {
+            blanks[j] = 't';
+            
+          }
+        
+          console.log("blanks: ", blanks);
+
+        document.getElementById("mytext").value = blanks.join("");
+
+        console.log("2 ",document.getElementById("mytext").value);
+        
+      }
+
+
+      
+
+
+
+
+
 
       //inserts a character into array using splice
       function insertCharacter() {
