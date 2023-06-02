@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+
+    <script src = "textArea.js"></script>
+    <script src = "cursor.js"></script>
+
     <canvas
       id="canvas_id"
       width="220"
@@ -19,9 +23,9 @@
       Back Space
     </button>
     <button id="button3" onclick="deleteIt()">Delete</button>
-    <button id="button4" onclick="cursorRight()">Cursor Right</button>
-    <button id="button5" onclick="cursorLeft()">Cursor Left</button>
-    <button id="button6" onclick="displayTextBoxCopy()">Display Text</button>
+    <button id="button4" onclick="Cursor.cursorRight()">Cursor Right</button>
+    <button id="button5" onclick="Cursor.cursorLeft()">Cursor Left</button>
+    <button id="button6" onclick="TextArea.displayTextBoxCopy()">Display Text</button>
     
 
     
@@ -30,138 +34,31 @@
     <div id="xAndY"></div>
     <textarea title = "Text Box" rows = "35" id="mytext" cols = "35"> </textarea> 
 
+    
     <script src = "cursorMovement.js"></script>
+    <script src = 'customBox.js'></script>
     <script>
 
       
+
+//instantiate the classes
+const CursorMovements = new CursorMovementsClass();
+
+
       const WIDTH = 35
 
       let oneDimArray = [];
-      let oneDimArray2 = [];
+      
       let blanks = [];
       
       //let oneDimArray2 = [];
-      function displayTextBoxCopy(){
-
-        //fills with blanks
-        makeOneDimArrayWithoutCommas2();
-        makeOneDimArrayWithoutCommas();
-        
-        
-          
-          
-          
-        
-       //document.getElementById("mytext").value = oneDimArray2;//.join('');
-      }
+      
 
       
      
 
 
-      function cursorLeft() {
-        horizontalCursorPosition = horizontalCursorPosition - 5
-
-        //Ready to move up one row
-
-        if (horizontalCursorPosition == -5) {
-          
-          
-          verticalCursorPosition = verticalCursorPosition - 10
-
-          
-          
-          //row 1, here because you can't divide by zero
-          if (verticalCursorPosition == 0) {
-            //last column
-            horizontalCursorPosition = 34 * 5
-
-            //move cursor to first character to the left
-            for (let i = horizontalCursorPosition; i >= 0; i--) {
-              if (nestedArray[0][i] == '') {
-                horizontalCursorPosition = horizontalCursorPosition - 5
-              }
-            }
-            //move cursor up a row
-            horizontalCursorPosition = horizontalCursorPosition + 10
-          }
-          
-          
-          
-
-          else {
-            //move cursor to last column
-            horizontalCursorPosition =  (WIDTH - 1)
-            
-            alert(horizontalCursorPosition);
-            horizontalCursorPosition = horizontalCursorPosition * 5
-          }
-          alert(horizontalCursorPosition)
-
-          //moves to first character not null, checks from right to left
-          for (let i = horizontalCursorPosition; nestedArray[verticalCursorPosition / 10][horizontalCursorPosition / 5] == '';i--) {
-            //alert("in");
-            horizontalCursorPosition = horizontalCursorPosition - 5;
-          }
-
-          horizontalCursorPosition = horizontalCursorPosition + 5
-        }
-
-        xAndY.innerHTML =
-          'X: ' +
-          horizontalCursorPosition +
-          '  &nbsp&nbsp&nbsp   Y: ' +
-          verticalCursorPosition
-        console.log('horiz ', horizontalCursorPosition)
-        console.log('vert ', verticalCursorPosition)
-
-        drawGrid(100, 100)
-        //horizontalCursorPosition = horizontalCursorPosition + 5;
-
-        CursorMovements.drawCursor(
-          horizontalCursorPosition + HOFFSET,
-          verticalCursorPosition + VOFFSET
-        )
-      }
-      function cursorRight() {
-        console.log('check', nestedArray[0][1])
-        console.log(horizontalCursorPosition)
-        console.log(verticalCursorPosition)
-
-        console.log(
-          nestedArray[verticalCursorPosition][horizontalCursorPosition / 5]
-        )
-
-
-        
-       
-        //moves to left until a null value is next character
-        if (nestedArray[verticalCursorPosition/10][horizontalCursorPosition / 5] == '') {
-          
-          
-
-          //break;
-        } else {
-          
-          horizontalCursorPosition = horizontalCursorPosition + 5;
-
-          
-
-
-          //break;
-        }
-
-        drawGrid(100, 100)
-          //horizontalCursorPosition = horizontalCursorPosition + 5;
-
-          CursorMovements.drawCursor(
-            horizontalCursorPosition + HOFFSET,
-            verticalCursorPosition + VOFFSET
-          )
-
-     
-
-      }
+      
 
       function deleteIt() {
         //if cursor before deletes that character
@@ -301,63 +198,11 @@
         //insertCharacter()
       }
 
-      //draw characters in textarea
-      function makeOneDimArrayWithoutCommas() {
-        
-        let value1 = nestedArray[0][3];
-        
-        let j = 0;
-        
-        
-        oneDimArray2.length = 0;
-
-        for (let i = 0; i < 35; i = i + 1) {
-          //rows
-          for (let j = 0; j < 35; j = j + 1) {
-            oneDimArray2.push(nestedArray[i][j]);
-            
-          }
-        }
-
-        console.log("od2: ", oneDimArray2);
-        console.log("na1: ", nestedArray);
-
-        document.getElementById("mytext").value = oneDimArray2.join("");
-        console.log("1a ", document.getElementById("mytext").value);
-
-        for (let i = 0; i < 35; i = i + 1) {
-          //rows
-          for (let j = 0; j < 35; j = j + 1) {
-            
-            //if ((i = 0 && j == 0) || (i = 0 && j == 1) || (i == 0 && j == 2 ) )
-            //{
-            //  continue;
-            //}
-            //nestedArray[i][j] = " ";
-            
-          }
-        }
-        console.log("na2: ", nestedArray);
-      }
+      
 
 
 
-      function makeOneDimArrayWithoutCommas2() {
-       
-          //rows
-          for (let j = 0; j < 35; j = j + 1) {
-            blanks[j] = 't';
-            
-          }
-        
-          console.log("blanks: ", blanks);
-
-        document.getElementById("mytext").value = blanks.join("");
-
-        console.log("2 ",document.getElementById("mytext").value);
-        
-      }
-
+      
 
       
 
@@ -427,9 +272,7 @@
       class InsertCharacters {
         constructor() {}
 
-        insertTextRight() {
-          let oneDimArray = []
-        }
+        
       }
 
 
@@ -437,45 +280,7 @@
       let gInsert = false
 
       //handles key presses
-      class CustomBoxClass {
-        constructor() {
-          drawGrid()
-          CursorMovements.drawCursor(25, 25)
-        }
-
-        controlInput() {
-          if (gKey == 'Insert') {
-            gInsert = !gInsert
-
-            if (gInsert) {
-              insertOn.innerHTML = 'Insert On'
-            } else {
-              insertOn.innerHTML = 'Insert Off'
-            }
-          }
-          if (gKey == 'ArrowLeft') {
-            CursorMovements.cursorLeft()
-          } else if (gKey == 'ArrowRight') {
-            CursorMovements.cursorRight()
-          } else if (gKey == 'ArrowUp') {
-            CursorMovements.cursorUp()
-          } else if (gKey == 'ArrowDown') {
-            CursorMovements.cursorDown()
-          } else if (gKey == 'Enter') {
-            lineReturn()
-          } else if (gInsert) {
-            makeOneDimArray()
-          } else {
-            printCharacter()
-          }
-          //dispalys x and y for testing
-          xAndY.innerHTML =
-            'X: ' +
-            horizontalCursorPosition +
-            '  &nbsp&nbsp&nbsp   Y: ' +
-            verticalCursorPosition
-        }
-      }
+      
 
       gLastLine = 0;
       //use gCurrentline
@@ -581,9 +386,7 @@
         }
       }
 
-      //instantiate the classes
-      const CursorMovements = new CursorMovementsClass()
-      const customBox1 = new CustomBoxClass()
+      
 
       document.addEventListener('keydown', function (e) {
         gKey = e.key
@@ -594,7 +397,11 @@
         'X: ' +
         horizontalCursorPosition +
         '  &nbsp&nbsp&nbsp   Y: ' +
-        verticalCursorPosition
+        verticalCursorPosition;
+
+        const customBox1 = new CustomBoxClass();
+        
+
     </script>
   </body>
 </html>
