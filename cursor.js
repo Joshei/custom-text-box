@@ -65,8 +65,9 @@ this.cursorLeft = function() {
           horizontalCursorPosition + HOFFSET,
           verticalCursorPosition + VOFFSET
         )
-      }
-      this.cursorRight = fucntion() {
+  }
+  
+      this.cursorRight = function() {
         console.log('check', nestedArray[0][1])
         console.log(horizontalCursorPosition)
         console.log(verticalCursorPosition)

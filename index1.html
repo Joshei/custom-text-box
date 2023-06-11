@@ -37,12 +37,14 @@
     
     <script src = "cursorMovement.js"></script>
     <script src = 'customBox.js'></script>
+    <script src = 'return.js'></script>
     <script>
 
       
 
 //instantiate the classes
 const CursorMovements = new CursorMovementsClass();
+const Return = new ReturnClass();
 
 
       const WIDTH = 35
@@ -231,6 +233,43 @@ const CursorMovements = new CursorMovementsClass();
       let a = 0
       let z = 0
 
+
+
+
+      ////////
+      
+       //second function for inserting, changes one dimenensional array into two dimensions
+      //draws grid
+      //draws cursor
+
+
+      //doesn't draw grid and cursor
+      function makeTwoDimArray() {
+        for (let i = 0; i < 35; i = i + 1) {
+          //rows
+          //a++;
+          for (j = 0; j < 35; j = j + 1, z++) {
+            //console.log('i: ', i)
+            //console.log('j: ', j)
+            //set array with ints
+            nestedArray[j][i] = oneDimArray[z]
+            //a++;
+          }
+        } //  i = rows, j = col
+        z = 0
+        //console.log('A: ', nestedArray)
+        //console.log('B: ', oneDimArray)
+
+        
+      }
+
+      
+      
+      ////////
+
+
+
+      
       //second function for inserting, changes one dimenensional array into two dimensions
       //draws grid
       //draws cursor
@@ -359,6 +398,7 @@ const CursorMovements = new CursorMovementsClass();
         console.log('v ', verticalCursorPosition)
         console.log('h ', horizontalCursorPosition)
 
+        
         //try setting nested array for drawgrid
 
         nestedArray[verticalCursorPosition / 10][horizontalCursorPosition / 5] =

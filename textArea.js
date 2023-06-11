@@ -30,14 +30,14 @@ function TextAreaClass() {
           }
         }
 
-        console.log("od2: ", this.oneDimArray2);
-        console.log("na1: ", nestedArray);
+        //console.log("od2: ", this.oneDimArray2);
+        //console.log("na1: ", nestedArray);
 
         document.getElementById("mytext").value = this.oneDimArray2.join("");
-        console.log("1a ", document.getElementById("mytext").value);
+        //console.log("1a ", document.getElementById("mytext").value);
 
         
-        console.log("na2: ", nestedArray);
+        //console.log("na2: ", nestedArray);
       }
 
 

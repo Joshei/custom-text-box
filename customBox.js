@@ -23,7 +23,7 @@ class CustomBoxClass {
       } else if (gKey == 'ArrowDown') {
         CursorMovements.cursorDown()
       } else if (gKey == 'Enter') {
-        lineReturn()
+        Return.Return()
       } else if (gInsert) {
         makeOneDimArray()
       } else {
