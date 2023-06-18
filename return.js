@@ -109,6 +109,14 @@ class ReturnClass {
                     }
                 }
 
+                for (let y = 0; y < 10; y++) {
+                    for (let x = 0; x < 10; x++) {
+                
+                        nestedArray[y][x] = nestedArray2[y][x]
+                    }
+                }
+
+
                 console.log("vp ", verticalCursorPosition);
                 console.log("*", nestedArray2);
                 console.log("#: ", nestedArray);
@@ -135,7 +143,7 @@ class ReturnClass {
 ///////////////////////
 
                 
-                
+                /*
                 for (let x = horizontalCursorPosition; x < 10; x++) {
                     if (nestedArray[verticalCursorPosition / 10][x] != '' && nestedArray[verticalCursorPosition][x] != ' ') {
                         
@@ -146,11 +154,12 @@ class ReturnClass {
                     }
 
                 }
+                */
                 
 
                 
-                //text to keep
-                for (let x = 0; x < horizontalCursorPosition; x++) {
+                //text to keep - 456
+                for (let x = 0; x < horizontalCursorPosition/5; x++) {
                  
                     holdsTextToKeep[0][x] = nestedArray[verticalCursorPosition/10][x];
                     
@@ -161,28 +170,36 @@ class ReturnClass {
                 
                 
                 
-                alert("here");
+                alert("here!");
                 
                 console.log("vert: ", verticalCursorPosition);
                 
                 //keeps text
-                //for (let x = 0; x = holdsTextToKeep.length; x++)
-                //{
-                //    nestedArray[verticalCursorPosition][x] = holdsTextToKeep[verticalCursorPosition][x];
-                //}
+                for (let x = 0; x < horizontalCursorPosition/5; x++)
+                {
+                    nestedArray[verticalCursorPosition/10][x] = holdsTextToKeep[0][x];
+                }
 
                 //gets length of hold text move
-                let textOnRightToForwardLength = 35 - holdsTextToKeep.length
+                let textOnRightToForwardLength = 35 - horizontalCursorPosition/5
                 
 
                 //text to move to next vertical line
-                for (let x = holdsTextToKeep.length; x < textOnRightToForwardLength; x++) {
+                for (let x = horizontalCursorPosition/5; x < textOnRightToForwardLength; x++) {
                 
                     console.log("holds: ", holdsTextToMove[0][x - 1]);
-                    console.log("verti: ", nestedArray[verticalCursorPosition/10][x])
-                    holdsTextToMove[0][x-1] = nestedArray[verticalCursorPosition / 10][x];
+                    console.log("verti: ", nestedArray[verticalCursorPosition / 10][x])
+                    
+
+                    
+                    holdsTextToMove[0][x - 1] = nestedArray[verticalCursorPosition / 10][x];
+                    
+                    
+                    
                     console.log("length ", holdsTextToKeep.length);
                 }
+
+                alert("hi");
                 console.log("holdsTextToMove: ", holdsTextToMove);
                 
 
@@ -218,6 +235,7 @@ class ReturnClass {
                     }
                 }
 
+                alert("1");
 
                 //remove the extra characters left behind by code segment 1
 
@@ -228,12 +246,13 @@ class ReturnClass {
                 
 
 
+                
                 //displays all rows after users posiiton on row down
                 //code segment 1
                 for (let y = verticalCursorPosition/10; y < 10; y++){
                     for (let x = 0; x < 10; x++) {
-
-                        console.log("Q: ", nestedArray[0][1]);
+                       
+                        
                         //holder.push(nestedArray[2][i]);
                         //nestedArray[1][i + 1] = (nestedArray[1][i]);
                         //nestedArray[i+1][1] = (nestedArray[i][1]);
@@ -244,12 +263,18 @@ class ReturnClass {
                     }
                 }
 
+                alert("2");
+
                 for (let y = 0; y < 10; y++) {
                     for (let x = 0; x < 10; x++) {
                         nestedArray[x][y] = nestedArray2[x][y];
 
                     }
                 }
+
+                alert("5");
+
+                
 
 
                 
@@ -258,14 +283,15 @@ class ReturnClass {
                 /////////////////
 
                 //put text on next line
-                for (let x = 0; x < holdsTextToMove.length - 1; x++)
+                for (let x1 = 0; x1 <  10; x1++)
                 {
-                    alert("here1");
-                    nestedArray[verticalCursorPosition / 10 + 1][x] = holdsTextToMove[0][x];
+                    //alert("here1");
+                    nestedArray[verticalCursorPosition / 10 + 1][x1] = holdsTextToMove[0][x1];
                     
+                    console.log("htm ", holdsTextToMove);
 
-                    console.log("verti ", verticalCursorPosition);
-                    console.log("printtext: ", nestedArray[verticalCursorPosition / 10 + 1][x])
+                    console.log("verti3 ", verticalCursorPosition);
+                    console.log("printtext: ", nestedArray[verticalCursorPosition / 10 + 1][x1])
                     console.log("nestedArray:", nestedArray);
                 }
 
@@ -276,6 +302,13 @@ class ReturnClass {
                     nestedArray[verticalCursorPosition/10][x] = 'D';
 
                 }
+
+                for (let x = 0; x < 10; x++)
+                {
+                    nestedArray[verticalCursorPosition / 10][x] = holdsTextToKeep[0][x]; 
+
+                    console.log("xxx: ",holdsTextToKeep[0][x]);
+                    }
 
                 
                     
