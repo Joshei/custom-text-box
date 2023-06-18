@@ -33,6 +33,7 @@ function TextAreaClass() {
         //console.log("od2: ", this.oneDimArray2);
         //console.log("na1: ", nestedArray);
 
+        //sends over to other textarea
         document.getElementById("mytext").value = this.oneDimArray2.join("");
         //console.log("1a ", document.getElementById("mytext").value);
 

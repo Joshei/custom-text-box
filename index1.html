@@ -130,6 +130,20 @@ const Return = new ReturnClass();
         Array.from({ length: cols }, () => '')
       )
 
+      let nestedArray2 = Array.from({ length: rows }, () =>
+        Array.from({ length: cols }, () => 'Z')
+      )
+
+      rows = 1;
+      cols = 10;
+      let = holdsTextToKeep = Array.from({ length: rows }, () =>
+        Array.from({ length: cols }, () => 'A')
+      )
+
+      let = holdsTextToMove = Array.from({ length: rows }, () =>
+        Array.from({ length: cols }, () => 'B')
+      )
+
       insertOn.innerHTML = 'Insert Off'
 
       function clearArray() {
