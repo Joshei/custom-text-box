@@ -109,6 +109,19 @@ class ReturnClass {
                     }
                 }
 
+                for (let y = 0; y < 10; y++) {
+                    for (let x = 0; x < 10; x++) {
+                        nestedArray[x][y] = nestedArray2[x][y];
+
+                    }
+                }
+
+
+
+
+
+
+
                 console.log("vp ", verticalCursorPosition);
                 console.log("*", nestedArray2);
                 console.log("#: ", nestedArray);
@@ -148,42 +161,43 @@ class ReturnClass {
                 }
                 
 
+                //if (isWithTextToWriteBelow) {
                 
-                //text to keep
-                for (let x = 0; x < horizontalCursorPosition; x++) {
+                    //text to keep
+                    for (let x = 0; x < horizontalCursorPosition; x++) {
                  
-                    holdsTextToKeep[0][x] = nestedArray[verticalCursorPosition/10][x];
+                        holdsTextToKeep[0][x] = nestedArray[verticalCursorPosition / 10][x];
                     
-                }
+                    }
 
                 
 
                 
                 
                 
-                alert("here");
+                    alert("here");
                 
-                console.log("vert: ", verticalCursorPosition);
+                    console.log("vert: ", verticalCursorPosition);
                 
-                //keeps text
-                //for (let x = 0; x = holdsTextToKeep.length; x++)
-                //{
-                //    nestedArray[verticalCursorPosition][x] = holdsTextToKeep[verticalCursorPosition][x];
-                //}
+                    //keeps text
+                    //for (let x = 0; x = holdsTextToKeep.length; x++)
+                    //{
+                    //    nestedArray[verticalCursorPosition][x] = holdsTextToKeep[verticalCursorPosition][x];
+                    //}
 
-                //gets length of hold text move
-                let textOnRightToForwardLength = 35 - holdsTextToKeep.length
+                    //gets length of hold text move
+                    let textOnRightToForwardLength = 35 - holdsTextToKeep.length
                 
 
-                //text to move to next vertical line
-                for (let x = holdsTextToKeep.length; x < textOnRightToForwardLength; x++) {
+                    //text to move to next vertical line
+                    for (let x = holdsTextToKeep.length; x < textOnRightToForwardLength; x++) {
                 
-                    console.log("holds: ", holdsTextToMove[0][x - 1]);
-                    console.log("verti: ", nestedArray[verticalCursorPosition/10][x])
-                    holdsTextToMove[0][x-1] = nestedArray[verticalCursorPosition / 10][x];
-                    console.log("length ", holdsTextToKeep.length);
-                }
-                console.log("holdsTextToMove: ", holdsTextToMove);
+                        console.log("holds: ", holdsTextToMove[0][x - 1]);
+                        console.log("verti: ", nestedArray[verticalCursorPosition / 10][x])
+                        holdsTextToMove[0][x - 1] = nestedArray[verticalCursorPosition / 10][x];
+                        console.log("length ", holdsTextToKeep.length);
+                    }
+                    console.log("holdsTextToMove: ", holdsTextToMove);
                 
 
 
@@ -193,92 +207,91 @@ class ReturnClass {
                 
 
 
-/////////////////////////
+                    /////////////////////////
 
 
                 
-                /////////////////////
+                    /////////////////////
 
-                //for (let y = 0; y < 10; y++) {
-                //    for (let x = 0; x < 10; x++) {
-                //
-                //        nestedArray2[y][x] = nestedArray[y][x]
-                //    }
-                //}
+                    //for (let y = 0; y < 10; y++) {
+                    //    for (let x = 0; x < 10; x++) {
+                    //
+                    //        nestedArray2[y][x] = nestedArray[y][x]
+                    //    }
+                    //}
                 
 
                 
                 
-                //IF:
+                    //IF:
                 
-                for (let y = 0; y < 10; y++) {
-                    for (let x = 0; x < 10; x++) {
-                        nestedArray2[x][y] = nestedArray[x][y];
+                    for (let y = 0; y < 10; y++) {
+                        for (let x = 0; x < 10; x++) {
+                            nestedArray2[x][y] = nestedArray[x][y];
 
+                        }
                     }
-                }
 
 
-                //remove the extra characters left behind by code segment 1
+                    //remove the extra characters left behind by code segment 1
 
-                for (let x = 0; x < 10; x++){
+                    for (let x = 0; x < 10; x++) {
 
-                    //nestedArray[verticalCursorPosition / 10 + 1][x] = 'E';
-                }
+                        //nestedArray[verticalCursorPosition / 10 + 1][x] = 'E';
+                    }
                 
 
 
-                //displays all rows after users posiiton on row down
-                //code segment 1
-                for (let y = verticalCursorPosition/10; y < 10; y++){
-                    for (let x = 0; x < 10; x++) {
+                    //displays all rows after users posiiton on row down
+                    //code segment 1
+                    for (let y = verticalCursorPosition / 10; y < 10; y++) {
+                        for (let x = 0; x < 10; x++) {
 
-                        console.log("Q: ", nestedArray[0][1]);
-                        //holder.push(nestedArray[2][i]);
-                        //nestedArray[1][i + 1] = (nestedArray[1][i]);
-                        //nestedArray[i+1][1] = (nestedArray[i][1]);
+                            console.log("Q: ", nestedArray[0][1]);
+                            //holder.push(nestedArray[2][i]);
+                            //nestedArray[1][i + 1] = (nestedArray[1][i]);
+                            //nestedArray[i+1][1] = (nestedArray[i][1]);
 
 
                         
-                        nestedArray2[y + 1][x] = (nestedArray[y][x]);
+                            nestedArray2[y + 1][x] = (nestedArray[y][x]);
+                        }
                     }
-                }
 
-                for (let y = 0; y < 10; y++) {
-                    for (let x = 0; x < 10; x++) {
-                        nestedArray[x][y] = nestedArray2[x][y];
+                    for (let y = 0; y < 10; y++) {
+                        for (let x = 0; x < 10; x++) {
+                            nestedArray[x][y] = nestedArray2[x][y];
 
+                        }
                     }
-                }
-
 
                 
+               
                 
 
-                /////////////////
+                    /////////////////
 
-                //put text on next line
-                for (let x = 0; x < holdsTextToMove.length - 1; x++)
-                {
-                    alert("here1");
-                    nestedArray[verticalCursorPosition / 10 + 1][x] = holdsTextToMove[0][x];
+                    //put text on next line
+                    for (let x = 0; x < holdsTextToMove.length - 1; x++) {
+                        alert("here1");
+                        nestedArray[verticalCursorPosition / 10 + 1][x] = holdsTextToMove[0][x];
                     
 
-                    console.log("verti ", verticalCursorPosition);
-                    console.log("printtext: ", nestedArray[verticalCursorPosition / 10 + 1][x])
-                    console.log("nestedArray:", nestedArray);
-                }
+                        console.log("verti ", verticalCursorPosition);
+                        console.log("printtext: ", nestedArray[verticalCursorPosition / 10 + 1][x])
+                        console.log("nestedArray:", nestedArray);
+                    }
 
 
-                //erases vertical position row.
-                for (let x = 0; x < 34; x++) {
+                    //erases vertical position row.
+                    for (let x = 0; x < 34; x++) {
 
-                    nestedArray[verticalCursorPosition/10][x] = 'D';
+                       // nestedArray[verticalCursorPosition / 10][x] = 'D';
 
-                }
+                    }
 
                 
-                    
+                
 
                 
                 
