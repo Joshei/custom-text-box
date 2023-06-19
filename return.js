@@ -1,3 +1,13 @@
+
+
+//6/18/23
+//line 94
+//line 359
+
+
+
+
+
 //horizontal and vertical increment is 5.
 
 class ReturnClass {
@@ -8,6 +18,7 @@ class ReturnClass {
         //this.cols = 35;
         
         this.lastLine = 0;
+        this.firstTimeThrough = true;
         //let holderArray = [];
         //this.holderArray = [];
         
@@ -19,6 +30,7 @@ class ReturnClass {
     }
 
 
+    
     
     //nothing below this line at all.
     Return() {
@@ -56,14 +68,41 @@ class ReturnClass {
         ///////////////////////////////////
         ////////////////////////////////////
                 
+
+        //check for no characters and first row 
+
+        if (this.firstTimeThrough == true) {
+            
+            this.firstTimeThrough = false;
+
+            verticalCursorPosition = verticalCursorPosition + 10;
+            horizontalCursorPosition = 0;
+
+            drawGrid();
+
+            CursorMovements.drawCursor(
+                horizontalCursorPosition + HOFFSET,
+                verticalCursorPosition + VOFFSET
+            )
+
+
+            return;
+        }
+        
+        
         for (let x = horizontalCursorPosition/5; x < 10; x++) {
             if (nestedArray[verticalCursorPosition[x]] != "" && nestedArray[verticalCursorPosition][x] != '') {
                         
                 areCharacters = true;
+                break;
             }
         }
 
-                
+           
+        
+        //isn't any characters after
+        if (areCharacters == false) {
+            alert("no characters");
 
         for (let y = 0; y < 10; y++) {
             for (let x = 0; x < 10; x++) {
@@ -72,11 +111,10 @@ class ReturnClass {
             }
         }
 
-        //isn't any characters after
-        if (areCharacters == false) {
+        
 
 
-            alert("in");
+           
             for (let y = (verticalCursorPosition/10 + 1); y < 10; y++) {
                 for (let x = 0; x < 10; x++) {
 
@@ -92,6 +130,14 @@ class ReturnClass {
                     nestedArray[y][x] = nestedArray2[y][x]
                 }
             }
+
+
+
+            //erase characters in positioin verticle position + 1
+            for (let x = 0; x < 10; x++)
+            {
+                nestedArray[verticalCursorPosition/10+1][x] = ' ';
+                }
                 
 
             verticalCursorPosition = verticalCursorPosition + 10;
@@ -159,7 +205,7 @@ class ReturnClass {
         //blanks out current row so next segment can displau only hold text
 
         for (let x = 0; x < 10; x++) {
-            nestedArray[verticalCursorPosition/10][x] = 'V';
+           // nestedArray[verticalCursorPosition/10][x] = 'V';
         }
                 
 
@@ -310,6 +356,23 @@ class ReturnClass {
         }
                 
 
+        /*
+        123
+        456
+        56
+        789
+
+
+        put cursor on 5 and no character alert happpens.
+        123
+        456
+        78
+        */
+        
+        //spaces
+        for (let x = horizontalCursorPosition/5;  x < 10  ; x++) {
+             nestedArray[verticalCursorPosition/10][x] = 'V';
+         }
 
 
 
