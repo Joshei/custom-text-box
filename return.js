@@ -1,8 +1,21 @@
 
 
 //6/18/23
-//line 94
-//line 359
+
+
+//if (nestedArray[verticalCursorPosition[x]] != "" && nestedArray[verticalCursorPosition][x] != '') {
+/*
+123
+456
+789
+
+Mostly works, press 5 twice, error
+
+working on return with no characters on right below (commented out!)
+
+*
+
+
 
 
 
@@ -57,7 +70,7 @@ class ReturnClass {
 
 
             
-            
+        /*   
                 
                     
                 
@@ -157,7 +170,7 @@ class ReturnClass {
                     
         
         
-        
+        */
         
         
         
