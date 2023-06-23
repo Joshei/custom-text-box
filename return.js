@@ -43,58 +43,23 @@ class ReturnClass {
     
     Return() {
 
-        
-
-            
-        let areCharacters = false;
-        
-        
+      
 
         let i = 1;
                 
                 
-        for (let y = 0; y < 10; y++) {
-            for (let x = 0; x < 10; x++) {
-                    
-                nestedArray2[y][x] = nestedArray[y][x]
-            }
-        }
-
-        //if commented out dipalys tow rows of spaces on first and second row
-        //displays all lines prior to vertical position user is on 
-        for (let y = 0; y < verticalCursorPosition - 20 / 10; y++) {
-            for (let x = 0; x < 10; x++) {
-
-                //nestedArray2[y][x] = (nestedArray[y][x]);
-                
-            }
-        }
-
-        for (let y = 0; y < 10; y++) {
-            for (let x = 0; x < 10; x++) {
-                
-                nestedArray[y][x] = nestedArray2[y][x]
-            }
-        }
+       
 
 
         //alert("1");
-           
-        //text to keep - looks good
-        for (let x = 0; x < horizontalCursorPosition / 5; x++) {
-                 
-            holdsTextToKeep[0][x] = nestedArray[verticalCursorPosition / 10][x];
-                    
-        }
-
         
-
-        //gets length of hold text
-        //let textOnRightToForwardLength = 35 - horizontalCursorPosition / 5
                 
 ///////////
 
+        //initial charctar for use with return when it is on first character (different implementation)
         let initialCharacter = '';
+
+        //Used for extra code in two locations
         let condition = "cursorNotOnFirstSpace";
         if (horizontalCursorPosition == 0) {
         
@@ -102,6 +67,7 @@ class ReturnClass {
             
         
         }
+        //There are two of these, the other is below for printing text condition, is after spaces are displayed.
         if (condition == "cursorOnFirstSpace") {
             
             initialCharacter = nestedArray[verticalCursorPosition / 10][0];
@@ -110,7 +76,9 @@ class ReturnClass {
             for (let x = 1; x < 10; x++) {
                 holdsTextToMove[0][x] = ' ';
             }
-            //text to move to next vertical line
+            
+            
+            //text to move lines and cursor to next vertical line
             for (let x = ((horizontalCursorPosition) / 5); x < 10; x++) {
                 
                 holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x + 1];
@@ -118,23 +86,23 @@ class ReturnClass {
                         
             }
 
-            console.log("http: ", holdsTextToMove);
+            console.log("httm: ", holdsTextToMove);
             
         }
+        // return does not happen with first character cursored
         else {
 
 
-            ///////////
-        
+           
         
             
-            ////////////////////
+            /////////////////////////
             
             let index = 0;
             for (let x = 0; x < 10; x++) {
                 holdsTextToMove[0][x] = ' ';
             }
-            //text to move to next vertical line
+            //code to hold moved text (after cursor)
             for (let x = ((horizontalCursorPosition) / 5); x < 10; x++) {
                 
                 holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
@@ -148,13 +116,13 @@ class ReturnClass {
             //alert("2");
         }   
 
-///////////////////////////
+            ///////////////////////////
                 
                    
                 
                 
-        //IF:
-                
+        
+        //Readies array to be held completely, next segment below.        
         for (let y = 0; y < 10; y++) {
             for (let x = 0; x < 10; x++) {
                 nestedArray2[x][y] = nestedArray[x][y];
@@ -168,7 +136,7 @@ class ReturnClass {
 
 
                 
-        //displays all rows after users posiiton on row down
+        //displays all rows at cusror to bottom of text box, could use end line variable 
         //code segment 1
         for (let y = verticalCursorPosition / 10; y < 10; y++) {
             for (let x = 0; x < 10; x++) {
@@ -180,7 +148,7 @@ class ReturnClass {
         }
 
                 
-
+        //Variable is ready for transfer to other array
         for (let y = 0; y < 10; y++) {
             for (let x = 0; x < 10; x++) {
                 nestedArray[x][y] = nestedArray2[x][y];
@@ -200,7 +168,7 @@ class ReturnClass {
 
         //put text on next line
         for (let x1 = 0; x1 < 10; x1++) {
-            //alert("here1");
+            
             nestedArray[verticalCursorPosition / 10 + 1][x1] = holdsTextToMove[0][x1];
                     
                     
@@ -218,14 +186,16 @@ class ReturnClass {
                 
         
         
-        //spaces
+        //displays spaces after cursor position, leaving the initial text left of cursor
         for (let x = (horizontalCursorPosition / 5) ; x < 10; x++) {
             nestedArray[verticalCursorPosition / 10][x] = ' ';
         }
 
 
+        
         horizontalCursorPosition = 0;
 
+        //if space on second row than set horizontal positioin to there so that cursor may be placed later
         for (let x = 0; x < 10; x++) {
 
             let character = nestedArray[verticalCursorPosition / 10 + 1][x]
@@ -244,7 +214,7 @@ class ReturnClass {
 
         }
 
-        //////////////
+        //////////////Second and last change in code for cursor on first character
 
         if (condition == "cursorOnFirstSpace") {
             nestedArray[verticalCursorPosition/10][0] = initialCharacter;
@@ -256,53 +226,13 @@ class ReturnClass {
         drawGrid();
 
 
-        console.log("hp ", horizontalCursorPosition);
-
-
-
-
-
-        console.log("vp ", verticalCursorPosition);
-
-
-        //horizontalCursorPosition = 30;
-
-
-
-        //alert("5");
-
+        
 
                   
         
                    
         TextArea.makeOneDimArrayWithoutCommas;
-                    
         
-           
-       
-
-
-        //////////////
-
-
-
-        //////
-        //data to use : 12  34  56
-        //two holders holds the parts of nestedArrray and should display without commas
-        //if uncommented, will display with commas, now  
-        //right below this are some functions
-        //before holders were used a single value was changed for the two values with a 	   	       zz for space.
-        //What needs to be done now is holder needs to be changed to an array of objects
-        //and than the two functions below need to be arranged to handle an array called 		       in
-        //and something returned
-        //look at break below and aso right above is the z to be set (denotes spacing)
-
-        //holder: 5,6
-        //holder1: 3,4
-                    
-
-
-        TextArea.makeOneDimArrayWithoutCommas;
         
 
                 
@@ -312,8 +242,10 @@ class ReturnClass {
            
 
         this.lastLine = this.lastLine + 1;
+        
+        //advances vertical position to next row where cursor will be
         verticalCursorPosition = verticalCursorPosition + 10;
-        //horizontalCursorPosition = horizontalCursorPosition + 5;
+        
         
 
         //drawGrid;

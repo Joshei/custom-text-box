@@ -1,3 +1,5 @@
+
+// Controls key presses.
 class CustomBoxClass {
     constructor() {
       drawGrid()

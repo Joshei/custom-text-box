@@ -1,7 +1,7 @@
-
+//For easy movement, especially useful for testing
 class CursorMovementsClass {
     cursorRight() {
-      //35 width times 5 to accomodate size of font's wodth
+      //35 width times 5 to accomodate size of font's width
       if (horizontalCursorPosition >= 170) {
         //alert(horizontalCursorPosition);
         horizontalCursorPosition = 170
