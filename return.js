@@ -21,7 +21,8 @@ working on return with no characters on right below (commented out!)
 
 
 
-//horizontal and vertical increment is 5.
+//horizontal increment:  5.
+//vertical increment is 10.
 
 class ReturnClass {
     constructor() {
@@ -32,156 +33,22 @@ class ReturnClass {
         
         this.lastLine = 0;
         this.firstTimeThrough = true;
-        //let holderArray = [];
-        //this.holderArray = [];
         
-        //fill array wiht no values - set up the two dimensional array
-        //holderArray = Array.from({ length: 35 }, () =>
-        //Array.from({ length: 35 }, () => '')
-        //)
         
     }
 
 
     
     
-    //nothing below this line at all.
+    
     Return() {
 
-        var isWithTextToWriteBelow = false
+        
 
-        console.log("hori: ", horizontalCursorPosition);
-        console.log("vert: ", verticalCursorPosition);
-        console.log("last: ", this.lastLine);
-        console.log("nestedArray: " ,  nestedArray);
             
         let areCharacters = false;
-        //alert(this.lastLine);
-        
-            
         
         
-           
-
-            
-
-
-
-
-
-
-            
-        /*   
-                
-                    
-                
-        ///////////////////////////////////
-        //////////////////////////////////  check for a return when no character to right,
-        //moves everything down and returnd out
-        ///////////////////////////////////
-        ///////////////////////////////////
-        ////////////////////////////////////
-                
-
-        //check for no characters and first row 
-
-        if (this.firstTimeThrough == true) {
-            
-            this.firstTimeThrough = false;
-
-            verticalCursorPosition = verticalCursorPosition + 10;
-            horizontalCursorPosition = 0;
-
-            drawGrid();
-
-            CursorMovements.drawCursor(
-                horizontalCursorPosition + HOFFSET,
-                verticalCursorPosition + VOFFSET
-            )
-
-
-            return;
-        }
-        
-        
-        for (let x = horizontalCursorPosition/5; x < 10; x++) {
-            if (nestedArray[verticalCursorPosition[x]] != "" && nestedArray[verticalCursorPosition][x] != '') {
-                        
-                areCharacters = true;
-                break;
-            }
-        }
-
-           
-        
-        //isn't any characters after
-        if (areCharacters == false) {
-            alert("no characters");
-
-        for (let y = 0; y < 10; y++) {
-            for (let x = 0; x < 10; x++) {
-                
-                nestedArray2[y][x] = nestedArray[y][x]
-            }
-        }
-
-        
-
-
-           
-            for (let y = (verticalCursorPosition/10 + 1); y < 10; y++) {
-                for (let x = 0; x < 10; x++) {
-
-                    nestedArray2[y + 1][x] = nestedArray[y][x];
-                }
-            }
-
-                    
-
-            for (let y = 0; y < 10; y++) {
-                for (let x = 0; x < 10; x++) {
-                    
-                    nestedArray[y][x] = nestedArray2[y][x]
-                }
-            }
-
-
-
-            //erase characters in positioin verticle position + 1
-            for (let x = 0; x < 10; x++)
-            {
-                nestedArray[verticalCursorPosition/10+1][x] = ' ';
-                }
-                
-
-            verticalCursorPosition = verticalCursorPosition + 10;
-            horizontalCursorPosition = 0;
-        
-
-            drawGrid();
-
-            CursorMovements.drawCursor(
-                horizontalCursorPosition + HOFFSET,
-                verticalCursorPosition + VOFFSET
-            )
-                    
-            return;
-        }
-                
-                    
-        
-        
-        */
-        
-        
-        //alert("0");
-                    
-        //return;
-                    
-                    
-        let holder = [];
-        let holder1 = [];
-
 
         let i = 1;
                 
@@ -212,15 +79,7 @@ class ReturnClass {
 
 
         //alert("1");
-                
-                    
-                
-
-                
-
-            
-
-                
+           
         //text to keep - looks good
         for (let x = 0; x < horizontalCursorPosition / 5; x++) {
                  
@@ -228,44 +87,68 @@ class ReturnClass {
                     
         }
 
-        //console.log("http: ", holdsTextToKeep);
-
-                
-                
-                
-               
-                
-                
-    
-
-
+        
 
         //gets length of hold text
         //let textOnRightToForwardLength = 35 - horizontalCursorPosition / 5
                 
+///////////
 
-
-
-        let index = 0;
-        for (let x = 0; x < 10; x++)
-        {
-            holdsTextToMove[0][x] = ' ';
-            }
-        //text to move to next vertical line
-        for (let x = ((horizontalCursorPosition ) / 5); x < 10; x++) {
-                
-            holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
-            index++;
-                        
+        let initialCharacter = '';
+        let condition = "cursorNotOnFirstSpace";
+        if (horizontalCursorPosition == 0) {
+        
+            condition = "cursorOnFirstSpace";
+            
+        
         }
+        if (condition == "cursorOnFirstSpace") {
+            
+            initialCharacter = nestedArray[verticalCursorPosition / 10][0];
 
-        console.log("http: ", holdsTextToMove);
+            let index = 0;
+            for (let x = 1; x < 10; x++) {
+                holdsTextToMove[0][x] = ' ';
+            }
+            //text to move to next vertical line
+            for (let x = ((horizontalCursorPosition) / 5); x < 10; x++) {
+                
+                holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x + 1];
+                index++;
+                        
+            }
+
+            console.log("http: ", holdsTextToMove);
+            
+        }
+        else {
+
+
+            ///////////
+        
+        
+            
+            ////////////////////
+            
+            let index = 0;
+            for (let x = 0; x < 10; x++) {
+                holdsTextToMove[0][x] = ' ';
+            }
+            //text to move to next vertical line
+            for (let x = ((horizontalCursorPosition) / 5); x < 10; x++) {
+                
+                holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
+                index++;
+                        
+            }
+
+            console.log("http: ", holdsTextToMove);
 
                
-        //alert("2");
-                
+            //alert("2");
+        }   
 
-
+///////////////////////////
                 
                    
                 
@@ -326,23 +209,6 @@ class ReturnClass {
         }
 
 
-
-        //alert("4");
-        //erases vertical position row.
-        // if then!
-        
-        
-
-
-       
-
-                
-                    
-
-                
-                
-
-
         ////////////////////
 
 
@@ -377,8 +243,16 @@ class ReturnClass {
             }
 
         }
-        //horizontalCursorPosition = horizontalCursorPosition + 10;
 
+        //////////////
+
+        if (condition == "cursorOnFirstSpace") {
+            nestedArray[verticalCursorPosition/10][0] = initialCharacter;
+        }
+
+
+        //////////////
+        
         drawGrid();
 
 
@@ -399,31 +273,12 @@ class ReturnClass {
 
 
                   
-        console.log("holder: ", holder);
-        console.log("holder1: ", holder1);
+        
                    
         TextArea.makeOneDimArrayWithoutCommas;
                     
         
-                   
-                   
-        holder[0] = 'c';
-        ///////////////////// - holders have commas. uncomment!
-        //nestedArray[(this.lastLine + 1)][0] = holder[0]; 
-
-        //nestedArray[(this.lastLine + 0)][0] = holder1[0];
-
-
-
-
-
-                    
-
-
-                    
-                    
-                    
-                    
+           
        
 
 
