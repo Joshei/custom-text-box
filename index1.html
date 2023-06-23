@@ -127,11 +127,11 @@ const Return = new ReturnClass();
 
       //fill array wiht no values - set up the two dimensional array
       const nestedArray = Array.from({ length: rows }, () =>
-        Array.from({ length: cols }, () => '')
+        Array.from({ length: cols }, () => ' ')
       )
 
       let nestedArray2 = Array.from({ length: rows }, () =>
-        Array.from({ length: cols }, () => 'Z')
+        Array.from({ length: cols }, () => ' ')
       )
 
       rows = 1;
@@ -141,7 +141,7 @@ const Return = new ReturnClass();
       )
 
       let = holdsTextToMove = Array.from({ length: rows }, () =>
-        Array.from({ length: cols }, () => '')
+        Array.from({ length: cols }, () => ' ')
       )
 
       insertOn.innerHTML = 'Insert Off'
@@ -271,7 +271,7 @@ const Return = new ReturnClass();
           }
         } //  i = rows, j = col
         z = 0
-        //console.log('A: ', nestedArray)
+        console.log('A: ', nestedArray)
         //console.log('B: ', oneDimArray)
 
         
@@ -415,15 +415,18 @@ const Return = new ReturnClass();
         
         //try setting nested array for drawgrid
 
+        console.log('1a:', nestedArray)
         nestedArray[verticalCursorPosition / 10][horizontalCursorPosition / 5] =
           gKey
+
+        console.log("key: ", gKey);
         //nestedArray[horizontalCursorPosition/5][verticalCursorPosition/10] = gKey
-        console.log('1', nestedArray)
+        console.log('1z:', nestedArray)
 
         drawGrid()
 
         //At edge of canavs
-        if (horizontalCursorPosition < 170) {
+        if (horizontalCursorPosition < 9*5) {
           horizontalCursorPosition = horizontalCursorPosition + 5
         }
         CursorMovements.drawCursor(

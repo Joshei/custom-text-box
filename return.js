@@ -13,7 +13,7 @@ Mostly works, press 5 twice, error
 
 working on return with no characters on right below (commented out!)
 
-*
+*/
 
 
 
@@ -50,9 +50,10 @@ class ReturnClass {
 
         var isWithTextToWriteBelow = false
 
+        console.log("hori: ", horizontalCursorPosition);
         console.log("vert: ", verticalCursorPosition);
         console.log("last: ", this.lastLine);
-        
+        console.log("nestedArray: " ,  nestedArray);
             
         let areCharacters = false;
         //alert(this.lastLine);
@@ -173,9 +174,9 @@ class ReturnClass {
         */
         
         
-        
+        //alert("0");
                     
-
+        //return;
                     
                     
         let holder = [];
@@ -197,7 +198,8 @@ class ReturnClass {
         for (let y = 0; y < verticalCursorPosition - 20 / 10; y++) {
             for (let x = 0; x < 10; x++) {
 
-                nestedArray2[y][x] = (nestedArray[y][x]);
+                //nestedArray2[y][x] = (nestedArray[y][x]);
+                
             }
         }
 
@@ -209,18 +211,14 @@ class ReturnClass {
         }
 
 
+        //alert("1");
                 
                     
                 
 
                 
 
-        //blanks out current row so next segment can displau only hold text
-
-        for (let x = 0; x < 10; x++) {
-           // nestedArray[verticalCursorPosition/10][x] = 'V';
-        }
-                
+            
 
                 
         //text to keep - looks good
@@ -230,7 +228,7 @@ class ReturnClass {
                     
         }
 
-        console.log("http: ", holdsTextToKeep);
+        //console.log("http: ", holdsTextToKeep);
 
                 
                 
@@ -243,22 +241,28 @@ class ReturnClass {
 
 
         //gets length of hold text
-        let textOnRightToForwardLength = 35 - horizontalCursorPosition / 5
+        //let textOnRightToForwardLength = 35 - horizontalCursorPosition / 5
                 
 
 
 
-
-
+        let index = 0;
+        for (let x = 0; x < 10; x++)
+        {
+            holdsTextToMove[0][x] = ' ';
+            }
         //text to move to next vertical line
-        for (let x = horizontalCursorPosition / 5; x < 10; x++) {
+        for (let x = ((horizontalCursorPosition ) / 5); x < 10; x++) {
                 
-            holdsTextToMove[0][x - 1] = nestedArray[verticalCursorPosition / 10][x];
+            holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
+            index++;
                         
         }
 
+        console.log("http: ", holdsTextToMove);
+
                
-                
+        //alert("2");
                 
 
 
@@ -277,13 +281,7 @@ class ReturnClass {
 
                 
 
-        //remove the extra characters left behind by code segment 1
-
-        for (let x = 0; x < 10; x++) {
-
-            //nestedArray[verticalCursorPosition / 10 + 1][x] = 'E';
-        }
-                
+        
 
 
                 
@@ -309,7 +307,7 @@ class ReturnClass {
 
                 
 
-                
+        //alert("3");
 
 
                 
@@ -329,23 +327,14 @@ class ReturnClass {
 
 
 
-        //////////////////////////////////////////////////
+        //alert("4");
         //erases vertical position row.
         // if then!
-        for (let x = 0; x < 34; x++) {
-
-            //nestedArray[verticalCursorPosition/10][x] = 'D';
-
-        }
-
-        ////////////////////////////////////////////////////
+        
+        
 
 
-        for (let x = 0; x < 10; x++) {
-            //nestedArray[verticalCursorPosition / 10][x] = holdsTextToKeep[0][x]; 
-
-            //console.log("xxx: ",holdsTextToKeep[0][x]);
-        }
+       
 
                 
                     
@@ -361,35 +350,52 @@ class ReturnClass {
         console.log("! ", nestedArray)
                 
                 
-        for (let y = 0; y < 10; y++) {
-            for (let x = 0; x < 10; x++) {
-                //nestedArray[x][y] = nestedArray2[x][y];
-
-            }
-        }
-                
-
-        /*
-        123
-        456
-        56
-        789
-
-
-        put cursor on 5 and no character alert happpens.
-        123
-        456
-        78
-        */
+        
         
         //spaces
-        for (let x = horizontalCursorPosition/5;  x < 10  ; x++) {
-             nestedArray[verticalCursorPosition/10][x] = 'V';
-         }
+        for (let x = (horizontalCursorPosition / 5) ; x < 10; x++) {
+            nestedArray[verticalCursorPosition / 10][x] = ' ';
+        }
+
+
+        horizontalCursorPosition = 0;
+
+        for (let x = 0; x < 10; x++) {
+
+            let character = nestedArray[verticalCursorPosition / 10 + 1][x]
+            
+            console.log("X: ", x);
+            console.log("char: ", character);
+
+
+
+            if (character === ' ') {
+                
+                horizontalCursorPosition = (x * (5) );
+                //alert("space: ", x);
+                break;
+            }
+
+        }
+        //horizontalCursorPosition = horizontalCursorPosition + 10;
+
+        drawGrid();
+
+
+        console.log("hp ", horizontalCursorPosition);
 
 
 
 
+
+        console.log("vp ", verticalCursorPosition);
+
+
+        //horizontalCursorPosition = 30;
+
+
+
+        //alert("5");
 
 
                   
@@ -398,19 +404,7 @@ class ReturnClass {
                    
         TextArea.makeOneDimArrayWithoutCommas;
                     
-        // https://stackoverflow.com/7011550/array-of-objects-in-js 
-        //
-        //   holder[i] = array of objects
-        //   for loop
-        //   nestedArray[verticalCursorPosition][a] = holder[i].x1
-        //  var test =
-        //  {
-        //       x1
-        //       x2
-        // 
-        //       x35 
-        //  }
-                   
+        
                    
                    
         holder[0] = 'c';
@@ -430,13 +424,7 @@ class ReturnClass {
                     
                     
                     
-        //wouldnt work right at top of function, displayed an extra letter one row down
-        for (let a = 0; a < 2; a++) {
-            //nestedArray[verticalCursorPosition+1][a] = 'z';
-                    
-            console.log("vertical: ", verticalCursorPosition);
-
-        }
+       
 
 
         //////////////
@@ -460,13 +448,7 @@ class ReturnClass {
 
 
         TextArea.makeOneDimArrayWithoutCommas;
-        //console.log("this1: ", TextArea.oneDimArray2);
-
-        ////draws grid and cursor
-        //oDimArray();
-        //console.log("this2: ", nestedArray);
-
-                    
+        
 
                 
 
@@ -476,21 +458,16 @@ class ReturnClass {
 
         this.lastLine = this.lastLine + 1;
         verticalCursorPosition = verticalCursorPosition + 10;
-        horizontalCursorPosition = 0;
+        //horizontalCursorPosition = horizontalCursorPosition + 5;
         
 
-        drawGrid();
+        //drawGrid;
 
         CursorMovements.drawCursor(
             horizontalCursorPosition + HOFFSET,
             verticalCursorPosition + VOFFSET
         )
         
-        
-
-        
-
-
         
     }
 }
