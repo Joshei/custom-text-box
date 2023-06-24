@@ -6,7 +6,13 @@ class CustomBoxClass {
       CursorMovements.drawCursor(25, 25)
     }
 
-    controlInput() {
+  controlInput() {
+      
+
+    if (gKey == 'Shift' || gKey == 'Control' || gkey == 'Tab' || gKey == 'Escape'){
+    
+      return;
+    }
       if (gKey == 'Insert') {
         gInsert = !gInsert
 
