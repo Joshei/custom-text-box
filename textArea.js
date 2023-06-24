@@ -22,6 +22,7 @@ function TextAreaClass() {
         
         this.oneDimArray2.length = 0;
 
+      alert("here!");
         for (let i = 0; i < 35; i = i + 1) {
           //rows
           for (let j = 0; j < 35; j = j + 1) {

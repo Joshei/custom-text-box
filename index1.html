@@ -51,7 +51,7 @@ const Return = new ReturnClass();
 
 
   //width of canvas, amount of characters, multiplied by five for displaying grid    
-  const WIDTH = 35
+  const WIDTH = 10
 
       
   //Used for changing two dim array into something flat
@@ -129,12 +129,12 @@ const Return = new ReturnClass();
       var y = size / 2
 
       //fill array wiht no values - set up the two dimensional array
-      const nestedArray = Array.from({ length: WIDTH }, () =>
-        Array.from({ length: cols }, () => ' ')
+      const nestedArray = Array.from({ length: rows }, () =>
+        Array.from({ length: 10 }, () => ' ')
       )
 
-      let nestedArray2 = Array.from({ length: WIDTH }, () =>
-        Array.from({ length: cols }, () => ' ')
+      let nestedArray2 = Array.from({ length: rows }, () =>
+        Array.from({ length: 10 }, () => ' ')
       )
 
       rows = 1;
@@ -144,7 +144,7 @@ const Return = new ReturnClass();
       )
 
       let = holdsTextToMove = Array.from({ length: rows }, () =>
-        Array.from({ length: cols }, () => ' ')
+        Array.from({ length: cols }, () => 'C')
       )
 
       insertOn.innerHTML = 'Insert Off'
