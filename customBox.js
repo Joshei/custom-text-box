@@ -4,6 +4,7 @@ class CustomBoxClass {
     constructor() {
       drawGrid()
       CursorMovements.drawCursor(25, 25)
+      gInsert = false;
     }
 
   controlInput() {
@@ -13,15 +14,27 @@ class CustomBoxClass {
     
       return;
     }
-      if (gKey == 'Insert') {
-        gInsert = !gInsert
 
-        if (gInsert) {
-          insertOn.innerHTML = 'Insert On'
-        } else {
-          insertOn.innerHTML = 'Insert Off'
-        }
+    
+
+
+    if (gKey == 'Insert') {
+      gInsert = !gInsert
+
+      if (gInsert) {
+        insertOn.innerHTML = 'Insert On'
+      } else {
+        insertOn.innerHTML = 'Insert Off'
       }
+  
+      return;
+    }
+    
+
+    
+
+
+
       if (gKey == 'ArrowLeft') {
         CursorMovements.cursorLeft()
       } else if (gKey == 'ArrowRight') {
@@ -33,7 +46,9 @@ class CustomBoxClass {
       } else if (gKey == 'Enter') {
         Return.Return()
       } else if (gInsert) {
+        console.log("key: ", gKey);
         makeOneDimArray()
+        insertCharacter()
       } else {
         printCharacter()
       }
@@ -42,6 +57,8 @@ class CustomBoxClass {
         'X: ' +
         horizontalCursorPosition +
         '  &nbsp&nbsp&nbsp   Y: ' +
-        verticalCursorPosition
+      verticalCursorPosition
+    
+      
     }
   }
