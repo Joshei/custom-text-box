@@ -9,7 +9,7 @@ class CustomBoxClass {
   controlInput() {
       
 
-    if (gKey == 'Shift' || gKey == 'Control' || gkey == 'Tab' || gKey == 'Escape'){
+    if (gKey == 'Shift' || gKey == 'Control' || gKey == 'Tab' || gKey == 'Escape'){
     
       return;
     }

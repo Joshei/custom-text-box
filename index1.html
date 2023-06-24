@@ -129,11 +129,11 @@ const Return = new ReturnClass();
       var y = size / 2
 
       //fill array wiht no values - set up the two dimensional array
-      const nestedArray = Array.from({ length: rows }, () =>
+      const nestedArray = Array.from({ length: WIDTH }, () =>
         Array.from({ length: cols }, () => ' ')
       )
 
-      let nestedArray2 = Array.from({ length: rows }, () =>
+      let nestedArray2 = Array.from({ length: WIDTH }, () =>
         Array.from({ length: cols }, () => ' ')
       )
 
@@ -163,7 +163,7 @@ const Return = new ReturnClass();
         //columns
         for (let i = 0; i < 35; i++) {
           //rows
-          for (let j = 0; j < 35; j++) {
+          for (let j = 0; j < WIDTH; j++) {
            
             //fill a square canvas with letter values
             ctx.fillText(nestedArray[i][j], j * 5 + 25, i * 10 + 25)
@@ -199,7 +199,7 @@ const Return = new ReturnClass();
         
         for (let i = 0; i < 35; i = i + 1) {
           //rows
-          for (let j = 0; j < 35; j = j + 1) {
+          for (let j = 0; j < WIDTH; j = j + 1) {
             oneDimArray.push(nestedArray[i][j])
             
           }
@@ -243,7 +243,7 @@ const Return = new ReturnClass();
         for (let i = 0; i < 35; i = i + 1) {
           //columns
           
-          for (j = 0; j < 35; j = j + 1, z++) {
+          for (j = 0; j < WIDTH; j = j + 1, z++) {
            
             //set array with characters
             nestedArray[j][i] = oneDimArray[z]
@@ -272,7 +272,7 @@ const Return = new ReturnClass();
         //rows
         for (let i = 0; i < 35; i = i + 1) {
           //columns
-          for (j = 0; j < 35; j = j + 1, z++) {
+          for (j = 0; j < WIDTH; j = j + 1, z++) {
             
             nestedArray[j][i] = oneDimArray[z]
             
@@ -293,7 +293,7 @@ const Return = new ReturnClass();
       function moveAllcharactersRight() {
         //first row
         for (let j = horizontalCursorPosition; j < 35; j = j + 1) {
-          for (j = 0; j < 35; j = j + 1, z++) {
+          for (j = 0; j < WIDTH; j = j + 1, z++) {
             nestedArray[j][i] = oneDimArray[z]
           }
         }
@@ -337,7 +337,7 @@ const Return = new ReturnClass();
         drawGrid()
 
         //At edge of canavs - use for edge cases, later.
-        if (horizontalCursorPosition < 9*5) {
+        if (horizontalCursorPosition < (WIDTH-1)*5) {
           horizontalCursorPosition = horizontalCursorPosition + 5
         }
         CursorMovements.drawCursor(
