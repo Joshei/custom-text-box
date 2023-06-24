@@ -51,7 +51,8 @@ const Return = new ReturnClass();
 
 
   //width of canvas, amount of characters, multiplied by five for displaying grid    
-  const WIDTH = 10
+  const WIDTH = 35
+  const HEIGHT = 35
 
       
   //Used for changing two dim array into something flat
@@ -69,8 +70,8 @@ const Return = new ReturnClass();
         //if delete on last character, move all characters there and after one above (character is deleted)
         //if line not full
 
-        
-        for (let j = horizontalCursorPosition; j < WIDTH; j = j + 1) {
+        //!!!
+        for (let j = horizontalCursorPosition; j < HEIGHT; j = j + 1) {
           for (let i = 0; i < WIDTH; i = i + 1, z++) {
             
 
@@ -129,12 +130,12 @@ const Return = new ReturnClass();
       var y = size / 2
 
       //fill array wiht no values - set up the two dimensional array
-      const nestedArray = Array.from({ length: rows }, () =>
-        Array.from({ length: 10 }, () => ' ')
+      const nestedArray = Array.from({ length: HEIGHT }, () =>
+        Array.from({ length: WIDTH }, () => ' ')
       )
 
-      let nestedArray2 = Array.from({ length: rows }, () =>
-        Array.from({ length: 10 }, () => ' ')
+      let nestedArray2 = Array.from({ length: HEIGHT }, () =>
+        Array.from({ length: WIDTH }, () => ' ')
       )
 
       rows = 1;
@@ -161,7 +162,7 @@ const Return = new ReturnClass();
         clearArray()
         ctx.fillStyle = 'black'
         //columns
-        for (let i = 0; i < 35; i++) {
+        for (let i = 0; i < HEIGHT; i++) {
           //rows
           for (let j = 0; j < WIDTH; j++) {
            
@@ -197,7 +198,7 @@ const Return = new ReturnClass();
       //turn two dimensional array into one dimensional array
       function makeOneDimArray() {
         
-        for (let i = 0; i < 35; i = i + 1) {
+        for (let i = 0; i < HEIGHT; i = i + 1) {
           //rows
           for (let j = 0; j < WIDTH; j = j + 1) {
             oneDimArray.push(nestedArray[i][j])
@@ -240,7 +241,7 @@ const Return = new ReturnClass();
       //doesn't draw grid and cursor
       function makeTwoDimArray() {
         //rows
-        for (let i = 0; i < 35; i = i + 1) {
+        for (let i = 0; i < HEIGHT; i = i + 1) {
           //columns
           
           for (j = 0; j < WIDTH; j = j + 1, z++) {
@@ -270,7 +271,7 @@ const Return = new ReturnClass();
       function makeTwoDimArrayWithInsertion() {
         
         //rows
-        for (let i = 0; i < 35; i = i + 1) {
+        for (let i = 0; i < HEIGHT; i = i + 1) {
           //columns
           for (j = 0; j < WIDTH; j = j + 1, z++) {
             
@@ -292,7 +293,7 @@ const Return = new ReturnClass();
 
       function moveAllcharactersRight() {
         //first row
-        for (let j = horizontalCursorPosition; j < 35; j = j + 1) {
+        for (let j = horizontalCursorPosition; j < HEIGHT; j = j + 1) {
           for (j = 0; j < WIDTH; j = j + 1, z++) {
             nestedArray[j][i] = oneDimArray[z]
           }

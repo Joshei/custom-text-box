@@ -17,7 +17,7 @@ working on return with no characters on right below (commented out!)
 
 
 
-let HEIGHT = 35;
+
 
 
 
@@ -104,7 +104,7 @@ class ReturnClass {
             /////////////////////////
             
             let index = 0;
-            for (let x = 0; x < 10; x++) {
+            for (let x = 0; x <  WIDTH; x++) {
                 holdsTextToMove[0][x] = ' ';
             }
             //code to hold moved text (after cursor)
@@ -129,7 +129,7 @@ class ReturnClass {
         
         //Readies array to be held completely, next segment below.        
         for (let y = 0; y < HEIGHT; y++) {
-            for (let x = 0; x < 10; x++) {
+            for (let x = 0; x < WIDTH; x++) {
                 nestedArray2[x][y] = nestedArray[x][y];
 
             }
@@ -144,7 +144,7 @@ class ReturnClass {
         //displays all rows at cusror to bottom of text box, could use end line variable 
         //code segment 1
         for (let y = verticalCursorPosition / 10; y < HEIGHT - 1; y++) {
-            for (let x = 0; x < 10; x++) {
+            for (let x = 0; x < WIDTH; x++) {
                        
 
                         
@@ -155,7 +155,7 @@ class ReturnClass {
                 
         //Variable is ready for transfer to other array
         for (let y = 0; y < HEIGHT; y++) {
-            for (let x = 0; x < 10; x++) {
+            for (let x = 0; x < WIDTH; x++) {
                 nestedArray[x][y] = nestedArray2[x][y];
 
             }
@@ -172,7 +172,7 @@ class ReturnClass {
         /////////////////
 
         //put text on next line
-        for (let x1 = 0; x1 < 10; x1++) {
+        for (let x1 = 0; x1 < WIDTH; x1++) {
             
             nestedArray[verticalCursorPosition / 10 + 1][x1] = holdsTextToMove[0][x1];
                     
@@ -192,7 +192,7 @@ class ReturnClass {
         
         
         //displays spaces after cursor position, leaving the initial text left of cursor
-        for (let x = (horizontalCursorPosition / 5) ; x < 10; x++) {
+        for (let x = (horizontalCursorPosition / 5) ; x < WIDTH; x++) {
             nestedArray[verticalCursorPosition / 10][x] = ' ';
         }
 
@@ -201,7 +201,7 @@ class ReturnClass {
         horizontalCursorPosition = 0;
 
         //if space on second row than set horizontal positioin to there so that cursor may be placed later
-        for (let x = 0; x < 10; x++) {
+        for (let x = 0; x < WIDTH; x++) {
 
             let character = nestedArray[verticalCursorPosition / 10 + 1][x]
             
