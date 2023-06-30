@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-
-    <script src = "textArea.js"></script>
-    <script src = "cursor.js"></script>
+    <script src="textArea.js"></script>
+    <script src="cursor.js"></script>
 
     <canvas
       id="canvas_id"
@@ -19,80 +18,125 @@
       ;
     ></canvas>
 
-
-
-    
     <button id="button2" onclick="backspaceFormerCharacter()">
       Back Space
     </button>
     <button id="button3" onclick="deleteIt()">Delete</button>
     <button id="button4" onclick="Cursor.cursorRight()">Cursor Right</button>
     <button id="button5" onclick="Cursor.cursorLeft()">Cursor Left</button>
-    <button id="button6" onclick="TextArea.displayTextBoxCopy()">Display Text</button>
-    
-
-    
+    <button id="button6" onclick="TextArea.displayTextBoxCopy()">
+      Display Text
+    </button>
 
     <div id="insert"></div>
     <div id="xAndY"></div>
-    <textarea title = "Text Box" rows = "35" id="mytext" cols = "35"> </textarea> 
+    <textarea title="Text Box" rows="35" id="mytext" cols="35"> </textarea>
 
     <!--classe-->
-    <script src = "cursorMovement.js"></script>
-    <script src = 'customBox.js'></script>
-    <script src = 'return.js'></script>
+    <script src="cursorMovement.js"></script>
+    <script src="customBox.js"></script>
+    <script src="return.js"></script>
     <script>
+      let gLastLine = 0
+      //instantiate the classes
+      const CursorMovements = new CursorMovementsClass()
+      const Return = new ReturnClass()
 
-      
+      //width of canvas, amount of characters, multiplied by five for displaying grid
+      const WIDTH = 10
+      const HEIGHT = 100
 
-//instantiate the classes
-const CursorMovements = new CursorMovementsClass();
-const Return = new ReturnClass();
+      //Used for changing two dim array into something flat
+      let oneDimArray = []
 
+      let blanks = []
 
-  //width of canvas, amount of characters, multiplied by five for displaying grid    
-  const WIDTH = 35
-  const HEIGHT = 35
+      //needed delete character on left end with string - very difficult must wrap with top string
 
-      
-  //Used for changing two dim array into something flat
-    let oneDimArray = [];
-      
-      let blanks = [];
-      
-      
+      //turn to a one dimensional array and check if there is any space to attach  - remove nulls and turn to a two dimension array
+      //needed delete right position with a string
 
+      //check if word fits on line
 
-      
+      //CONSIDERATION THAT CURSOR MAY NEED TO DELETE FROM THE CHARACTER TO RIGHT
 
       function deleteIt() {
-        //if cursor before deletes that character
-        //if delete on last character, move all characters there and after one above (character is deleted)
-        //if line not full
-
-        //!!!
-        
-        for (let j = horizontalCursorPosition; j < HEIGHT; j = j + 1) {
-          for (let i = 0; i < WIDTH; i = i + 1, z++) {
-            
-
-            if (oneDimArray[z] == NULL) {
-              continue
-            }
-            if (z > 0) {
-              nestedArray[j][i] = oneDimArray[z - 1]
-            } else {
-              nestedArray[j][i] = oneDimArray[z]
-            }
+        //Readies array to be held completely, next segment below.
+        for (let y = 0; y < HEIGHT; y++) {
+          for (let x = 0; x < WIDTH; x++) {
+            nestedArray2[x][y] = nestedArray[x][y]
           }
         }
 
-        printCharacter()
+        //cursor is on leftside position,
+        //works with entire row empty and with one element on left
+        if (horizontalCursorPosition / 5 == 0) {
+          console.log('gl: ', gLastLine)
+          console.log('ver: ', verticalCursorPosition / 10)
+          //for(let y = gLastLine ; y > verticalCursorPosition/10 ; y--){
+          for (let y = verticalCursorPosition / 10; y < gLastLine; y++)
+            for (let x = 0; x < WIDTH; x++) {
+              console.log('y: ', y)
+              nestedArray2[y][x] = nestedArray[y + 1][x]
+            }
+
+          //Variable is ready for transfer to other array
+          for (let y = 0; y < HEIGHT; y++) {
+            for (let x = 0; x < WIDTH; x++) {
+              nestedArray[x][y] = nestedArray2[x][y]
+            }
+          }
+
+          drawGrid()
+
+          verticalCursorPosition = verticalCursorPosition - 10
+
+          for (let x = 0; x < 35; x++) {
+            if (nestedArray[verticalCursorPosition / 10][x] == ' ') {
+              horizontalCursorPosition = x * 5
+              break
+            }
+          }
+
+          CursorMovements.drawCursor(
+            horizontalCursorPosition + HOFFSET,
+            verticalCursorPosition + VOFFSET
+          )
+        } else {
+          //Moves characters to left -   deleting in a string     - move cursor one to right
+
+          //Readies array to be held completely, next segment below.
+          for (let y = 0; y < HEIGHT; y++) {
+            for (let x = 0; x < WIDTH; x++) {
+              nestedArray2[x][y] = nestedArray[x][y]
+            }
+          }
+
+          for (let x = horizontalCursorPosition / 5; x < 34; x++) {
+            nestedArray2[verticalCursorPosition / 10][x] =
+              nestedArray[verticalCursorPosition / 10][x + 1]
+          }
+
+          //Variable is ready for transfer to other array
+          for (let y = 0; y < HEIGHT; y++) {
+            for (let x = 0; x < WIDTH; x++) {
+              nestedArray[x][y] = nestedArray2[x][y]
+            }
+          }
+
+          drawGrid()
+
+          CursorMovements.drawCursor(
+            horizontalCursorPosition + HOFFSET,
+            verticalCursorPosition + VOFFSET
+          )
+        }
       }
+
       //vertical and horizontal offset of canvas
       const VOFFSET = 25
       const HOFFSET = 30
-      
+
       //nestedarray holds values with an array - 35 by 35
       var canvas = document.getElementById('canvas_id')
       //insert is on or off
@@ -101,8 +145,8 @@ const Return = new ReturnClass();
       let textBox = [[]]
 
       //rows and columns of canvas
-      let rows = 35
-      let cols = 35
+      let rows = WIDTH
+      let cols = HEIGHT
 
       //this is so that the canvas will look okay on a big display
       let ctx = canvas.getContext('2d')
@@ -139,8 +183,8 @@ const Return = new ReturnClass();
         Array.from({ length: WIDTH }, () => ' ')
       )
 
-      rows = 1;
-      cols = 10;
+      rows = 1
+      cols = WIDTH
       let = holdsTextToKeep = Array.from({ length: rows }, () =>
         Array.from({ length: cols }, () => 'Y')
       )
@@ -166,7 +210,6 @@ const Return = new ReturnClass();
         for (let i = 0; i < HEIGHT; i++) {
           //rows
           for (let j = 0; j < WIDTH; j++) {
-           
             //fill a square canvas with letter values
             ctx.fillText(nestedArray[i][j], j * 5 + 25, i * 10 + 25)
           }
@@ -178,9 +221,8 @@ const Return = new ReturnClass();
       //deletes a character without pulling all the values
       function backspaceFormerCharacter() {
         //  change current cursor space to blank
-        //  change previous character with under score 
+        //  change previous character with under score
 
-        
         nestedArray[horizontalCursorPosition / 5][verticalCursorPosition / 10] =
           ' '
         horizontalCursorPosition = horizontalCursorPosition - 5
@@ -193,24 +235,18 @@ const Return = new ReturnClass();
       }
 
       //the array of the grid as one dimensional.
-      
+
       let flag = false
 
       //turn two dimensional array into one dimensional array
       function makeOneDimArray() {
-        
         for (let i = 0; i < HEIGHT; i = i + 1) {
           //rows
           for (let j = 0; j < WIDTH; j = j + 1) {
             oneDimArray.push(nestedArray[i][j])
-            
           }
         }
-
-        
       }
-
-      
 
       //inserts a character into array using splice (the reason for one dim array conversion)
       function insertCharacter() {
@@ -218,7 +254,10 @@ const Return = new ReturnClass();
 
         //oneDimArray.splice((horizontalCursorPosition/5+35  ),0, 'Z');
         oneDimArray.splice(
-          horizontalCursorPosition / 5 + (35 * verticalCursorPosition) / 10,
+          //horizontalCursorPosition / 5 + (10 * verticalCursorPosition) / 10,
+
+          verticalCursorPosition + horizontalCursorPosition/5,
+          
           0,
           gKey
         )
@@ -232,56 +271,38 @@ const Return = new ReturnClass();
       let a = 0
       let z = 0
 
-
-
-
       ////////
-      
-       //second function for inserting, changes one dimenensional array into two dimensions
-      
+
+      //second function for inserting, changes one dimenensional array into two dimensions
+
       //doesn't draw grid and cursor
       function makeTwoDimArray() {
         //rows
         for (let i = 0; i < HEIGHT; i = i + 1) {
           //columns
-          
-          for (j = 0; j < WIDTH; j = j + 1, z++) {
-           
-            //set array with characters
-            nestedArray[j][i] = oneDimArray[z]
-            
-          }
-        } 
-        z = 0
-        
-        
 
-        
+          for (j = 0; j < WIDTH; j = j + 1, z++) {
+            //set array with characters
+            nestedArray[i][j] = oneDimArray[z]
+          }
+        }
+        z = 0
       }
 
-      
-      
       ////////
 
-
-
-      
       //second function for inserting, changes one dimenensional array into two dimensions
       //draws grid
       //draws cursor
       function makeTwoDimArrayWithInsertion() {
-        
         //rows
         for (let i = 0; i < HEIGHT; i = i + 1) {
           //columns
           for (j = 0; j < WIDTH; j = j + 1, z++) {
-            
             nestedArray[i][j] = oneDimArray[z]
-            
           }
-        } 
+        }
         z = 0
-        
 
         drawGrid()
         CursorMovements.drawCursor(
@@ -289,8 +310,6 @@ const Return = new ReturnClass();
           verticalCursorPosition + VOFFSET
         )
       }
-
-
 
       function moveAllcharactersRight() {
         //first row
@@ -301,45 +320,31 @@ const Return = new ReturnClass();
         }
       }
 
-
       let horizontalCursorPosition = 0
       let verticalCursorPosition = 0
-
-      
-
 
       let gKey = ''
       let gInsert = false
 
-      
-      
+      gLastLine = 0
 
-      gLastLine = 0;
-      
-
-      
-
-      
       //if not a special key, come here and display character
       function printCharacter() {
         ctx.clearRect(0, 0, 300, 300)
 
-
         console.log('v ', verticalCursorPosition)
         console.log('h ', horizontalCursorPosition)
 
-        
         //try setting nested array for drawgrid with key press
 
         nestedArray[verticalCursorPosition / 10][horizontalCursorPosition / 5] =
           gKey
 
-        
-
         drawGrid()
 
         //At edge of canavs - use for edge cases, later.
-        if (horizontalCursorPosition < (WIDTH-1)*5) {
+        //bookmark
+        if (horizontalCursorPosition < (WIDTH - 1) * 5) {
           horizontalCursorPosition = horizontalCursorPosition + 5
         }
         CursorMovements.drawCursor(
@@ -347,8 +352,6 @@ const Return = new ReturnClass();
           verticalCursorPosition + VOFFSET
         )
       }
-
-      
 
       document.addEventListener('keydown', function (e) {
         //global variable
@@ -361,10 +364,16 @@ const Return = new ReturnClass();
         'X: ' +
         horizontalCursorPosition +
         '  &nbsp&nbsp&nbsp   Y: ' +
-        verticalCursorPosition;
+        verticalCursorPosition
 
-        const customBox1 = new CustomBoxClass();
-        
+      const customBox1 = new CustomBoxClass()
+
+      window.addEventListener("keydown", function(e) {
+    if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
+  }
+      )
 
     </script>
   </body>

@@ -10,7 +10,7 @@ class CustomBoxClass {
   controlInput() {
       
 
-    if (gKey == 'Shift' || gKey == 'Control' || gKey == 'Tab' || gKey == 'Escape'){
+    if (gKey == 'Shift' || gKey == 'Control' || gKey == 'Tab' || gKey == 'Escape' || gKey == 'Backspace'){
     
       return;
     }
@@ -33,9 +33,12 @@ class CustomBoxClass {
 
     
 
+    if (gKey == 'Delete') {
 
+      deleteIt();
+    }
 
-      if (gKey == 'ArrowLeft') {
+      else if (gKey == 'ArrowLeft') {
         CursorMovements.cursorLeft()
       } else if (gKey == 'ArrowRight') {
         CursorMovements.cursorRight()
@@ -48,7 +51,8 @@ class CustomBoxClass {
       } else if (gInsert) {
         console.log("key: ", gKey);
         makeOneDimArray()
-        insertCharacter()
+      insertCharacter()
+      printCharacter()
       } else {
         printCharacter()
       }
@@ -61,4 +65,5 @@ class CustomBoxClass {
     
       
     }
-  }
+}
+  

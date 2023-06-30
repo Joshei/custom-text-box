@@ -45,9 +45,9 @@ class ReturnClass {
 
       
 
-        if (verticalCursorPosition === 9) {
-            return;
-        }
+        //if (verticalCursorPosition === 9) {
+        //    return;
+        //}
         let i = 1;
                 
                 
@@ -84,7 +84,7 @@ class ReturnClass {
             
             
             //text to move lines and cursor to next vertical line
-            for (let x = ((horizontalCursorPosition) / 5); x < 10; x++) {
+            for (let x = ((horizontalCursorPosition) / 5); x < WIDTH; x++) {
                 
                 holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x + 1];
                 index++;
@@ -108,7 +108,7 @@ class ReturnClass {
                 holdsTextToMove[0][x] = ' ';
             }
             //code to hold moved text (after cursor)
-            for (let x = ((horizontalCursorPosition) / 5); x < 10; x++) {
+            for (let x = ((horizontalCursorPosition) / 5); x < WIDTH; x++) {
                 
                 holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
                 index++;
@@ -130,7 +130,7 @@ class ReturnClass {
         //Readies array to be held completely, next segment below.        
         for (let y = 0; y < HEIGHT; y++) {
             for (let x = 0; x < WIDTH; x++) {
-                nestedArray2[x][y] = nestedArray[x][y];
+                nestedArray2[y][x] = nestedArray[y][x];
 
             }
         }
@@ -143,7 +143,7 @@ class ReturnClass {
                 
         //displays all rows at cusror to bottom of text box, could use end line variable 
         //code segment 1
-        for (let y = verticalCursorPosition / 10; y < HEIGHT - 1; y++) {
+        for (let y = verticalCursorPosition / 10; y < HEIGHT - 2; y++) {
             for (let x = 0; x < WIDTH; x++) {
                        
 
@@ -156,7 +156,7 @@ class ReturnClass {
         //Variable is ready for transfer to other array
         for (let y = 0; y < HEIGHT; y++) {
             for (let x = 0; x < WIDTH; x++) {
-                nestedArray[x][y] = nestedArray2[x][y];
+                nestedArray[y][x] = nestedArray2[y][x];
 
             }
         }
@@ -198,7 +198,7 @@ class ReturnClass {
 
 
         
-        horizontalCursorPosition = 0;
+        //horizontalCursorPosition = 0;
 
         //if space on second row than set horizontal positioin to there so that cursor may be placed later
         for (let x = 0; x < WIDTH; x++) {
@@ -247,6 +247,8 @@ class ReturnClass {
            
 
         this.lastLine = this.lastLine + 1;
+
+        gLastLine++;
         
         //advances vertical position to next row where cursor will be
         verticalCursorPosition = verticalCursorPosition + 10;

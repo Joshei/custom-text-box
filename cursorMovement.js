@@ -43,6 +43,8 @@ class CursorMovementsClass {
         horizontalCursorPosition + HOFFSET,
         verticalCursorPosition + VOFFSET
       )
+
+      gLastLine++;
     }
     cursorDown() {
       if (verticalCursorPosition >= 170) {
@@ -56,11 +58,15 @@ class CursorMovementsClass {
         horizontalCursorPosition + HOFFSET,
         verticalCursorPosition + VOFFSET
       )
+  
+      gLastLine--;
     }
 
     drawCursor(x, y) {
       ctx.font = '10px Monospace'
       ctx.fillStyle = 'red'
       ctx.fillText('_', x - 5, y)
-    }
+  }
+  
+  
   }

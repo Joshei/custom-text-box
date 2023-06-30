@@ -27,6 +27,7 @@ this.cursorLeft = function() {
             }
             //move cursor up a row
             horizontalCursorPosition = horizontalCursorPosition + 10
+           
           }
           
           
