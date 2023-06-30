@@ -50,8 +50,8 @@ class CustomBoxClass {
         Return.Return()
       } else if (gInsert) {
         console.log("key: ", gKey);
-        makeOneDimArray()
-      insertCharacter()
+        Insert.makeOneDimArray()
+        Insert.insertCharacter()
       printCharacter()
       } else {
         printCharacter()

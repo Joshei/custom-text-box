@@ -36,11 +36,14 @@
     <script src="cursorMovement.js"></script>
     <script src="customBox.js"></script>
     <script src="return.js"></script>
+    <script src="insertion.js"></script>
+    
     <script>
       let gLastLine = 0
       //instantiate the classes
       const CursorMovements = new CursorMovementsClass()
       const Return = new ReturnClass()
+      const Insert = new InsertClass()
 
       //width of canvas, amount of characters, multiplied by five for displaying grid
       const WIDTH = 10
@@ -238,35 +241,9 @@
 
       let flag = false
 
-      //turn two dimensional array into one dimensional array
-      function makeOneDimArray() {
-        for (let i = 0; i < HEIGHT; i = i + 1) {
-          //rows
-          for (let j = 0; j < WIDTH; j = j + 1) {
-            oneDimArray.push(nestedArray[i][j])
-          }
-        }
-      }
+      
 
-      //inserts a character into array using splice (the reason for one dim array conversion)
-      function insertCharacter() {
-        console.log('2: ', oneDimArray)
-
-        //oneDimArray.splice((horizontalCursorPosition/5+35  ),0, 'Z');
-        oneDimArray.splice(
-          //horizontalCursorPosition / 5 + (10 * verticalCursorPosition) / 10,
-
-          verticalCursorPosition + horizontalCursorPosition/5,
-          
-          0,
-          gKey
-        )
-
-        console.log('h: ', horizontalCursorPosition)
-        console.log('v: ', verticalCursorPosition)
-        console.log('3: ', oneDimArray)
-        makeTwoDimArrayWithInsertion()
-      }
+      
 
       let a = 0
       let z = 0
@@ -294,31 +271,8 @@
       //second function for inserting, changes one dimenensional array into two dimensions
       //draws grid
       //draws cursor
-      function makeTwoDimArrayWithInsertion() {
-        //rows
-        for (let i = 0; i < HEIGHT; i = i + 1) {
-          //columns
-          for (j = 0; j < WIDTH; j = j + 1, z++) {
-            nestedArray[i][j] = oneDimArray[z]
-          }
-        }
-        z = 0
 
-        drawGrid()
-        CursorMovements.drawCursor(
-          horizontalCursorPosition + HOFFSET,
-          verticalCursorPosition + VOFFSET
-        )
-      }
-
-      function moveAllcharactersRight() {
-        //first row
-        for (let j = horizontalCursorPosition; j < HEIGHT; j = j + 1) {
-          for (j = 0; j < WIDTH; j = j + 1, z++) {
-            nestedArray[j][i] = oneDimArray[z]
-          }
-        }
-      }
+      
 
       let horizontalCursorPosition = 0
       let verticalCursorPosition = 0
