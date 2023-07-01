@@ -74,7 +74,11 @@ class InsertClass {
         //add one charatcer to nested array
         //if on last block than movve the character down one row
         //if characters are therw (including space) and below than increment all those elements
+        //consider words so they don't wrap
 
+
+
+        
         let startWordX =-1;
         let endWordX = 0;
         let x = 0;
