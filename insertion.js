@@ -68,6 +68,13 @@ class InsertClass {
     // a one dim array with word spliced
     findWords() {
  
+
+
+
+        //add one charatcer to nested array
+        //if on last block than movve the character down one row
+        //if characters are therw (including space) and below than increment all those elements
+
         let startWordX =-1;
         let endWordX = 0;
         let x = 0;
@@ -83,13 +90,14 @@ class InsertClass {
         let spaceCountr = 0;
         let XEndOfWord = -1;
         let XStartOfWord = -1;
+        let isntInThnisRow = false;
         for (x = WIDTH; x > 0; x--) {
             
 
             if (oneDimArray[x] == ' ' && rowCounter == -1) {
                 
                 endWordX = x;
-                isInWord = false;
+                isntInThnisRow = false;
                 XEndOfWord = x;
                 rowCounter = 1;
                
@@ -100,16 +108,27 @@ class InsertClass {
 
 
                 startWordX = x;
-                isInWord = true;
+                isntInThnisRow = true;
                 XStartOfWord = x;
                 startWordX = 1;
                 break;
                 
             }
+
+
+            
         }
+
+
+
+        //find XEndOfWork
+
+
+
+
             
             //is no start, just end.
-            //end is start
+            //end is now start
             if (startWordX == -1){
                 
                 startWordX = XEndOfWord;
@@ -121,56 +140,34 @@ class InsertClass {
         lengthOfWord = endWordX - startWordX;
         
         
-        if (isInWord) {
-            for (let i = 0; i < 0;  i++) {
+        if (isntInThnisRow) {
+            for (let i = 0; i <  lengthOfWord;  i++) {
            
-                wordArray[i + 1] == oneDimArray[i];
+                wordArray[i] == oneDimArray[startWordX+i];
                 z++
             }
         }
 
             //the word is now :  " word-here "
             wordArray[z] = ' ';
-
-        
-
-
-
-
-
-
-        
-        
+   
         
 
         z = 0;
-        for (x = WIDTH; x < lengthOfWord; x++) {
 
-           
-            oneDimArray.splice(x, 0, wordArray[z])
-             
-            z++
-            
-        }
+        
 
-        let counts = 0;
-        let amountOfCharactersOnFOrstLine = 0
-        let amountOfCharactersOnNextLine = 0
-
-
-
-
-        let amountOfCharsOnFirstLineToRemove = startWordX - width
-        //if (XStartOfWord < WIDTH && XEndOfWord > WIDTH) {
-            
+        //let amountOfCharsOnFirstLineToRemove = startWordX - width
+        
+            //splices blanks from where word was removed
             for (let i = startWordX; i < WIDTH; i++) {
                 oneDimArray.splice(i, 0, ' ')
                 
         }
         
 
-        //  a  b  c
-        //  d
+        
+        //splices word on next line
         for (let i = 35; i < lengthOfWord; i++){
             oneDimArray.splice(i, 0, wordArray[i]);
         }
@@ -178,6 +175,8 @@ class InsertClass {
 
         
         
+
+        j
 
 
 
