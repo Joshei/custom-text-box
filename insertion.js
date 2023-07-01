@@ -11,9 +11,9 @@ class InsertClass {
     insertCharacter() {
         console.log('2: ', oneDimArray)
 
-        //oneDimArray.splice((horizontalCursorPosition/5+35  ),0, 'Z');
+        
         oneDimArray.splice(
-          //horizontalCursorPosition / 5 + (10 * verticalCursorPosition) / 10,
+          
 
           verticalCursorPosition + horizontalCursorPosition/5,
 
@@ -55,8 +55,154 @@ class InsertClass {
             oneDimArray.push(nestedArray[i][j])
           }
         }
+    }
+    
+
+
+      //last word
+      //word's x start
+      //word's x end
+    
+    
+    
+    // a one dim array with word spliced
+    findWords() {
+ 
+        let startWordX = 0;
+        let endWordX = 0;
+        let x = 0;
+
+
+        let z = 0;
+        wordArray = [' '];
+        for (x = 0; x < WIDTH * HEIGHT; x++) {
+            
+            if (oneDimArray[x] == ' ') {
+                startWordX = x;
+                isInWord = true;
+            }
+
+            if (oneDimArray[x] == ' ') {
+                endWordX = x;
+                isInWord = false;
+                break;
+            }
+            if (isInWord) {
+                wordArray[x+1] == oneDimArray[x];
+                z++
+            }
+
+            //the word is now :  " word-here "
+            wordArray[z] = ' ';
+
+        }
+
+        lengthOfWord = endWordX - startWordX;
+
+        z = 0;
+        for (x = WIDTH; x < lengthOfWord+2; x++) {
+
+            //sdsj fsllsj word-here lkkkkl koji ji ojoji
+            oneDimArray.splice(    x,0,wordArray[z])
+            z++
+            
+        }
+
+        for (let y = 0; y < 35; y++){
+            for (let x = 0; x < 35; x++){
+                if (WIDTH - x <= lengthOfWord) {
+                    
+                    for (let x1 = 0; x1 < lengthOfWord; x++){
+                        
+                        oneDimArray.splice(x, 0, wordArray[x1])
+                    }
+                    
+                    
+                }
+
+            }
+        }
+
+
+
+
+
+
+        
+        positionOfWord = x;
+        lengthOfWord = endWordX - startWordX;
+        // get length, find avalable space
+        //all on first line
+        if (endWordX < 35) {
+
+            return
+                
+        }
+
+        else {
+
+            for (x = WIDTH; x < WIDTH * 2; x++) {
+            
+                if (oneDimArray[x] == oneDimArray[x]) {
+
+                }
+
+        }
+        let CrossesOverEdgeFlag = false;
+        
+        
+
+
+        
+
+
+
+        
+        
+        
+        for (let x = startWordX; x < endWordX; x++) {
+
+            if (x % WIDTH == 0) {
+                CrossesOverEdgeFlag = true;
+                break;
+            }
+        }
+
+
+        ///// rewritte onde dima rray
+
+
+
+        /////
+
+
+
+        //insert word on next line - if no space for it, push all rows down
+        
+        if (endWordX >= 35) {
+            lengthOfWord = endWordX - startWordX;
+        
+        
+        }
+        //rows
+
+
+        // find any available space
+
+        let spacesAvailabl = 0;
+        for (let y = 0; y < 60; y++) {
+            for (let x = 0; x < WIDTH; x++){
+                
+            }
+            
+        }
+        
+        //find Available space after endWordX
+
+            
+
+    }
 }
-      
       
 
 }
