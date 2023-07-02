@@ -3,9 +3,7 @@
 class InsertClass {
 
 
-    x(){
-
-    }
+    
 
     //inserts a character into array using splice (the reason for one dim array conversion)
     insertCharacter() {
@@ -33,7 +31,7 @@ class InsertClass {
         //rows
         for (let i = 0; i < HEIGHT; i = i + 1) {
           //columns
-          for (j = 0; j < WIDTH; j = j + 1, z++) {
+          for (let j = 0; j < WIDTH; j = j + 1, z++) {
             nestedArray[i][j] = oneDimArray[z]
           }
         }
@@ -95,6 +93,8 @@ class InsertClass {
         let XEndOfWord = -1;
         let XStartOfWord = -1;
         let isntInThnisRow = false;
+
+        //Find if word is on same row
         for (x = WIDTH; x > 0; x--) {
             
 
@@ -133,54 +133,72 @@ class InsertClass {
             
             //is no start, just end.
             //end is now start
-            if (startWordX == -1){
-                
-                startWordX = XEndOfWord;
-                XEndOfWord = -1;
-
-                }
-
-        
-        lengthOfWord = endWordX - startWordX;
-        
-        
         if (isntInThnisRow) {
-            for (let i = 0; i <  lengthOfWord;  i++) {
+                
+            startWordX = XEndOfWord;
+            XEndOfWord = -1;
+
+                
+
+        
+        
+                //only when there isn't an end found yet, get first space and break
+        
+            
+                for (let i = 0; i < WIDTH * HEIGHT; i++) {
+            
+                    if (oneDimArray == ' ') {
+                        XEndOfWord = i;
+                        break;
+                    }
+                }
            
-                wordArray[i] == oneDimArray[startWordX+i];
-                z++
-            }
-        }
+
+
+        
+        
+            lengthOfWord = endWordX - startWordX;
+        
+            wordArray[0] = ' ';
+        
+            //creates an array of the word to be moved to next row
+            
+                for (let i = 1; i < lengthOfWord; i++) {
+                    //avoid first space in word
+                    wordArray[i] == oneDimArray[startWordX + i-1];
+                    z++
+                }
+           
 
             //the word is now :  " word-here "
             wordArray[z] = ' ';
    
         
 
-        z = 0;
+            z = 0;
 
         
 
-        //let amountOfCharsOnFirstLineToRemove = startWordX - width
+        
         
             //splices blanks from where word was removed
-            for (let i = startWordX; i < WIDTH; i++) {
+            for (let i = startWordX; i < endWordX; i++) {
                 oneDimArray.splice(i, 0, ' ')
                 
+            }
+        
+
+            //CHANGE THIS AFTER TESING, TEST DISPLAY WORDS ON LINE
+            //SPLICES WORD ON A LINE EIGHT ROWS UNDER INSERT
+            for (let i = WIDTH * 8; i < lengthOfWord; i++) {
+                oneDimArray.splice(i, 0, wordArray[i]);
+            }
+
+
+        
+        
         }
         
-
-        
-        //splices word on next line
-        for (let i = 35; i < lengthOfWord; i++){
-            oneDimArray.splice(i, 0, wordArray[i]);
-        }
-
-
-        
-        
-
-        j
 
 
 

@@ -67,13 +67,24 @@
         //Readies array to be held completely, next segment below.
         for (let y = 0; y < HEIGHT; y++) {
           for (let x = 0; x < WIDTH; x++) {
-            nestedArray2[x][y] = nestedArray[x][y]
+            //nestedArray2[y][x] = nestedArray[y][x]
           }
         }
 
+
+
+
+
+        
+        
+        
+        
+        
         //cursor is on leftside position,
         //works with entire row empty and with one element on left
         if (horizontalCursorPosition / 5 == 0) {
+
+          alert("Hi!");
           console.log('gl: ', gLastLine)
           console.log('ver: ', verticalCursorPosition / 10)
           //for(let y = gLastLine ; y > verticalCursorPosition/10 ; y--){
@@ -86,7 +97,7 @@
           //Variable is ready for transfer to other array
           for (let y = 0; y < HEIGHT; y++) {
             for (let x = 0; x < WIDTH; x++) {
-              nestedArray[x][y] = nestedArray2[x][y]
+              nestedArray[y][x] = nestedArray2[y][x]
             }
           }
 
@@ -94,7 +105,7 @@
 
           verticalCursorPosition = verticalCursorPosition - 10
 
-          for (let x = 0; x < 35; x++) {
+          for (let x = 0; WIDTH < 35; x++) {
             if (nestedArray[verticalCursorPosition / 10][x] == ' ') {
               horizontalCursorPosition = x * 5
               break
@@ -105,25 +116,46 @@
             horizontalCursorPosition + HOFFSET,
             verticalCursorPosition + VOFFSET
           )
+
+
+
+
+
+
+
+
+
         } else {
           //Moves characters to left -   deleting in a string     - move cursor one to right
 
           //Readies array to be held completely, next segment below.
           for (let y = 0; y < HEIGHT; y++) {
             for (let x = 0; x < WIDTH; x++) {
-              nestedArray2[x][y] = nestedArray[x][y]
+             // nestedArray2[y][x] = nestedArray[y][x]
             }
           }
 
-          for (let x = horizontalCursorPosition / 5; x < 34; x++) {
-            nestedArray2[verticalCursorPosition / 10][x] =
-              nestedArray[verticalCursorPosition / 10][x + 1]
+          //for (let x = ((horizontalCursorPosition / 5)); x < WIDTH; x++) {
+            for (let x = 0; x < horizontalCursorPosition/5; x++) {
+
+            console.log("na1 ", nestedArray);
+            console.log("na2 ", nestedArray2);
+            
+            nestedArray2[verticalCursorPosition / 10][x] = nestedArray[verticalCursorPosition / 10][x+1]
+
+            console.log("na ", nestedArray2);
+            console.log("hor ", horizontalCursorPosition);
+            console.log("va: ", verticalCursorPosition);
+
           }
+
+
+          horizontalCursorPosition = horizontalCursorPosition - 5;
 
           //Variable is ready for transfer to other array
           for (let y = 0; y < HEIGHT; y++) {
             for (let x = 0; x < WIDTH; x++) {
-              nestedArray[x][y] = nestedArray2[x][y]
+              nestedArray[y][x] = nestedArray2[y][x]
             }
           }
 
