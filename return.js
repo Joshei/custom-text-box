@@ -27,9 +27,7 @@ working on return with no characters on right below (commented out!)
 class ReturnClass {
     constructor() {
 
-        //rows and columns of canvas
-        //this.rows = 35;
-        //this.cols = 35;
+        
         
         this.lastLine = 0;
         this.firstTimeThrough = true;
@@ -72,7 +70,7 @@ class ReturnClass {
         }
         //There are two of these, the other is below for printing text condition, is after spaces are displayed.
         
-        condition = "no";
+        //condition = "no";
         if (condition == "cursorOnFirstSpace") {
             
             initialCharacter = nestedArray[verticalCursorPosition / 10][0];
@@ -86,12 +84,17 @@ class ReturnClass {
             //text to move lines and cursor to next vertical line
             for (let x = ((horizontalCursorPosition) / 5); x < WIDTH; x++) {
                 
-                holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x + 1];
+                holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
                 index++;
                         
             }
 
+            
             console.log("httm: ", holdsTextToMove);
+
+           // for (let i = 0; i < WIDTH; i++) {
+           //         nestedArray[verticalCursorPosition / 10][i] = " ";
+           //     }
             
         }
         // return does not happen with first character cursored
@@ -99,7 +102,7 @@ class ReturnClass {
 
 
            
-        
+            
             
             /////////////////////////
             
@@ -114,11 +117,16 @@ class ReturnClass {
                 index++;
                         
             }
+            
 
             console.log("http: ", holdsTextToMove);
 
                
             //alert("2");
+
+            //for (let i = 0; i < WIDTH; i++) {
+            //    nestedArray[verticalCursorPosition / 10][i] = " ";
+            //}
         }   
 
             ///////////////////////////
@@ -135,21 +143,44 @@ class ReturnClass {
             }
         }
 
-                
+        alert(nestedArray.join('\n'))
+        alert(nestedArray2.join('\n'))
 
+        console.log("NA1a: ",nestedArray)
+            console.log("NA2b: ", nestedArray2)
         
 
 
                 
-        //displays all rows at cusror to bottom of text box, could use end line variable 
+        
+        let breakFlag2 = false;
+        //displays all rows at row below cursor to bottom of text box, could use end line variable 
         //code segment 1
-        for (let y = verticalCursorPosition / 10; y < HEIGHT - 2; y++) {
+        for (let y = verticalCursorPosition / 10; y < HEIGHT-1; y++) {
             for (let x = 0; x < WIDTH; x++) {
                        
+                if (y == HEIGHT)
+                {
+                    //breakFlag2 = true;
+                    //break;
+                    
+                }
+                
+               
 
                         
-                nestedArray2[y + 1][x] = (nestedArray[y][x]);
+                //nestedArray2[y + 1][x] = (nestedArray[y][x]);
+                
             }
+
+            console.log("NA1: ",nestedArray)
+            console.log("NA2: ", nestedArray2)
+            
+            if (breakFlag2)
+            {
+                break;
+            }
+            
         }
 
                 
@@ -161,6 +192,8 @@ class ReturnClass {
             }
         }
 
+        //nestedArray2 = [];
+
                 
 
         //alert("3");
@@ -169,12 +202,16 @@ class ReturnClass {
                 
                 
 
+        
         /////////////////
 
         //put text on next line
         for (let x1 = 0; x1 < WIDTH; x1++) {
             
-            nestedArray[verticalCursorPosition / 10 + 1][x1] = holdsTextToMove[0][x1];
+            if (x1 == WIDTH) {
+                //break;
+            }
+            nestedArray[((verticalCursorPosition / 10) + 1)][x1] = holdsTextToMove[0][x1];
                     
                     
             console.log("printtext: ", nestedArray[verticalCursorPosition / 10 + 1][x1])
@@ -193,6 +230,7 @@ class ReturnClass {
         
         //displays spaces after cursor position, leaving the initial text left of cursor
         for (let x = (horizontalCursorPosition / 5) ; x < WIDTH; x++) {
+            
             nestedArray[verticalCursorPosition / 10][x] = ' ';
         }
 
@@ -200,6 +238,8 @@ class ReturnClass {
         
         //horizontalCursorPosition = 0;
 
+
+        /*
         //if space on second row than set horizontal positioin to there so that cursor may be placed later
         for (let x = 0; x < WIDTH; x++) {
 
@@ -219,10 +259,14 @@ class ReturnClass {
 
         }
 
+        */
+
         //////////////Second and last change in code for cursor on first character
 
         if (condition == "cursorOnFirstSpace") {
-            nestedArray[verticalCursorPosition/10][0] = initialCharacter;
+            //nestedArray[verticalCursorPosition/10][0] = initialCharacter;
+            alert("!");
+            horizontalCursorPosition = 0;
         }
 
 

@@ -5,8 +5,9 @@ function CursorClass() {
 this.cursorLeft = function() {
         horizontalCursorPosition = horizontalCursorPosition - 5
 
+  alert("a");
         //Ready to move up one row
-
+      
         if (horizontalCursorPosition == -5) {
           
           
@@ -68,7 +69,9 @@ this.cursorLeft = function() {
         )
   }
   
-      this.cursorRight = function() {
+  this.cursorRight = function () {
+        
+    alert("b");
         console.log('check', nestedArray[0][1])
         console.log(horizontalCursorPosition)
         console.log(verticalCursorPosition)

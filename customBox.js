@@ -48,20 +48,18 @@ class CustomBoxClass {
         CursorMovements.cursorDown()
       } else if (gKey == 'Enter') {
         Return.Return()
-      } else if (gInsert) {
-        console.log("key: ", gKey);
+      } else {
+        
         Insert.makeOneDimArray()
         Insert.insertCharacter()
-      printCharacter()
-      } else {
-        printCharacter()
+        
       }
       //dispalys x and y for testing
       xAndY.innerHTML =
         'X: ' +
-        horizontalCursorPosition +
+        (horizontalCursorPosition/5) +
         '  &nbsp&nbsp&nbsp   Y: ' +
-      verticalCursorPosition
+      (verticalCursorPosition/10 )
     
       
     }

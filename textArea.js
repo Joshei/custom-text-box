@@ -15,31 +15,24 @@ function TextAreaClass() {
     //draw characters in textarea
     this.makeOneDimArrayWithoutCommas = function() {
         
-        let value1 = nestedArray[0][3];
-        
-        let j = 0;
-        
         
         this.oneDimArray2.length = 0;
 
       alert("here!");
-        for (let i = 0; i < 35; i = i + 1) {
+        for (let i = 0; i < HEIGHT; i = i + 1) {
           //rows
-          for (let j = 0; j < 35; j = j + 1) {
+          for (let j = 0; j < WIDTH; j = j + 1) {
             this.oneDimArray2.push(nestedArray[i][j]);
             
           }
-        }
+      }
+      
+      console.log("check this: ", this.oneDimArray2);
 
-        //console.log("od2: ", this.oneDimArray2);
-        //console.log("na1: ", nestedArray);
 
         //sends over to other textarea
         document.getElementById("mytext").value = this.oneDimArray2.join("");
-        //console.log("1a ", document.getElementById("mytext").value);
-
         
-        //console.log("na2: ", nestedArray);
       }
 
 

@@ -30,7 +30,7 @@
 
     <div id="insert"></div>
     <div id="xAndY"></div>
-    <textarea title="Text Box" rows="35" id="mytext" cols="35"> </textarea>
+    <textarea title="Text Box" rows= 10 id="mytext" cols= 10> </textarea>
 
     <!--classe-->
     <script src="cursorMovement.js"></script>
@@ -47,12 +47,27 @@
 
       //width of canvas, amount of characters, multiplied by five for displaying grid
       const WIDTH = 10
-      const HEIGHT = 100
+      const HEIGHT = 10
 
       //Used for changing two dim array into something flat
       let oneDimArray = []
 
       let blanks = []
+
+
+      ////////////////////////////////////
+
+
+
+      // ELIMINATE ALL CONSOLE LOGS AND ALERTS AND USE :  alert(nestedArray.join('\n'))  and  alert(nestedArray2.join('\n')) THROUGHOUT CODE TO FIND WHERE THE TWO ARRAYS ARE CHANGING INCORRECTLY 
+      // THIS LOOKS CRAZY TO ME, I CLOSED ANOTHER INDEX1.HTML, NOT SURE OF EFFECT.  IT IS ALSO ON LARGE DISPLAY, ONLY THIS FILE.
+
+
+
+
+
+      ///////////////////////////////////////
+
 
       //needed delete character on left end with string - very difficult must wrap with top string
 
@@ -64,93 +79,73 @@
       //CONSIDERATION THAT CURSOR MAY NEED TO DELETE FROM THE CHARACTER TO RIGHT
 
       function deleteIt() {
-        //Readies array to be held completely, next segment below.
-        for (let y = 0; y < HEIGHT; y++) {
-          for (let x = 0; x < WIDTH; x++) {
-            //nestedArray2[y][x] = nestedArray[y][x]
-          }
-        }
-
-
-
-
-
-        
-        
-        
-        
-        
-        //cursor is on leftside position,
-        //works with entire row empty and with one element on left
-        if (horizontalCursorPosition / 5 == 0) {
-
-          alert("Hi!");
-          console.log('gl: ', gLastLine)
-          console.log('ver: ', verticalCursorPosition / 10)
-          //for(let y = gLastLine ; y > verticalCursorPosition/10 ; y--){
-          for (let y = verticalCursorPosition / 10; y < gLastLine; y++)
-            for (let x = 0; x < WIDTH; x++) {
-              console.log('y: ', y)
-              nestedArray2[y][x] = nestedArray[y + 1][x]
-            }
-
-          //Variable is ready for transfer to other array
-          for (let y = 0; y < HEIGHT; y++) {
-            for (let x = 0; x < WIDTH; x++) {
-              nestedArray[y][x] = nestedArray2[y][x]
-            }
-          }
-
-          drawGrid()
-
-          verticalCursorPosition = verticalCursorPosition - 10
-
-          for (let x = 0; WIDTH < 35; x++) {
-            if (nestedArray[verticalCursorPosition / 10][x] == ' ') {
-              horizontalCursorPosition = x * 5
-              break
-            }
-          }
-
-          CursorMovements.drawCursor(
-            horizontalCursorPosition + HOFFSET,
-            verticalCursorPosition + VOFFSET
-          )
-
-
-
-
-
-
-
-
-
-        } else {
-          //Moves characters to left -   deleting in a string     - move cursor one to right
+       
 
           //Readies array to be held completely, next segment below.
           for (let y = 0; y < HEIGHT; y++) {
             for (let x = 0; x < WIDTH; x++) {
-             // nestedArray2[y][x] = nestedArray[y][x]
+             nestedArray2[y][x] = nestedArray[y][x]
             }
           }
 
-          //for (let x = ((horizontalCursorPosition / 5)); x < WIDTH; x++) {
-            for (let x = 0; x < horizontalCursorPosition/5; x++) {
-
+          let breakflag = false;
+          let counterToSpace = 0;
+            for (let y = ((verticalCursorPosition / 10)); y < HEIGHT; y++) {
+            for (let x = horizontalCursorPosition/5;  x< WIDTH; x++) {
+              counterToSpace++;
             console.log("na1 ", nestedArray);
             console.log("na2 ", nestedArray2);
             
-            nestedArray2[verticalCursorPosition / 10][x] = nestedArray[verticalCursorPosition / 10][x+1]
+            //nestedArray2[verticalCursorPosition / 10][x] = nestedArray[verticalCursorPosition / 10][x+1]
 
-            console.log("na ", nestedArray2);
-            console.log("hor ", horizontalCursorPosition);
-            console.log("va: ", verticalCursorPosition);
+            if(nestedArray2[y][x] == " ")
+            {
+              breakflag = true;
+              break
+            }
 
           }
 
+            if(breakflag){
+              break;
+            }
+          }
 
-          horizontalCursorPosition = horizontalCursorPosition - 5;
+          let counter = 0;
+          let breakflag2 = false;
+
+          //is a space
+          if (breakflag){
+
+            alert("space");
+          for (let y = ((verticalCursorPosition / 10)); y < HEIGHT; y++) {
+            for (let x = horizontalCursorPosition/5;  x< WIDTH - 1; x++) {
+           counter++;
+
+           if(verticalCursorPosition/10 == HEIGHT-1 && horizontalCursorPosition/5 == WIDTH-1)
+           {
+            break;
+           }
+
+
+           nestedArray2[y][x] = nestedArray[y][x+1]
+
+
+           if (counter == counterToSpace-1){
+            breakflag2;
+            break;
+           }
+            }
+
+            if(breakflag2){
+              break;
+            }
+          }
+        
+        
+
+
+          //horizontalCursorPosition = horizontalCursorPosition - 5;
 
           //Variable is ready for transfer to other array
           for (let y = 0; y < HEIGHT; y++) {
@@ -218,6 +213,12 @@
         Array.from({ length: WIDTH }, () => ' ')
       )
 
+
+      let nestedArray3 = Array.from({ length: HEIGHT }, () =>
+        Array.from({ length: WIDTH }, () => ' ')
+      )
+
+
       rows = 1
       cols = WIDTH
       let = holdsTextToKeep = Array.from({ length: rows }, () =>
@@ -278,7 +279,7 @@
       
 
       let a = 0
-      let z = 0
+      //let z = -1
 
       ////////
 
@@ -286,6 +287,9 @@
 
       //doesn't draw grid and cursor
       function makeTwoDimArray() {
+
+        let z = 0;
+        
         //rows
         for (let i = 0; i < HEIGHT; i = i + 1) {
           //columns
@@ -295,7 +299,7 @@
             nestedArray[i][j] = oneDimArray[z]
           }
         }
-        z = 0
+        
       }
 
       ////////
@@ -348,9 +352,9 @@
       //display helpful data
       xAndY.innerHTML =
         'X: ' +
-        horizontalCursorPosition +
+        0 +
         '  &nbsp&nbsp&nbsp   Y: ' +
-        verticalCursorPosition
+        0 
 
       const customBox1 = new CustomBoxClass()
 
