@@ -43,6 +43,11 @@ class ReturnClass {
 
       
 
+        if (gLastLine == HEIGHT-1)
+        {
+            return;
+            
+        }
         //if (verticalCursorPosition === 9) {
         //    return;
         //}
@@ -143,8 +148,8 @@ class ReturnClass {
             }
         }
 
-        alert(nestedArray.join('\n'))
-        alert(nestedArray2.join('\n'))
+        //alert(nestedArray.join('\n'))
+        //alert(nestedArray2.join('\n'))
 
         console.log("NA1a: ",nestedArray)
             console.log("NA2b: ", nestedArray2)
@@ -169,7 +174,7 @@ class ReturnClass {
                
 
                         
-                //nestedArray2[y + 1][x] = (nestedArray[y][x]);
+                nestedArray2[y + 1][x] = (nestedArray[y][x]);
                 
             }
 
@@ -229,7 +234,7 @@ class ReturnClass {
         
         
         //displays spaces after cursor position, leaving the initial text left of cursor
-        for (let x = (horizontalCursorPosition / 5) ; x < WIDTH; x++) {
+        for (let x = ((horizontalCursorPosition / 5)) ; x < WIDTH; x++) {
             
             nestedArray[verticalCursorPosition / 10][x] = ' ';
         }
@@ -265,7 +270,7 @@ class ReturnClass {
 
         if (condition == "cursorOnFirstSpace") {
             //nestedArray[verticalCursorPosition/10][0] = initialCharacter;
-            alert("!");
+           
             horizontalCursorPosition = 0;
         }
 
@@ -280,7 +285,7 @@ class ReturnClass {
                   
         
                    
-        TextArea.makeOneDimArrayWithoutCommas;
+        //TextArea.makeOneDimArrayWithoutCommas;
         
         
 

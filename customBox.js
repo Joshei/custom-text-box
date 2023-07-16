@@ -50,10 +50,12 @@ class CustomBoxClass {
         Return.Return()
       } else {
         
-        Insert.makeOneDimArray()
+      Insert.makeOneDimArray()
+      
         Insert.insertCharacter()
         
-      }
+    }
+    
       //dispalys x and y for testing
       xAndY.innerHTML =
         'X: ' +

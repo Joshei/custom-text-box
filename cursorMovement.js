@@ -44,7 +44,7 @@ class CursorMovementsClass {
         verticalCursorPosition + VOFFSET
       )
 
-      gLastLine++;
+      //gLastLine--;
     }
     cursorDown() {
       if (verticalCursorPosition >= 170) {
@@ -59,7 +59,7 @@ class CursorMovementsClass {
         verticalCursorPosition + VOFFSET
       )
   
-      gLastLine--;
+      gLastLine++;
     }
 
     drawCursor(x, y) {
