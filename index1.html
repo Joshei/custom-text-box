@@ -39,6 +39,12 @@
     <script src="insertion.js"></script>
 
     <script>
+
+
+      //insert on line must check for space, if so, only that line
+      //on reacurring lines also.
+
+
       let gLastLine = 0
       //instantiate the classes
       const CursorMovements = new CursorMovementsClass()
@@ -85,6 +91,20 @@
            
 
             if (nestedArray[y][x] == '') {
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
               breakflag = true
               break
             }
@@ -210,7 +230,7 @@
       )
 
       let = holdsTextToMove = Array.from({ length: rows }, () =>
-        Array.from({ length: cols }, () => 'C')
+        Array.from({ length: cols }, () => ' ')
       )
 
       insertOn.innerHTML = 'Insert Off'

@@ -70,6 +70,10 @@ class InsertClass {
           verticalCursorPosition + VOFFSET
         )
 
+        if((horizontalCursorPosition/5) > gLastLine)
+        {
+        gLastLine = horizontalCursorPosition / 5;
+        }
 
         
 
@@ -95,20 +99,7 @@ class InsertClass {
 }
   
 
-    
 
-
-      //last word
-      //word's x start
-      //word's x end
-    
-    
-   
-
-
-
-         
-        
 
 }
       

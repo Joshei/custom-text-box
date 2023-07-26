@@ -48,19 +48,29 @@ class ReturnClass {
             return;
             
         }
-        //if (verticalCursorPosition === 9) {
-        //    return;
-        //}
+        
         let i = 1;
                 
                 
+        ///////////
+
+        let index = 0;
+        for (let x = 0; x <  WIDTH; x++) {
+            holdsTextToMove[0][x] = ' ';
+        }
+        //code to hold moved text (after cursor)
+        for (let x = ((horizontalCursorPosition) / 5); x < WIDTH; x++) {
+            
+            holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
+            index++;
+                    
+        }
+
+
+
+
+        ///////////
        
-
-
-        //alert("1");
-        
-                
-///////////
 
         //initial charctar for use with return when it is on first character (different implementation)
         let initialCharacter = '';
@@ -76,63 +86,6 @@ class ReturnClass {
         //There are two of these, the other is below for printing text condition, is after spaces are displayed.
         
         //condition = "no";
-        if (condition == "cursorOnFirstSpace") {
-            
-            initialCharacter = nestedArray[verticalCursorPosition / 10][0];
-
-            let index = 0;
-            for (let x = 0; x < WIDTH; x++) {
-                holdsTextToMove[0][x] = ' ';
-            }
-            
-            
-            //text to move lines and cursor to next vertical line
-            for (let x = ((horizontalCursorPosition) / 5); x < WIDTH; x++) {
-                
-                holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
-                index++;
-                        
-            }
-
-            
-            console.log("httm: ", holdsTextToMove);
-
-           // for (let i = 0; i < WIDTH; i++) {
-           //         nestedArray[verticalCursorPosition / 10][i] = " ";
-           //     }
-            
-        }
-        // return does not happen with first character cursored
-        else {
-
-
-           
-            
-            
-            /////////////////////////
-            
-            let index = 0;
-            for (let x = 0; x <  WIDTH; x++) {
-                holdsTextToMove[0][x] = ' ';
-            }
-            //code to hold moved text (after cursor)
-            for (let x = ((horizontalCursorPosition) / 5); x < WIDTH; x++) {
-                
-                holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
-                index++;
-                        
-            }
-            
-
-            console.log("http: ", holdsTextToMove);
-
-               
-            //alert("2");
-
-            //for (let i = 0; i < WIDTH; i++) {
-            //    nestedArray[verticalCursorPosition / 10][i] = " ";
-            //}
-        }   
 
             ///////////////////////////
                 
@@ -216,12 +169,16 @@ class ReturnClass {
             if (x1 == WIDTH) {
                 //break;
             }
+
+           
             nestedArray[((verticalCursorPosition / 10) + 1)][x1] = holdsTextToMove[0][x1];
                     
                     
             console.log("printtext: ", nestedArray[verticalCursorPosition / 10 + 1][x1])
                     
         }
+
+        console.log("value1: ", holdsTextToMove);
 
 
         ////////////////////
@@ -244,34 +201,41 @@ class ReturnClass {
         //horizontalCursorPosition = 0;
 
 
-        /*
+        
         //if space on second row than set horizontal positioin to there so that cursor may be placed later
-        for (let x = 0; x < WIDTH; x++) {
-
-            let character = nestedArray[verticalCursorPosition / 10 + 1][x]
-            
-            console.log("X: ", x);
-            console.log("char: ", character);
-
-
-
-            if (character === ' ') {
+        let breakFlag = false;
+        for (let y = verticalCursorPosition/10; y < HEIGHT; y++) {
+            for (let x = 0
+                ; x < WIDTH; x++) {
                 
-                horizontalCursorPosition = (x * (5) );
-                //alert("space: ", x);
-                break;
+                
+
+                let character = nestedArray[y + 1][x]
+            
+                if (character === ' ' || character === '') {
+                    
+                    horizontalCursorPosition = x * 5
+                    verticalCursorPosition = y * 10
+                    breakFlag = true;
+                    
+                    
+                    break;
+                }
+
             }
 
+            if (breakFlag == true)
+                break;
         }
 
-        */
+        
 
-        //////////////Second and last change in code for cursor on first character
+        
 
         if (condition == "cursorOnFirstSpace") {
-            //nestedArray[verticalCursorPosition/10][0] = initialCharacter;
            
-            horizontalCursorPosition = 0;
+           
+            //horizontalCursorPosition = 0;
         }
 
 

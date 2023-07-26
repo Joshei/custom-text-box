@@ -32,6 +32,7 @@ class CursorMovementsClass {
       )
     }
     cursorUp() {
+      
       if (verticalCursorPosition <= 0) {
         verticalCursorPosition = 0
         return -1
@@ -44,12 +45,20 @@ class CursorMovementsClass {
         verticalCursorPosition + VOFFSET
       )
 
-      //gLastLine--;
+      
     }
     cursorDown() {
-      if (verticalCursorPosition >= 170) {
-        verticalCursorPosition = 170
+
+      if (((verticalCursorPosition + 10 )/10 )>= gLastLine)
+      {
+        console.log("vert: ", verticalCursorPosition);
+        console.log("lline: ", gLastLine);
+
         return -1
+      }
+      if (verticalCursorPosition/10  >= HEIGHT) {
+      
+        return -2
       }
 
       drawGrid(100, 100)
@@ -59,7 +68,7 @@ class CursorMovementsClass {
         verticalCursorPosition + VOFFSET
       )
   
-      gLastLine++;
+      
     }
 
     drawCursor(x, y) {
