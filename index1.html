@@ -21,7 +21,7 @@
     <button id="button2" onclick="backspaceFormerCharacter()">
       Back Space
     </button>
-    <button id="button3" onclick="deleteIt()">Delete</button>
+    <button id="button3" onclick="testFunction()">Test</button>
     <button id="button4" onclick="Cursor.cursorRight()">Cursor Right</button>
     <button id="button5" onclick="Cursor.cursorLeft()">Cursor Left</button>
     <button id="button6" onclick="TextArea.displayTextBoxCopy()">
@@ -242,6 +242,65 @@
         ctx.fillStyle = '#000000'
       }
 
+
+  function testFunction(){
+    //alert("test1!");
+  
+  
+
+//Z,C,D,E,F,G,H, undef
+/*
+  const arrayX = ['A','B','C','D', 'E' , 'F' ,'G','H']
+  
+  //A34567
+  for(let y =1 ; y< 8 ; y++)
+ {
+    arrayX[y] = arrayX[y+1];
+  }
+
+  arrayX[0] ='Z';
+
+console.log("CL: ", arrayX);
+
+}
+
+*/
+
+/*
+const arrayX = ['A','B','C','D', 'E' , 'F' ,'G','H']
+const array2X = []
+  
+  //A34567
+  for(let y =1 ; y< 8 ; y++)
+ {
+    array2X[y] = arrayX[y+1];
+  }
+
+  //arrayX[0] ='Z';
+
+console.log("CL: ", array2X);
+
+}
+
+*/
+
+
+//output:  undefined B C D E F G H
+const arrayY = 'Z'
+const arrayX = ['A','B','C','D', 'E' , 'F' ,'G','H']
+  
+  //A34567
+  for(let y =1 ; y< 8 ; y++)
+ {
+    arrayX[0] = arrayX[y+1];
+  }
+
+  //arrayX[0] ='Z';
+
+console.log("CL: ", arrayX);
+  }
+
+      
       function drawGrid() {
         //cols
         clearArray()
@@ -298,6 +357,8 @@
             nestedArray[i][j] = oneDimArray[z]
           }
         }
+
+        console.log("B: ", nestedArray);
       }
 
       ////////

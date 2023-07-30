@@ -9,7 +9,7 @@ class CustomBoxClass {
 
   controlInput() {
       
-
+    console.log("gkey",gKey);
     if (gKey == 'Shift' || gKey == 'Control' || gKey == 'Tab' || gKey == 'Escape' || gKey == 'Backspace'){
     
       return;
@@ -18,7 +18,7 @@ class CustomBoxClass {
     
 
 
-    if (gKey == 'Insert') {
+    if (gKey ==  'Insert') {
       gInsert = !gInsert
 
       if (gInsert) {
@@ -50,7 +50,7 @@ class CustomBoxClass {
         Return.Return()
       } else {
         
-      Insert.makeOneDimArray()
+      //Insert.makeOneDimArray()
       
         Insert.insertCharacter()
         
