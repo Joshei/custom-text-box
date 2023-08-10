@@ -36,7 +36,8 @@
     <script src="cursorMovement.js"></script>
     <script src="customBox.js"></script>
     <script src="return.js"></script>
-    <script src="insertion.js"></script>
+    <!--this should be insertion-->
+    <script src="compare.js"></script>
 
     <script>
 
@@ -211,7 +212,7 @@
       var y = size / 2
 
       //fill array wiht no values - set up the two dimensional array
-      const nestedArray = Array.from({ length: HEIGHT }, () =>
+      let nestedArray = Array.from({ length: HEIGHT }, () =>
         Array.from({ length: WIDTH }, () => '')
       )
 
