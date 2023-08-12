@@ -48,14 +48,6 @@ class CursorMovementsClass {
       
     }
     cursorDown() {
-
-      if (((verticalCursorPosition + 10 )/10 )>= gLastLine)
-      {
-        console.log("vert: ", verticalCursorPosition);
-        console.log("lline: ", gLastLine);
-
-        return -1
-      }
       if (verticalCursorPosition/10  >= HEIGHT) {
       
         return -2
