@@ -36,6 +36,7 @@ class InsertClass {
     
     }
   
+  
      getNextTarget(x,y){
           let nextX = x, nextY = y;
           if(y === WIDTH -1 && x === HEIGHT -1){

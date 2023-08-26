@@ -37,9 +37,12 @@ class InsertClass {
         console.log("#A ",nestedArray )
   
   }
+
+  
  
   //inserts a character into array 
   insertCharacter() {
+    return
         
     console.log("test1bbb:", nestedArray);
       
@@ -247,5 +250,7 @@ class InsertClass {
 
 
   }//end of insertion function
+
+
 }
 

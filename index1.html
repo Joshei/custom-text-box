@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
+
+    <!-- Look at downloaded code again.  Waiting on up and down for this project created by art. He said this was working but it  reall couldnt have been tested because th /10 was not made on verticalposition abd
+    there is now way to get back to prior lines because there is no up (or down) and the cursor cannot go left to goto an upper row.   So, test his version, if it works get mine workimg, if not explain that it is not right (and I payed ~$76 for it)-->
     <script src="textArea.js"></script>
     <script src="cursor.js"></script>
-
     <canvas
       id="canvas_id"
       width="220"
@@ -17,7 +19,6 @@
       style="border: 1px solid #550233"
       ;
     ></canvas>
-
     <button id="button2" onclick="backspaceFormerCharacter()">
       Back Space
     </button>
@@ -27,142 +28,86 @@
     <button id="button6" onclick="TextArea.displayTextBoxCopy()">
       Display Text
     </button>
-
     <div id="insert"></div>
     <div id="xAndY"></div>
     <textarea title="Text Box" rows="10" id="mytext" cols="10"> </textarea>
-
     <!--classe-->
     <script src="cursorMovement.js"></script>
     <script src="customBox.js"></script>
     <script src="return.js"></script>
     <!--this should be insertion-->
     <script src="compare.js"></script>
-
     <script>
-
-
       //insert on line must check for space, if so, only that line
       //on reacurring lines also.
-
-
       let gLastLine = 0
       //instantiate the classes
       const CursorMovements = new CursorMovementsClass()
       const Return = new ReturnClass()
       const Insert = new InsertClass()
-
       //width of canvas, amount of characters, multiplied by five for displaying grid
       const WIDTH = 10
       const HEIGHT = 10
-
       //Used for changing two dim array into something flat
       let oneDimArray = []
       let oneDimArray2 = []
-
-
       let blanks = []
-
       ////////////////////////////////////
-
-      //   alert(nestedArray.join('\n'))  and  alert(nestedArray2.join('\n')) 
-
+      //   alert(nestedArray.join('\n'))  and  alert(nestedArray2.join('\n'))
       //Function rewritten 7/15/23, instead of two two dimensional arrays,
-      //using one and a one dimensional array because there was a problem 
+      //using one and a one dimensional array because there was a problem
       //with updataing the x array which resulted in a bunch of undefined problems.
+
       function deleteIt() {
-
-        
-
         //2 is the third character, cursor is 3
-        console.log("hp: ", horizontalCursorPosition/5);
-
-
+        console.log('hp: ', horizontalCursorPosition / 5)
         let breakflag = false
         let counterToNull = 0
-
-
         //find first null
         for (let y = verticalCursorPosition / 10; y < HEIGHT; y++) {
           for (let x = horizontalCursorPosition / 5; x < WIDTH; x++) {
             counterToNull++
             console.log('na1 ', nestedArray)
             console.log('na2 ', nestedArray2)
-
-           
-
             if (nestedArray[y][x] == '') {
-
-
-
-
-
-
-
-
-
-
-
-
-
-              
               breakflag = true
               break
             }
           }
-
           if (breakflag) {
             break
           }
         }
-
         let counter = 0
         let breakflag2 = false
-
         alert(counterToNull)
-
-        
         if (breakflag) {
           //alert('null: ', counterToNull)
-
-
-          for(let i = 0 ; i < HEIGHT * WIDTH ; i++){
-            oneDimArray2[i] = oneDimArray[i];
+          for (let i = 0; i < HEIGHT * WIDTH; i++) {
+            oneDimArray2[i] = oneDimArray[i]
           }
-          
-          for(let i = verticalCursorPosition/10 * HEIGHT( + horizontalCursorPosition)  ; i < HEIGHT * WIDTH ; i++){
-
-            oneDimArray2[i] = oneDimArray[i+1];
+          for (
+            let i =
+              (verticalCursorPosition / 10) * HEIGHT(+horizontalCursorPosition);
+            i < HEIGHT * WIDTH;
+            i++
+          ) {
+            oneDimArray2[i] = oneDimArray[i + 1]
           }
-
-          for(let i = 0 ; i < HEIGHT * WIDTH ; i++){
-            oneDimArray[i] = oneDimArray2[i];
+          for (let i = 0; i < HEIGHT * WIDTH; i++) {
+            oneDimArray[i] = oneDimArray2[i]
           }
-          
-
-
-
           //alert(nestedArray2.join('\n'))
-
-         
-          let z = 0;
+          let z = 0
           for (let y = 0; y < HEIGHT; y++) {
             for (let x = 0; x < WIDTH; x++) {
-              z++;
+              z++
               nestedArray[y][x] = oneDimArray[z]
             }
           }
-
-          
           //alert(nestedArray.join('\n'))
-
-         
-
           drawGrid()
-
-          horizontalCursorPosition = horizontalCursorPosition - 5;
-          
-
+          horizontalCursorPosition = horizontalCursorPosition - 5
           CursorMovements.drawCursor(
             horizontalCursorPosition + HOFFSET,
             verticalCursorPosition + VOFFSET
@@ -173,18 +118,14 @@
       //vertical and horizontal offset of canvas
       const VOFFSET = 25
       const HOFFSET = 30
-
       //nestedarray holds values with an array - 35 by 35
       var canvas = document.getElementById('canvas_id')
       //insert is on or off
       var insertOn = document.getElementById('insert')
-
       let textBox = [[]]
-
       //rows and columns of canvas
       let rows = WIDTH
       let cols = HEIGHT
-
       //this is so that the canvas will look okay on a big display
       let ctx = canvas.getContext('2d')
       // Set display size (css pixels).
@@ -192,22 +133,18 @@
       var size = 220
       canvas.style.width = size + 'px'
       canvas.style.height = size + 'px'
-
       // Set actual size in memory (scaled to account for extra pixel density).
       var scale = window.devicePixelRatio // Change to 1 on retina screens to see blurry canvas.
       canvas.width = size * scale
       canvas.height = size * scale
-
       // Normalize coordinate system to use css pixels.
       ctx.scale(scale, scale)
-
       ctx.fillStyle = '#ffffff'
       ctx.fillRect(0, 0, 800, 800)
       ctx.fillStyle = '#000000'
       ctx.font = '3px Monospace'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-
       var x = size / 2
       var y = size / 2
 
@@ -215,21 +152,18 @@
       let nestedArray = Array.from({ length: HEIGHT }, () =>
         Array.from({ length: WIDTH }, () => '')
       )
-
       let nestedArray2 = Array.from({ length: HEIGHT }, () =>
         Array.from({ length: WIDTH }, () => '')
       )
-0
+      0
       rows = 1
       cols = WIDTH
       let = holdsTextToKeep = Array.from({ length: rows }, () =>
         Array.from({ length: cols }, () => 'Y')
       )
-
       let = holdsTextToMove = Array.from({ length: rows }, () =>
         Array.from({ length: cols }, () => ' ')
       )
-
       insertOn.innerHTML = 'Insert Off'
 
       function clearArray() {
@@ -239,65 +173,42 @@
         ctx.fillStyle = '#000000'
       }
 
-
-  function testFunction(){
-    //alert("test1!");
-  
-  
-
-//Z,C,D,E,F,G,H, undef
-/*
+      function testFunction() {
+        //alert("test1!");
+        //Z,C,D,E,F,G,H, undef
+        /*
   const arrayX = ['A','B','C','D', 'E' , 'F' ,'G','H']
-  
   //A34567
   for(let y =1 ; y< 8 ; y++)
  {
     arrayX[y] = arrayX[y+1];
   }
-
   arrayX[0] ='Z';
-
 console.log("CL: ", arrayX);
-
 }
-
 */
-
-/*
+        /*
 const arrayX = ['A','B','C','D', 'E' , 'F' ,'G','H']
 const array2X = []
-  
   //A34567
   for(let y =1 ; y< 8 ; y++)
  {
     array2X[y] = arrayX[y+1];
   }
-
   //arrayX[0] ='Z';
-
 console.log("CL: ", array2X);
-
 }
-
 */
-
-
-//output:  undefined B C D E F G H
-const arrayY = 'Z'
-const arrayX = ['A','B','C','D', 'E' , 'F' ,'G','H']
-  
-  //A34567
-  for(let y =1 ; y< 8 ; y++)
- {
-    arrayX[0] = arrayX[y+1];
-  }
-
-  //arrayX[0] ='Z';
-
-console.log("CL: ", arrayX);
-  }
-
-      
+        //output:  undefined B C D E F G H
+        const arrayY = 'Z'
+        const arrayX = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+        //A34567
+        for (let y = 1; y < 8; y++) {
+          arrayX[0] = arrayX[y + 1]
+        }
+        //arrayX[0] ='Z';
+        console.log('CL: ', arrayX)
+      }
       function drawGrid() {
         //cols
         clearArray()
@@ -310,7 +221,6 @@ console.log("CL: ", arrayX);
             ctx.fillText(nestedArray[i][j], j * 5 + 25, i * 10 + 25)
           }
         }
-
         return 1
       }
 
@@ -318,11 +228,9 @@ console.log("CL: ", arrayX);
       function backspaceFormerCharacter() {
         //  change current cursor space to blank
         //  change previous character with under score
-
         nestedArray[horizontalCursorPosition / 5][verticalCursorPosition / 10] =
           ' '
         horizontalCursorPosition = horizontalCursorPosition - 5
-
         drawGrid()
         CursorMovements.drawCursor(
           horizontalCursorPosition + HOFFSET,
@@ -331,56 +239,41 @@ console.log("CL: ", arrayX);
       }
 
       //the array of the grid as one dimensional.
-
       let flag = false
-
       let a = 0
+
       //let z = -1
-
       ////////
-
       //second function for inserting, changes one dimenensional array into two dimensions
-
       //doesn't draw grid and cursor
       function makeTwoDimArray() {
         let z = 0
-
         //rows
         for (let i = 0; i < HEIGHT; i = i + 1) {
           //columns
-
           for (j = 0; j < WIDTH; j = j + 1, z++) {
             //set array with characters
             nestedArray[i][j] = oneDimArray[z]
           }
         }
-
-        console.log("B: ", nestedArray);
+        console.log('B: ', nestedArray)
       }
 
       ////////
-
       //second function for inserting, changes one dimenensional array into two dimensions
       //draws grid
       //draws cursor
-
       let horizontalCursorPosition = 0
       let verticalCursorPosition = 0
-
       let gKey = ''
       let gInsert = false
-
-     
 
       //if not a special key, come here and display character
       function printCharacter() {
         ctx.clearRect(0, 0, 300, 300)
-
         console.log('v ', verticalCursorPosition)
         console.log('h ', horizontalCursorPosition)
-
         //try setting nested array for drawgrid with key press
-
         nestedArray[verticalCursorPosition / 10][horizontalCursorPosition / 5] =
           gKey
 
@@ -405,9 +298,7 @@ console.log("CL: ", arrayX);
 
       //display helpful data
       xAndY.innerHTML = 'X: ' + 0 + '  &nbsp&nbsp&nbsp   Y: ' + 0
-
       const customBox1 = new CustomBoxClass()
-
       window.addEventListener('keydown', function (e) {
         if (
           ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(
