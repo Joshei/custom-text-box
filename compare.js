@@ -9,7 +9,7 @@ class InsertClass {
       //alert("1");
           //rows
           for (let i = 0; i < HEIGHT; i = i + 1) {
-            //columns
+            //columnsjavascript s
             for (j = 0; j < WIDTH; j = j + 1, z++) {
               nestedArray[i][j] = oneDimArray[z]
             }
