@@ -59,11 +59,14 @@ class ReturnClass {
             holdsTextToMove[0][x] = ' ';
         }
         //code to hold moved text (after cursor)
+        //for (let y = 0; y < HEIGHT; y++)
         for (let x = ((horizontalCursorPosition) / 5); x < WIDTH; x++) {
             
-            holdsTextToMove[0][index] = nestedArray[verticalCursorPosition / 10][x];
+            holdsTextToMove[0][x] = nestedArray[verticalCursorPosition / 10][x];
             index++;
                     
+            //let newValue = nestedArray[x][y];
+            //tempArray[nextX][nextY] = newValue;
         }
 
 

@@ -37,7 +37,7 @@ class InsertClass {
           console.log("#A ",nestedArray )
     
     }
-  
+  /*
      getNextTarget(x,y){
           let nextX = x, nextY = y;
           if(y === WIDTH -1 && x === HEIGHT -1){
@@ -57,7 +57,29 @@ class InsertClass {
   
   
   
-      }
+  }
+  */
+  getNextTarget(y,x){
+    let nextX = x, nextY = y;
+    if(x === WIDTH -1 && y === HEIGHT -1){
+
+
+    } else if(x === WIDTH -1){
+        nextX = 0;
+        nextY = y + 1;
+    } else {
+        nextX =  x +1;
+    }
+
+    return {
+        nextY,
+        nextX
+    }
+
+
+
+  }
+  
     //inserts a character into array 
     insertCharacter() {
   
@@ -67,14 +89,14 @@ class InsertClass {
         //we want them to keep them seperate for the shift
   
       let tempArray = JSON.parse(JSON.stringify(nestedArray));
-      let maxX = HEIGHT;
-      let maxY = WIDTH;
+      let maxX = WIDTH;
+      let maxY = HEIGHT;
       let currentIndex = {
-          x: verticalCursorPosition/10,
-          y: horizontalCursorPosition/5
+          y: verticalCursorPosition/10,
+          x: horizontalCursorPosition/5
       }
   
-  
+  /*
           for(let x = 0; x < maxX; x++){
               for(let y = 0; y < maxY; y++){
                   if(x <= currentIndex.x && y <= currentIndex.y - 1){
@@ -94,45 +116,35 @@ class InsertClass {
   
         nestedArray = [...tempArray];
         nestedArray[currentIndex.x][currentIndex.y] =  gKey;
-          //console.table(nestedArray)
-          /*
-  
-      let countLines = 0;
-      for (let y = verticalCursorPosition / 10; y > HEIGHT; y++) {
-  
-        countLines++;
-        //is a character on last line
-        if (tempArray[y][WIDTH - 1] != "" && tempArray[y][WIDTH - 1] != " ") {
-          break;
-        }
+    */      
+      
+        for(let y = 0; y < maxY; y++){
+          for(let x = 0; x < maxX; x++){
+              if(y <= currentIndex.y && x <= currentIndex.x - 1){
+
+              } else if( y <= currentIndex.y -1 ){
+
+              }else {
+                  let {nextY, nextX} = this.getNextTarget(y,x);
+                  //console.log(x,y, nestedArray[x][y], "==>", nextX, nextY,  tempArray[nextX][nextY] );
+
+                  let newValue = nestedArray[y][x];
+                  tempArray[nextY][nextX] = newValue;
+              }
+
+          }
       }
-  
-  
-  
-      tempArray[verticalCursorPosition / 10][horizontalCursorPosition/5] = gKey
-  
-  
-      let count = 0;
-      //move characters to right on first row, after innitial character, see above.
-      //Isnt working, doesn't display string after gKey
-        /*
-      for (let x = ((horizontalCursorPosition + 5) / 5); x < (WIDTH - 1); x = x + 1)
-      {
-  
-        //move characters to right for first row
-        tempArray[(verticalCursorPosition / 10)][(x)] = tempArray[(verticalCursorPosition / 10)][(x + 1)]
-  
-  
-        console.log( "test2: b => a", (verticalCursorPosition / 10), (x+1), '=>' , x );
-      }
-  
-      console.log("test1a: ", tempArray);
-      countLines++
-  
-  */
-  
-  
-  
+
+    nestedArray = [...tempArray];
+    nestedArray[currentIndex.y][currentIndex.x] =  gKey;
+      
+      
+      
+      
+      
+      
+      
+      
       drawGrid()
   
       
