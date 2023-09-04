@@ -150,7 +150,7 @@ class InsertClass {
       
       horizontalCursorPosition = horizontalCursorPosition + 5;
       if (((horizontalCursorPosition / 5) % (WIDTH)) === 0) {
-        alert("!");
+        //alert("!");
         verticalCursorPosition = verticalCursorPosition + 10;
         horizontalCursorPosition = 0;
       }
