@@ -37,13 +37,31 @@ class ReturnClass {
     }
 
 
-    
+    removeCharactersOnRightOnActiveLine() {
+
+        alert("1");
+        for (let x = horizontalCursorPosition/5; x < WIDTH; x++){
+          
+            
+            if (nestedArray[verticalCursorPosition][x] === '-') {
+               
+            return
+            }
+            console.log("*: ", x)
+            nestedArray[verticalCursorPosition/10][x] = 'A';
+            
+        }
+
+      }
     
     
     Return() {
 
       
 
+        
+    
+        
         if (gLastLine == HEIGHT-1)
         {
             return;
@@ -234,10 +252,10 @@ class ReturnClass {
         //erase after cursor on return
         nestedArray = [...tempArray];
         //console.log({ nestedArray })
-
+        this.removeCharactersOnRightOnActiveLine();
         
 
-
+/*
         breakFlag = false;
         for (let y = verticalCursorPosition / 10; y < HEIGHT; y++) {
             for (let x = horizontalCursorPosition / 5; x < WIDTH ; x++) {
@@ -262,7 +280,7 @@ class ReturnClass {
 
             }
         }
-        
+        */
 
         
         //nestedArray = [...holdsTextToStay];
@@ -449,4 +467,8 @@ class ReturnClass {
         
         
     }
+
+       
+  
+
 }

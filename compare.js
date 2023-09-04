@@ -164,7 +164,7 @@ class InsertClass {
         verticalCursorPosition + VOFFSET
       )
         
-  
+      
   
   
     }//end of insertion function
