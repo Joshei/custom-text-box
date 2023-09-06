@@ -56,7 +56,7 @@ class ReturnClass {
     console.log({ nestedArray })
     let breakFlag = false
 
-    var xAdjuster = horizontalCursorPosition / 5;
+    let xAdjuster = horizontalCursorPosition / 5;
     var y = verticalCursorPosition / 10
    
 
@@ -69,7 +69,7 @@ class ReturnClass {
       
       console.log("2a: ", xAdjuster);
       
-      if (y >=( verticalCursorPosition/10 + 1)) {
+      if (y ==( verticalCursorPosition/10 + 1)) {
         xAdjuster = 0;
         console.log("2b: ", xAdjuster);
 
@@ -85,11 +85,8 @@ class ReturnClass {
           //break
         }
 
+        //NEEDS FIXING
         //console.log('!!: ', nestedArray)
-
-
-
-        
         let newValue = nestedArray[y][x] // sets 10 times
         console.log({ newValue })
         tempArray[y + 1][x] = newValue
