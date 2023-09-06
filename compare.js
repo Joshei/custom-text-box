@@ -96,27 +96,7 @@ class InsertClass {
           x: horizontalCursorPosition/5
       }
   
-  /*
-          for(let x = 0; x < maxX; x++){
-              for(let y = 0; y < maxY; y++){
-                  if(x <= currentIndex.x && y <= currentIndex.y - 1){
   
-                  } else if( x <= currentIndex.x -1 ){
-  
-                  }else {
-                      let {nextX, nextY} = this.getNextTarget(x,y);
-                      console.log(x,y, nestedArray[x][y], "==>", nextX, nextY,  tempArray[nextX][nextY] );
-  
-                      let newValue = nestedArray[x][y];
-                      tempArray[nextX][nextY] = newValue;
-                  }
-  
-              }
-          }
-  
-        nestedArray = [...tempArray];
-        nestedArray[currentIndex.x][currentIndex.y] =  gKey;
-    */      
       
         for(let y = 0; y < maxY; y++){
           for(let x = 0; x < maxX; x++){
