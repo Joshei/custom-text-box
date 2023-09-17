@@ -9,7 +9,7 @@ class ReturnClass {
 
   removeCharactersOnRightOnActiveLine() {
     
-    //alert('1')
+    ///alert('1')
     for (let x = horizontalCursorPosition / 5; x < WIDTH-1; x++) {
       if (nestedArray[verticalCursorPosition/10][x] === '-') {
         return
