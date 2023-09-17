@@ -1,11 +1,10 @@
-//horizontal increment:  5.
-//vertical increment is 10.
 
 class ReturnClass {
+
   constructor () {
     this.lastLine = 0
     this.firstTimeThrough = true
-    let holdsTextToMove = []
+    this.holdsTextToMove = []
   }
 
   removeCharactersOnRightOnActiveLine() {
@@ -29,8 +28,7 @@ class ReturnClass {
     let breakFlag = false
 
     var xAdjuster = horizontalCursorPosition / 5;
-    var y = verticalCursorPosition / 10
-   
+     y = verticalCursorPosition / 10
 
     //push everything down starting on line after current vertical position
     for (let y = (verticalCursorPosition / 10); y < HEIGHT - 1; y++) {
