@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-
     <!-- Look at downloaded code again.  Waiting on up and down for this project created by art. He said this was working but it  reall couldnt have been tested because th /10 was not made on verticalposition abd
     there is now way to get back to prior lines because there is no up (or down) and the cursor cannot go left to goto an upper row.   So, test his version, if it works get mine workimg, if not explain that it is not right (and I payed ~$76 for it)-->
     <script src="textArea.js"></script>
@@ -57,7 +56,6 @@
       //Function rewritten 7/15/23, instead of two two dimensional arrays,
       //using one and a one dimensional array because there was a problem
       //with updataing the x array which resulted in a bunch of undefined problems.
-
       function deleteIt() {
         //2 is the third character, cursor is 3
         console.log('hp: ', horizontalCursorPosition / 5)
@@ -114,7 +112,6 @@
           )
         }
       }
-
       //vertical and horizontal offset of canvas
       const VOFFSET = 25
       const HOFFSET = 30
@@ -147,7 +144,6 @@
       ctx.textBaseline = 'middle'
       var x = size / 2
       var y = size / 2
-
       //fill array wiht no values - set up the two dimensional array
       let nestedArray = Array.from({ length: HEIGHT }, () =>
         Array.from({ length: WIDTH }, () => '-')
@@ -165,14 +161,12 @@
         Array.from({ length: cols }, () => ' ')
       )
       insertOn.innerHTML = 'Insert Off'
-
       function clearArray() {
         ctx.clearRect(0, 0, 100, 100)
         ctx.fillStyle = '#ffffff'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
         ctx.fillStyle = '#000000'
       }
-
       function testFunction() {
         //alert("test1!");
         //Z,C,D,E,F,G,H, undef
@@ -223,7 +217,6 @@ console.log("CL: ", array2X);
         }
         return 1
       }
-
       //deletes a character without pulling all the values
       function backspaceFormerCharacter() {
         //  change current cursor space to blank
@@ -237,11 +230,9 @@ console.log("CL: ", array2X);
           verticalCursorPosition + VOFFSET
         )
       }
-
       //the array of the grid as one dimensional.
       let flag = false
       let a = 0
-
       //let z = -1
       ////////
       //second function for inserting, changes one dimenensional array into two dimensions
@@ -258,7 +249,6 @@ console.log("CL: ", array2X);
         }
         console.log('B: ', nestedArray)
       }
-
       ////////
       //second function for inserting, changes one dimenensional array into two dimensions
       //draws grid
@@ -267,7 +257,6 @@ console.log("CL: ", array2X);
       let verticalCursorPosition = 0
       let gKey = ''
       let gInsert = false
-
       //if not a special key, come here and display character
       function printCharacter() {
         ctx.clearRect(0, 0, 300, 300)
@@ -276,13 +265,10 @@ console.log("CL: ", array2X);
         //try setting nested array for drawgrid with key press
         nestedArray[verticalCursorPosition / 10][horizontalCursorPosition / 5] =
           gKey
-
         drawGrid()
-
         //At edge of canavs - use for edge cases, later.
         //bookmark
         if (horizontalCursorPosition < (WIDTH - 1) * 5) {
-     
           horizontalCursorPosition = horizontalCursorPosition + 5
         }
         CursorMovements.drawCursor(
@@ -290,13 +276,11 @@ console.log("CL: ", array2X);
           verticalCursorPosition + VOFFSET
         )
       }
-
       document.addEventListener('keydown', function (e) {
         //global variable
         gKey = e.key
         customBox1.controlInput()
       })
-
       //display helpful data
       xAndY.innerHTML = 'X: ' + 0 + '  &nbsp&nbsp&nbsp   Y: ' + 0
       const customBox1 = new CustomBoxClass()

@@ -45,14 +45,10 @@ class InsertClass {
           }
     }
     */
-
-  
   ////////////////////////////////
   // yToCheck = y;
   // xToCheck = x  //if last character is null, return out, otherwise insert pushes to followingThanks  row.
   // otherwise start insert next row
-  
-  
 //  getNextTarget(x, y) {
 //    //on last character of line - so we insert the next line until the final check
 //    /* if (x % WIDTH == 1) {
@@ -81,31 +77,20 @@ class InsertClass {
 //    }
 //  }
   ////////////////////////////////
-  
   getNextTarget(x,y){
     let nextX = x, nextY = y;
     if(y === this.maxY -1 && x === this.maxX -1){
-
-
     } else if(y === this.maxY -1){
         nextY = 0;
         nextX = x + 1;
     } else {
         nextY =  y +1;
     }
-
     return {
         nextX,
         nextY
     }
-
-
-
   }
-  
-
-  
-
   //inserts a character into array
   insertCharacter () {
     for (let i = 0; i < 10; i++) {
@@ -129,15 +114,12 @@ class InsertClass {
     //gNullCharacterFound = false;
     let counter = 0
     let breakFlag = false
-
     ////////////////////////////////
-
     for (let y = 0; y < maxY; y++) {
       for (let x = 0; x < maxX; x++) {
         //breaks out
         //CHANGED
         //if(x <= currentIndex.x - 1 && y <= currentIndex.y - 1){
-
         if (y < currentIndex.y) {
           console.log('????', 'y:', y, 'x:', x, currentIndex.y, currentIndex.x)
         }
@@ -152,9 +134,7 @@ class InsertClass {
           console.log('value: ', newValue)
         }
       }
-
       ////////////////////////////////
-
       //console.log("cl1: ", x % (WIDTH-2) === 1);
       //if (nestedArray[y][WIDTH-2] === ''  && (x % (WIDTH-2) === 1)) {
       //    if(nestedArray[y][x] = ''){
@@ -163,7 +143,6 @@ class InsertClass {
       //alert("broke out1");
       //      break;
       //}
-
       if (breakFlag === true) {
         //alert("broke out2");
         //  break;
@@ -173,10 +152,8 @@ class InsertClass {
     console.log('1', nestedArray)
     console.log(2, gKey)
     console.log(3, currentIndex.y, currentIndex.x)
-
     nestedArray[currentIndex.y][currentIndex.x] = gKey
     console.log('ci: ', currentIndex.x)
-
     /*
       let countLines = 0;
       for (let y = verticalCursorPosition / 10; y > HEIGHT; y++) {
@@ -200,7 +177,6 @@ class InsertClass {
       console.log("test1a: ", tempArray);
       countLines++
   */
-
     drawGrid()
     horizontalCursorPosition = horizontalCursorPosition + 5
     if ((horizontalCursorPosition / 5) % WIDTH === 0) {

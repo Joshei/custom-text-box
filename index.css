@@ -4,17 +4,11 @@ body{
     text-align: center;
     min-width: 239;
 }
-
-
-
 #canvas_id{
-    
 }
-
 #insert{
     margin-right: 10rem;
 }
-
 #xAndY{
     margin-right: 9rem;
 }
