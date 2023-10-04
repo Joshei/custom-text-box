@@ -7,6 +7,8 @@ class ReturnClass {
     let lastLetterPos = 0
   }
  
+  //if row is complete with insert than add text to to next line
+
   Return() {
     let tempArray = JSON.parse(JSON.stringify(nestedArray))
     let hp = horizontalCursorPosition/5

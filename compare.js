@@ -68,8 +68,12 @@ class InsertClass {
       let currentIndex = {
           y: verticalCursorPosition/10,
           x: horizontalCursorPosition/5
+
       }
-        for(let y = 0; y < maxY; y++){
+       let currentColumn = verticalCursorPosition/10
+       //only inserts to next column
+        for(let y = 0; y <= currentColumn + 1; y++){
+         // alert(currentColumn)
           for(let x = 0; x < maxX; x++){
               if(y <= currentIndex.y && x <= currentIndex.x - 1){
               } else if( y <= currentIndex.y -1 ){
