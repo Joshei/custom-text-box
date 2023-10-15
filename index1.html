@@ -145,6 +145,11 @@
       var x = size / 2
       var y = size / 2
       //fill array wiht no values - set up the two dimensional array
+      
+      // textCaptureArray
+      let textCaptureArray = Array.from({ length: 1 }, () =>
+        Array.from({ length: WIDTH }, () => '-'))
+
       let nestedArray = Array.from({ length: HEIGHT }, () =>
         Array.from({ length: WIDTH }, () => '-')
       )
