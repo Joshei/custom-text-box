@@ -2,228 +2,262 @@
 //Today worked on over the border text.  The code make the text to move erased on the original row.  First put a character on
 //end of row and than on string of characters
 
-
 class InsertClass {
-   
-    constructor(){
-      this.indexOfXForLineBeforeLastRowSpace = 0
-      this.StartedCapture = false
-      this.GotWordAllready = true
-      this.InsertWordToArray = false
-      this.IsFirstCharacterPos = 5
-      this.RemoveBeforeWidth = false
-    }
-    makeTwoDimArrayWithInsertion() {
-      //alert("1");
-          //rows
-          for (let i = 0; i < HEIGHT; i = i + 1) {
-            //columnsjavascript s
-            for (j = 0; j < WIDTH; j = j + 1, z++) {
-              nestedArray[i][j] = oneDimArray[z]
-            }
-          }
-          z = 0
-          drawGrid()
-          CursorMovements.drawCursor(
-            horizontalCursorPosition + HOFFSET,
-            verticalCursorPosition + VOFFSET
-          )
-        }
-      //turn two dimensional array into one dimensional array
-    makeOneDimArray() {
-          for (let i = 0; i < HEIGHT; i = i + 1) {
-            //rows
-            for (let j = 0; j < WIDTH; j = j + 1) {
-              oneDimArray.push(nestedArray[i][j])
-            }
-          }
-          console.log("#A ",nestedArray )
-    }
-  /*
-     getNextTarget(x,y){
-          let nextX = x, nextY = y;
-          if(y === WIDTH -1 && x === HEIGHT -1){
-          } else if(y === WIDTH -1){
-              nextY = 0;
-              nextX = x + 1;
-          } else {
-              nextY =  y +1;
-          }
-          return {
-              nextX,
-              nextY
-          }
+  constructor() {
+    this.indexOfXForLineBeforeLastRowSpace = 0;
+    this.StartedCapture = false;
+    this.GotWordAllready = true;
+    this.InsertWordToArray = false;
+    this.IsFirstCharacterPos = 5;
+    this.RemoveBeforeWidth = false;
+    this.FlagWordRemoved = false;
   }
-  */
-  getNextTarget(y,x){
-    let nextX = x, nextY = y;
-    if(x === WIDTH -1 && y === HEIGHT -1){
-    } else if(x === WIDTH -1){
-        nextX = 0;
-        nextY = y + 1;
+  makeTwoDimArrayWithInsertion() {
+    //alert("1");
+    //rows
+    for (let i = 0; i < HEIGHT; i = i + 1) {
+      //columnsjavascript s
+      for (j = 0; j < WIDTH; j = j + 1, z++) {
+        nestedArray[i][j] = oneDimArray[z];
+      }
+    }
+    z = 0;
+    drawGrid();
+    CursorMovements.drawCursor(
+      horizontalCursorPosition + HOFFSET,
+      verticalCursorPosition + VOFFSET
+    );
+  }
+  //turn two dimensional array into one dimensional array
+  makeOneDimArray() {
+    for (let i = 0; i < HEIGHT; i = i + 1) {
+      //rows
+      for (let j = 0; j < WIDTH; j = j + 1) {
+        oneDimArray.push(nestedArray[i][j]);
+      }
+    }
+    console.log("#A ", nestedArray);
+  }
+
+  getNextTarget(y, x) {
+    let nextX = x,
+      nextY = y;
+    if (x === WIDTH - 1 && y === HEIGHT - 1) {
+    } else if (x === WIDTH - 1) {
+      nextX = 0;
+      nextY = y + 1;
     } else {
-        nextX =  x +1;
+      nextX = x + 1;
     }
     return {
-        nextY,
-        nextX
-    }
+      nextY,
+      nextX,
+    };
   }
 
   //put removeword at top, when called set flag to leave insert in removeword
- removeWord(y){
 
-  console.log("A:", this.indexOfXForLineBeforeLastRowSpace)
-  console.log("here: ", verticalCursorPosition/10);
-  //if(nestedArray[0][9] == '-'){
-  //  alert("1");
-  //  return
-  //}
+  //console.log("A:", this.indexOfXForLineBeforeLastRowSpace)
+  //console.log("here: ", verticalCursorPosition/10);
+  //console.log("B:", y)
+  //console.log("x:", x, "y: ", y);
 
-  if(horizontalCursorPosition/5 === WIDTH-1){
-    //alert("2");
-    return
+  //copy nested array
+
+  copyArray() {
+    for (let y = 0; y < HEIGHT; y++) {
+      for (let x = 0; x < WIDTH; x++) {
+        let element = nestedArray[y][x];
+        copyNestedArray[y][x] = element;
+      }
+    }
+  }
+  //fill after indexOfXForLineBeforeLastRowSpace with spaces - Y for now
+
+  fillMovedStringWithYs() {
+    console.log("0:", nestedArray);
+    console.log("C:", this.indexOfXForLineBeforeLastRowSpace);
+    for (let x = this.indexOfXForLineBeforeLastRowSpace+1; x <= WIDTH  ; x++) {
+      nestedArray[verticalCursorPosition / 10][x] = "Y";
+    }
+    console.log("0:", nestedArray);
+    //alert("1");
   }
 
-  alert("here");
-  //alert("here");
-    
-    console.log("B:", y)
-    console.log("x:", x, "y: ", y);
-  let toMoveString = []
-  for(let x = this.indexOfXForLineBeforeLastRowSpace+1; x < WIDTH; x++){
-       let element = nestedArray[verticalCursorPosition/10][x]
-       toMoveString[x] = element
-       console.log("B: ", toMoveString)
-
-    }
-
-    console.log("C:", this.indexOfXForLineBeforeLastRowSpace+1)
-  for(let x = this.indexOfXForLineBeforeLastRowSpace+1; x < WIDTH; x++){
-  nestedArray[verticalCursorPosition/10][x] = 'Z'
-  }
-
-  //for(let x = this.indexOfXForLineBeforeLastRowSpace + 1 ; ){
-  //  nestedArray[y][x] = to
-  //}
-   
-    return(true)
- 
- }
-
-  findBeginningX(y, x, NewSpace){
-   
-    if(nestedArray[verticalCursorPosition/10][WIDTH-1] === '-'){
-
-      return
-    }
-
-    for (let x = 0; x < WIDTH-1; x++){
-      //get last space or, '-'
-      if (nestedArray[verticalCursorPosition/10][x] === '-' || nestedArray[verticalCursorPosition/10][x] === ' ')
-    
-      console.log("G:", this.indexOfXForLineBeforeLastRowSpace)
-      this.indexOfXForLineBeforeLastRowSpace = x;
-
-    }
+  //rewrite array after inserted movestring
+  rebuildArrayWithMoveString(lengthOftoMoveString) {
     return;
-
-    if(NewSpace === true){
-      this.indexOfXForLineBeforeLastRowSpace = x
-      this.IsFirstCharacterPos = x;
-      console.log("E:", x)
-      console.log("I: ",this.indexOfXForLineBeforeLastRowSpace )
-    }else{
-      //alert("here");
-      //this.indexOfXForLineBeforeLastRowSpace++;
-      if(this.indexOfXForLineBeforeLastRowSpace > WIDTH-1){
-        this.indexOfXForLineBeforeLastRowSpace = 0;
+    let x1 = lengthOftoMoveString;
+    for (let y = 0; y < HEIGHT - 1; y++) {
+      for (let x = 0; x < WIDTH; x++) {
+        let element = copyNestedArray[y][x];
+        nestedArray[y][x1 - 1] = element;
       }
-      console.log("H: ",this.indexOfXForLineBeforeLastRowSpace )
+      //subtracts to zero
+      x1 = 1;
     }
-
-      console.log("WIDTH:", WIDTH, "A:", this.indexOfXForLineBeforeLastRowSpace)
-        if(x === WIDTH - 1)
-        {
-          if(nestedArray[verticalCursorPosition/10][x] == "-"){
-            return false;
-          }
-          //alert("width");
-           this.RemoveBeforeWidth = true;
-            return true;
-        }
-        return false;
-      }
-    //if there is a space than start capturing text, unless another space than start capture again
-    //get start position
-    //if the last position is filled than begin insert word on next line and push the line over to next row
-    //end insert on first space or null
-    //inserts a character into array 
-    insertCharacter() {
-        //I need to stringfy and parse to copy the value
-        //if you do tempArray = nestedArray it creates a reference
-        //which means modify temp modifies the original
-        //we want them to keep them seperate for the shift
-      let tempArray = JSON.parse(JSON.stringify(nestedArray));
-      let GotWordAllready = false
-      let maxX = WIDTH;
-      let maxY = HEIGHT;
-      let currentIndex = {
-          y: verticalCursorPosition/10,
-          x: horizontalCursorPosition/5
-      }
-       let justWasASpace = true
-       let currentColumn = verticalCursorPosition/10
-       //only inserts to next column
-       this.RemoveBeforeWidth = false
-        for(let y = 0; y <= currentColumn + 1; y++){
-         // alert(currentColumn)
-          for(let x = 0; x < maxX; x++){
-              if(y <= currentIndex.y && x <= currentIndex.x - 1){
-              } else if( y <= currentIndex.y -1 ){
-              }else {
-                  let {nextY, nextX} = this.getNextTarget(y,x);
-                  
-                  //console.log(x,y, nestedArray[x][y], "==>", nextX, nextY,  tempArray[nextX][nextY] );
-                  let newValue = nestedArray[y][x];
-                  tempArray[nextY][nextX] = newValue;
-                  
-                  
-                  if (newValue === '-'){
-                    justWasASpace = true;
-                  }else{
-                    //alert("else");
-                    justWasASpace = false
-                  }
-                  if(y === verticalCursorPosition/10){
-                    console.log("else2")
-                  let InsertWordToArray = this.findBeginningX(y,x, justWasASpace)
-                  }
-              }
-          }
-      }
-    //this.IsFirstCharacterPos = ""
-    nestedArray = [...tempArray];
-    nestedArray[currentIndex.y][currentIndex.x] =  gKey;
-    //if(this.RemoveBeforeWidth === true){
-      console.log("!: ", nestedArray[verticalCursorPosition/10][WIDTH-1]);
-    if(nestedArray[verticalCursorPosition/10][WIDTH-1] !== '-'){
-      alert("rw");
-    this.removeWord(0)
-    }
-      drawGrid()
-      horizontalCursorPosition = horizontalCursorPosition + 5;
-      if (((horizontalCursorPosition / 5) % (WIDTH)) === 0) {
-        //alert("!");
-        verticalCursorPosition = verticalCursorPosition + 10;
-        horizontalCursorPosition = 0;
-      }
-      //alert("2: ",horizontalCursorPosition)
-      //alert("1: ",verticalCursorPosition)
-      CursorMovements.drawCursor(
-        horizontalCursorPosition + HOFFSET,
-        verticalCursorPosition + VOFFSET
-      )
-    }//end of insertion function
+    console.log("1:", nestedArray);
   }
-  
+
+  removeWordAndWriteRowsAfter() {
+    let yValue = verticalCursorPosition / 10;
+    //for (let yValue = verticalCursorPosition/10; yValue< HEIGHT-1 ; yValue++ ){
+    if (
+      nestedArray[yValue][WIDTH - 1] === "-" ||
+      nestedArray[yValue][WIDTH - 1] === "Y"
+    ) {
+      return;
+    }
+    //alert("1");
+    this.copyArray();
+    let toMoveString = ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"];
+    let x2 = 0;
+
+    
+    //build movestring
+    console.log("A:", this.indexOfXForLineBeforeLastRowSpace);
+    for (let x = this.indexOfXForLineBeforeLastRowSpace + 1; x < WIDTH; x++) {
+      let element = nestedArray[yValue][x];
+      toMoveString[x2] = element;
+      x2++;
+    }
+    console.log("2: ", toMoveString);
+    console.log("3:", this.indexOfXForLineBeforeLastRowSpace);
+
+    this.fillMovedStringWithYs();
+
+    //----------------------------------------------
+    //place movestring into array
+    //let length = toMoveString.length;
+
+    //find length of string  - FIX THIS SO ABORT IF MOVETEXT.LENGHT == 0, CHECK LAST CHARACTER, OK? and FIX ONLY LAST CHARACTER, WORKS THOUGH
+    let indexOfLength = -1;
+    for(let i = 0; i < WIDTH ; i++){
+
+      if (toMoveString[i] === '-'){
+        return
+
+      }
+      indexOfLength++;
+    }
+
+    
+    for (let x = 0; x < WIDTH; x++) {
+      //fill nestedarray with characters moved
+      //if unmoveable than the content will be unchaged, '-'
+      if (toMoveString[x] != "-") {
+        let element = toMoveString[x];
+        nestedArray[verticalCursorPosition / 10][indexOfLength] = element;
+        length++
+      
+      }
+    }
+    console.log("5:", nestedArray);
+    this.rebuildArrayWithMoveString(length);
+  }
+
+  findBeginningX(y, x) {
+    console.log("Y:", nestedArray);
+    // alert("find");
+    if (nestedArray[y][WIDTH - 1] === "-") {
+      return;
+    }
+
+    for (let x = 0; x < WIDTH; x++) {
+      if (nestedArray[y][x] === "-") {
+        //|| nestedArray[verticalCursorPosition/10][x] === 'Y')
+
+        console.log("G:", this.indexOfXForLineBeforeLastRowSpace);
+        this.indexOfXForLineBeforeLastRowSpace = x;
+      }
+    }
+    console.log("X:", nestedArray);
+    return;
+  }
+
+  insertCharacter() {
+    this.FlagWordRemoved = false;
+    //I need to stringfy and parse to copy the value
+    //if you do tempArray = nestedArray it creates a reference
+    //which means modify temp modifies the original
+    //we want them to keep them seperate for the shift
+    let tempArray = JSON.parse(JSON.stringify(nestedArray));
+    let GotWordAllready = false;
+    let maxX = WIDTH;
+    let maxY = HEIGHT;
+    let currentIndex = {
+      y: verticalCursorPosition / 10,
+      x: horizontalCursorPosition / 5,
+    };
+    let justWasASpace = true;
+    let currentColumn = verticalCursorPosition / 10;
+
+    //only inserts to next column
+    this.RemoveBeforeWidth = false;
+
+    //this.removeWordAndWriteRowsAfter(0)
+    //if(this.FlagWordRemoved == false){
+
+    for (let y = 0; y <= currentColumn + 1; y++) {
+      for (let x = 0; x < maxX; x++) {
+        //   if(x == currentIndex.x ){
+        //     console.log("branch 1")
+        //   }
+        if (y <= currentIndex.y && x <= currentIndex.x - 1) {
+        } else if (y <= currentIndex.y - 1) {
+        } else {
+          let { nextY, nextX } = this.getNextTarget(y, x);
+
+          //console.log(x,y, nestedArray[x][y], "==>", nextX, nextY,  tempArray[nextX][nextY] );
+          let newValue = nestedArray[y][x];
+          tempArray[nextY][nextX] = newValue;
+        }
+      }
+    }
+
+    nestedArray = [...tempArray];
+    //MODIFIED
+    nestedArray[currentIndex.y][currentIndex.x] = gKey;
+
+    console.log("10: ", nestedArray);
+
+    for (let y = 0; y <  maxY; y++) {
+      for (let x = 0; x < maxX; x++) {
+        if (y <= currentIndex.y && x <= currentIndex.x - 1) {
+        } else if (y <= currentIndex.y - 1){
+        }
+        else {
+        
+      
+      //needs y
+      this.findBeginningX(y, x);
+      // once every y
+
+      console.log("*:", nestedArray);
+      this.removeWordAndWriteRowsAfter();
+    }
+  }}
+
+    //if(this.RemoveBeforeWidth === true){
+    console.log("!: ", nestedArray[verticalCursorPosition / 10][WIDTH - 1]);
+
+    //if(nestedArray[verticalCursorPosition/10][WIDTH-1] !== '-'){
+    //alert("rw");
+
+    //}
+    //}
+    drawGrid();
+    horizontalCursorPosition = horizontalCursorPosition + 5;
+    if ((horizontalCursorPosition / 5) % WIDTH === 0) {
+      //alert("!");
+      verticalCursorPosition = verticalCursorPosition + 10;
+      horizontalCursorPosition = 0;
+    }
+    //alert("2: ",horizontalCursorPosition)
+    //alert("1: ",verticalCursorPosition)
+    CursorMovements.drawCursor(
+      horizontalCursorPosition + HOFFSET,
+      verticalCursorPosition + VOFFSET
+    );
+  } //end of insertion function
+}

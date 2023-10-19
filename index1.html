@@ -153,10 +153,14 @@
       let nestedArray = Array.from({ length: HEIGHT }, () =>
         Array.from({ length: WIDTH }, () => '-')
       )
+      let copyNestedArray = Array.from({ length: HEIGHT }, () =>
+        Array.from({ length: WIDTH }, () => '-')
+      )
+
       let nestedArray2 = Array.from({ length: HEIGHT }, () =>
         Array.from({ length: WIDTH }, () => '')
       )
-      0
+      //0
       rows = 1
       cols = WIDTH
       let = holdsTextToKeep = Array.from({ length: rows }, () =>
@@ -264,6 +268,7 @@ console.log("CL: ", array2X);
       let gInsert = false
       //if not a special key, come here and display character
       function printCharacter() {
+        alert("a")
         ctx.clearRect(0, 0, 300, 300)
         console.log('v ', verticalCursorPosition)
         console.log('h ', horizontalCursorPosition)
