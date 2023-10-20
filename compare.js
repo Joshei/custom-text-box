@@ -11,6 +11,8 @@ class InsertClass {
     this.IsFirstCharacterPos = 5;
     this.RemoveBeforeWidth = false;
     this.FlagWordRemoved = false;
+    this.Dash = "start"
+    this.AnotherTurnWentBy = false
   }
   makeTwoDimArrayWithInsertion() {
     //alert("1");
@@ -156,6 +158,7 @@ class InsertClass {
     this.rebuildArrayWithMoveString(length);
   }
 
+  //!!!!index WIDTH - 1 is new Y with width zero!!!!!!!
   findBeginningX(y, x) {
     console.log("Y:", nestedArray);
     // alert("find");
@@ -166,7 +169,7 @@ class InsertClass {
     for (let x = 0; x < WIDTH; x++) {
       if (nestedArray[y][x] === "-") {
         //|| nestedArray[verticalCursorPosition/10][x] === 'Y')
-
+       
         console.log("G:", this.indexOfXForLineBeforeLastRowSpace);
         this.indexOfXForLineBeforeLastRowSpace = x;
       }
@@ -197,6 +200,13 @@ class InsertClass {
 
     //this.removeWordAndWriteRowsAfter(0)
     //if(this.FlagWordRemoved == false){
+    this.Dash = false;
+    
+    if(nestedArray[verticalCursorPosition/10][WIDTH - 1] == '-'){
+      //this.Dash = "has been a dash"
+      
+     
+    }
 
     for (let y = 0; y <= currentColumn + 1; y++) {
       for (let x = 0; x < maxX; x++) {
@@ -219,14 +229,25 @@ class InsertClass {
     //MODIFIED
     nestedArray[currentIndex.y][currentIndex.x] = gKey;
 
-    console.log("10: ", nestedArray);
+   
+    //if (this.Dash = "has been a dash" && nestedArray[verticalCursorPosition/10][WIDTH - 1] != '-')
+    
 
+    console.log("10: ", nestedArray);
+    
+    if(this.AnotherTurnWentBy == true){
     for (let y = 0; y <  maxY; y++) {
       for (let x = 0; x < maxX; x++) {
         if (y <= currentIndex.y && x <= currentIndex.x - 1) {
         } else if (y <= currentIndex.y - 1){
         }
         else {
+
+          if(this.AnotherTurnWentBy == false){
+            this.AnotherTurnWentBy = true
+            return
+          }
+
         
       
       //needs y
@@ -236,7 +257,7 @@ class InsertClass {
       console.log("*:", nestedArray);
       this.removeWordAndWriteRowsAfter();
     }
-  }}
+  }}}
 
     //if(this.RemoveBeforeWidth === true){
     console.log("!: ", nestedArray[verticalCursorPosition / 10][WIDTH - 1]);
@@ -246,6 +267,11 @@ class InsertClass {
 
     //}
     //}
+
+    this.drawGridAndCursor()
+
+  } //end of insertion function
+  drawGridAndCursor(){ 
     drawGrid();
     horizontalCursorPosition = horizontalCursorPosition + 5;
     if ((horizontalCursorPosition / 5) % WIDTH === 0) {
@@ -259,5 +285,5 @@ class InsertClass {
       horizontalCursorPosition + HOFFSET,
       verticalCursorPosition + VOFFSET
     );
-  } //end of insertion function
+  }
 }
