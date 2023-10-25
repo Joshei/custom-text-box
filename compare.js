@@ -11,6 +11,9 @@ class InsertClass {
     this.IsFirstCharacterPos = 5;
     this.RemoveBeforeWidth = false;
     this.FlagWordRemoved = false;
+    this.counter = false;
+    this.skipThisFunction = false;
+    this.skipSecondFunction = false;
   }
   makeTwoDimArrayWithInsertion() {
     //alert("1");
@@ -46,6 +49,7 @@ class InsertClass {
     } else if (x === WIDTH - 1) {
       nextX = 0;
       nextY = y + 1;
+      console.log("target: ", nestedArray);
     } else {
       nextX = x + 1;
     }
@@ -75,7 +79,7 @@ class InsertClass {
   //fill after indexOfXForLineBeforeLastRowSpace with spaces - Y for now
 
   fillMovedStringWithYs() {
-
+    
     console.log("0:", nestedArray);
     console.log("C:", this.indexOfXForLineBeforeLastRowSpace);
     for (let x = this.indexOfXForLineBeforeLastRowSpace+1; x <= WIDTH  ; x++) {
@@ -102,6 +106,7 @@ class InsertClass {
 
   
   removeWordAndWriteRowsAfter() {
+
     let yValue = verticalCursorPosition / 10;
     //for (let yValue = verticalCursorPosition/10; yValue< HEIGHT-1 ; yValue++ ){
     if (
@@ -178,6 +183,9 @@ class InsertClass {
   }
 
   insertCharacter() {
+    this.skipThisFunction = false;
+    this.skipSecondFunction = false;
+
     this.FlagWordRemoved = false;
     //I need to stringfy and parse to copy the value
     //if you do tempArray = nestedArray it creates a reference
@@ -223,31 +231,62 @@ class InsertClass {
 
     console.log("10: ", nestedArray);
 
-    for (let y = 0; y <  maxY; y++) {
-      for (let x = 0; x < maxX; x++) {
+    //for (let y = 0; y <  maxY; y++) {
+      
+    let y = 0;
+    for (let x = 0; x < maxX; x++) {
         if (y <= currentIndex.y && x <= currentIndex.x - 1) {
         } else if (y <= currentIndex.y - 1){
         }
         else {
         
+          if(this.skipThisFunction == false)
+          if(nestedArray[verticalCursorPosition/10][WIDTH-1] == '-'){
+            this.drawGridAndCursor()
+            this.counter++;
+            this.skipThisFunction = true;
+            continue;
+          }
+          console.log("3z: ", this.counter);
+          if(this.skipSecondFunction  === false && nestedArray[verticalCursorPosition/10][WIDTH-1] != '-'){
+            this.drawGridAndCursor()
+           this.skipSecondFunction = true;
+            alert("1");
+            continue
+          }
       
-      //needs y
-      this.findBeginningX(y, x);
-      // once every y
-
-      console.log("*:", nestedArray);
-      this.removeWordAndWriteRowsAfter();
+         
+      
     }
-  }}
+  
+  
+  }
+  
+  //needs y
+  alert("2");
+  this.findBeginningX(y, x);
+  // once every y
+
+  console.log("*:", nestedArray);
+  this.removeWordAndWriteRowsAfter();
+
 
     //if(this.RemoveBeforeWidth === true){
     console.log("!: ", nestedArray[verticalCursorPosition / 10][WIDTH - 1]);
+
+    if(nestedArray[verticalCursorPosition/10][horizontalCursorPosition/5] == '-'){
+      alert("1");
+    } 
 
     //if(nestedArray[verticalCursorPosition/10][WIDTH-1] !== '-'){
     //alert("rw");
 
     //}
     //}
+    this.drawGridAndCursor()
+  } //end of insertion function
+
+  drawGridAndCursor(){
     drawGrid();
     horizontalCursorPosition = horizontalCursorPosition + 5;
     if ((horizontalCursorPosition / 5) % WIDTH === 0) {
@@ -261,5 +300,5 @@ class InsertClass {
       horizontalCursorPosition + HOFFSET,
       verticalCursorPosition + VOFFSET
     );
-  } //end of insertion function
+  }
 }
