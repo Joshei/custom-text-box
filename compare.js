@@ -1,6 +1,6 @@
-//10/5/23
-//Today worked on over the border text.  The code make the text to move erased on the original row.  First put a character on
-//end of row and than on string of characters
+// 10/20/23 - from moveRemoveWord 
+// WHEN TARGET IS RUN, SET A FLAG FOR SITUATION WHEN CHARACTER ADVANCE TO FIRST POSITION OF NEXT ROW
+// FLAG PERMITS YS TO BE PLACED BY ALLOWING removeWordAndWriteRowsAfter() AND findBeginningX(y, x) TO WORK
 
 class InsertClass {
   constructor() {
@@ -75,6 +75,7 @@ class InsertClass {
   //fill after indexOfXForLineBeforeLastRowSpace with spaces - Y for now
 
   fillMovedStringWithYs() {
+
     console.log("0:", nestedArray);
     console.log("C:", this.indexOfXForLineBeforeLastRowSpace);
     for (let x = this.indexOfXForLineBeforeLastRowSpace+1; x <= WIDTH  ; x++) {
@@ -99,6 +100,7 @@ class InsertClass {
     console.log("1:", nestedArray);
   }
 
+  
   removeWordAndWriteRowsAfter() {
     let yValue = verticalCursorPosition / 10;
     //for (let yValue = verticalCursorPosition/10; yValue< HEIGHT-1 ; yValue++ ){
@@ -159,9 +161,9 @@ class InsertClass {
   findBeginningX(y, x) {
     console.log("Y:", nestedArray);
     // alert("find");
-    if (nestedArray[y][WIDTH - 1] === "-") {
-      return;
-    }
+    //if (nestedArray[y][WIDTH - 1] === "-") {
+    //  return;
+    //}
 
     for (let x = 0; x < WIDTH; x++) {
       if (nestedArray[y][x] === "-") {
