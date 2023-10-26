@@ -14,6 +14,7 @@ class InsertClass {
     this.counter = false;
     this.skipThisFunction = false;
     this.skipSecondFunction = false;
+    this.skipThirdFunction = false;
   }
   makeTwoDimArrayWithInsertion() {
     //alert("1");
@@ -164,7 +165,7 @@ class InsertClass {
   }
 
   findBeginningX(y, x) {
-    console.log("Y:", nestedArray);
+    
     // alert("find");
     //if (nestedArray[y][WIDTH - 1] === "-") {
     //  return;
@@ -183,8 +184,8 @@ class InsertClass {
   }
 
   insertCharacter() {
-    this.skipThisFunction = false;
-    this.skipSecondFunction = false;
+    //this.skipThisFunction = false;
+    //this.skipSecondFunction = false;
 
     this.FlagWordRemoved = false;
     //I need to stringfy and parse to copy the value
@@ -230,59 +231,39 @@ class InsertClass {
     nestedArray[currentIndex.y][currentIndex.x] = gKey;
 
     console.log("10: ", nestedArray);
-
-    //for (let y = 0; y <  maxY; y++) {
-      
-    let y = 0;
-    for (let x = 0; x < maxX; x++) {
-        if (y <= currentIndex.y && x <= currentIndex.x - 1) {
-        } else if (y <= currentIndex.y - 1){
-        }
-        else {
-        
-          if(this.skipThisFunction == false)
-          if(nestedArray[verticalCursorPosition/10][WIDTH-1] == '-'){
-            this.drawGridAndCursor()
-            this.counter++;
-            this.skipThisFunction = true;
-            continue;
-          }
-          console.log("3z: ", this.counter);
-          if(this.skipSecondFunction  === false && nestedArray[verticalCursorPosition/10][WIDTH-1] != '-'){
-            this.drawGridAndCursor()
-           this.skipSecondFunction = true;
-            alert("1");
-            continue
-          }
-      
+   
+          if(this.skipThisFunction == false && this.skipThirdFunction == false){
          
-      
-    }
-  
-  
-  }
-  
+            if(nestedArray[verticalCursorPosition/10][WIDTH-1] === '-'){
+            this.drawGridAndCursor()
+            this.skipThisFunction = true;
+            //alert("1a")
+            return;
+          }
+        }
+          console.log("3z: ", this.counter);
+          if(this.skipThisFunction == true && this.skipSecondFunction  === false && nestedArray[verticalCursorPosition/10][WIDTH-1] != '-'){
+            this.drawGridAndCursor()
+            this.skipSecondFunction = true;
+            //alert("2a");
+            return
+          }
+ 
   //needs y
-  alert("2");
-  this.findBeginningX(y, x);
+  this.findBeginningX(0, x);
   // once every y
-
   console.log("*:", nestedArray);
   this.removeWordAndWriteRowsAfter();
+  //this.skipThisFunction = false;
+  //this.skipSecondFunction = false;
+  //this.skipThirdFunction = false;
 
-
-    //if(this.RemoveBeforeWidth === true){
     console.log("!: ", nestedArray[verticalCursorPosition / 10][WIDTH - 1]);
 
     if(nestedArray[verticalCursorPosition/10][horizontalCursorPosition/5] == '-'){
       alert("1");
     } 
 
-    //if(nestedArray[verticalCursorPosition/10][WIDTH-1] !== '-'){
-    //alert("rw");
-
-    //}
-    //}
     this.drawGridAndCursor()
   } //end of insertion function
 
