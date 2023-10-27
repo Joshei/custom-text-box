@@ -3,12 +3,12 @@
 class InsertClass {
   constructor() {
     this.indexOfXForLineBeforeLastRowSpace = 0;
-    this.StartedCapture = false;
-    this.GotWordAllready = true;
-    this.InsertWordToArray = false;
-    this.IsFirstCharacterPos = 5;
-    this.RemoveBeforeWidth = false;
-    this.FlagWordRemoved = false;
+    //this.StartedCapture = false;
+    //this.GotWordAllready = true;
+    //this.InsertWordToArray = false;
+    //this.IsFirstCharacterPos = 5;
+    //this.RemoveBeforeWidth = false;
+    //this.FlagWordRemoved = false;
     this.counter = false;
     this.skipThisFunction = false;
     this.skipSecondFunction = false;
