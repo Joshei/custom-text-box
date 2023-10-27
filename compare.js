@@ -92,7 +92,7 @@ class InsertClass {
     //alert("1");
   }
 
-  /* //rewrite array after inserted movestring
+  /* ///rewrite array after inserted movestring
   rebuildArrayWithMoveString(lengthOftoMoveString) {
     console.log("1Y:", nestedArray);
     let x1 = lengthOftoMoveString - 1;
