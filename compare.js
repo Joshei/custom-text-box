@@ -1,7 +1,5 @@
 // 10/20/23 - from moveRemoveWord 
-// WHEN TARGET IS RUN, SET A FLAG FOR SITUATION WHEN CHARACTER ADVANCE TO FIRST POSITION OF NEXT ROW
-// FLAG PERMITS YS TO BE PLACED BY ALLOWING removeWordAndWriteRowsAfter() AND findBeginningX(y, x) TO WORK
-
+// Check for all cases of data transfer to next line, set up all Y loops, and work multiple border line cases 
 class InsertClass {
   constructor() {
     this.indexOfXForLineBeforeLastRowSpace = 0;
