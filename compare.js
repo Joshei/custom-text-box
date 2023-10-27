@@ -70,16 +70,16 @@ class InsertClass {
 
   //copy nested array
 
-  copyArray() {
+  /* copyArray() {
     for (let y = 0; y < HEIGHT; y++) {
       for (let x = 0; x < WIDTH; x++) {
         let element = nestedArray[y][x];
         copyNestedArray[y][x] = element;
       }
     }
-  }
+  } */
+ 
   //fill after indexOfXForLineBeforeLastRowSpace with spaces - Y for now
-
   fillMovedStringWithYs() {
     
     console.log("0:", nestedArray);
@@ -92,22 +92,24 @@ class InsertClass {
     //alert("1");
   }
 
-  //rewrite array after inserted movestring
+  /* //rewrite array after inserted movestring
   rebuildArrayWithMoveString(lengthOftoMoveString) {
     console.log("1Y:", nestedArray);
-    let x1 = lengthOftoMoveString;
-    for (let y = 0; y < HEIGHT - 1; y++) {
-      for (let x = 0; x < WIDTH; x++) {
-        let element = copyNestedArray[y][x];
-        nestedArray[y][x1 - 1] = element;
+    let x1 = lengthOftoMoveString - 1;
+    //for (let y = 0; y < HEIGHT - 1; y++) {
+    let y = 0;  
+    for (let x = 0; x < WIDTH; x++) {
+        let element = copyNestedArray[y+1][x];
+        nestedArray[y+1][x1] = element;
+        x1++;
       }
       //subtracts to zero
-      x1 = 1;
-    }
+      
+    //}
     console.log("1X:", nestedArray);
     console.log("1Z:", this.toMoveString);
   }
-
+ */
   
   removeWordAndWriteRowsAfter() {
 
@@ -120,7 +122,7 @@ class InsertClass {
       return;
     }
     //alert("1");
-    this.copyArray();
+    
     
     let x2 = 0;
 
@@ -173,7 +175,8 @@ class InsertClass {
       //}
     }
     console.log("5:", nestedArray);
-    this.rebuildArrayWithMoveString(length);
+    //this.copyArray();
+    //this.rebuildArrayWithMoveString(lengthIndex);
   }
 
   findBeginningX(y, x) {
