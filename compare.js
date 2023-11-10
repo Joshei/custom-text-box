@@ -196,6 +196,7 @@ class InsertClass {
         counter++
        // moveStringIndex++
       
+
       //}
     }
     console.log("5:", nestedArray);
@@ -248,14 +249,10 @@ class InsertClass {
     //only inserts to next column
     this.RemoveBeforeWidth = false;
 
-    //this.removeWordAndWriteRowsAfter(0)
-    //if(this.FlagWordRemoved == false){
-
-    for (let y = 0; y <= currentColumn + 1; y++) {
+      let y = verticalCursorPosition/10;
+      //for (let y = 0; y <= currentColumn + 1; y++) {
       for (let x = 0; x < maxX; x++) {
-        //   if(x == currentIndex.x ){
-        //     console.log("branch 1")
-        //   }
+        
         if (y <= currentIndex.y && x <= currentIndex.x - 1) {
         } else if (y <= currentIndex.y - 1) {
         } else {
@@ -267,7 +264,7 @@ class InsertClass {
           tempArray[nextY][nextX] = newValue;
         }
       }
-    }
+    //}
    
     nestedArray = [...tempArray];
     //MODIFIED
