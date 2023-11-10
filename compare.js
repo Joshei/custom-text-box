@@ -14,6 +14,9 @@ class InsertClass {
     this.skipSecondFunction = false;
     this.skipThirdFunction = false;
     this.toMoveString = ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"];
+    this.copyOfY = 0;
+    this.YCounter = 0;
+    this.YCounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   }
   makeTwoDimArrayWithInsertion() {
     //alert("1");
@@ -78,13 +81,13 @@ class InsertClass {
   } */
  
   //fill after indexOfXForLineBeforeLastRowSpace with spaces - Y for now
-  fillMovedStringWithYs() {
+  fillMovedStringWithYs(yValue) {
     
     console.log("0:", nestedArray);
     console.log("C:", this.indexOfXForLineBeforeLastRowSpace);
     for (let x = this.indexOfXForLineBeforeLastRowSpace; x < WIDTH  ; x++) {
       ///////////////
-      nestedArray[verticalCursorPosition / 10][x] = "Y";
+      nestedArray[yValue][x] = "Y";
     }
     console.log("0:", nestedArray);
     //alert("1");
@@ -109,21 +112,44 @@ class InsertClass {
   }
  */
   
-  removeWordAndWriteRowsAfter() {
+  removeWordAndWriteRowsAfter(yValue) {
 
-    let yValue = verticalCursorPosition / 10;
+    //let yValue = verticalCursorPosition / 10;
     //for (let yValue = verticalCursorPosition/10; yValue< HEIGHT-1 ; yValue++ ){
+    console.log({nestedArray});
+    
+    
+    // -a-------
+    // a
     if (
       nestedArray[yValue][WIDTH - 1] === "-" ||
       nestedArray[yValue][WIDTH - 1] === "Y"
+       
     ) {
+      //alert("-!");
+      //alert("1");
+      this.YCounterArray[yValue] = 0;
       return;
     }
-    //alert("1");
+
+    //(pur char on last position)if here with no alert 1 than character is pushed to next column first
+    //next character will push letter off row and return to first if than
+    this.YCounterArray[yValue]++; 
+    //alert("2");
     
+    if(this.YCounterArray[yValue] == 1)
+    {
+      //alert("3");
+      return
+    }
+
+    //if (this.indexOfXForLineBeforeLastRowSpace == 8){
+    //  
+    //}
     
     let x2 = 0;
 
+    //alert("4");
     
     //build movestring
     console.log("A:", this.indexOfXForLineBeforeLastRowSpace);
@@ -136,7 +162,7 @@ class InsertClass {
     console.log("2: ", this.toMoveString);
     console.log("3:", this.indexOfXForLineBeforeLastRowSpace);
     console.log("AA:", nestedArray);
-    this.fillMovedStringWithYs();
+    this.fillMovedStringWithYs(yValue);
 
     //----------------------------------------------
     //place movestring into array
@@ -159,13 +185,13 @@ class InsertClass {
     let lengthIndex = indexOfLength;
     let counter = 1
     
-    //let moveStringIndex = 0
+    //put move string at beginning of array
     for (let x = 1 ; x <= lengthIndex ; x++) {
       //fill nestedarray with characters moved
       //if unmoveable than the content will be unchaged, '-'
       //if (this.toMoveString[lengthIndex] != "-") {
         let element = this.toMoveString[lengthIndex - counter];
-        nestedArray[verticalCursorPosition / 10+1][x] = element;
+        nestedArray[yValue+1][x] = element;
         //lengthIndex--;
         counter++
        // moveStringIndex++
@@ -177,7 +203,7 @@ class InsertClass {
     //this.rebuildArrayWithMoveString(lengthIndex);
   }
 
-  findBeginningX(y, x) {
+  findBeginningX(y) {
     
     // alert("find");
     //if (nestedArray[y][WIDTH - 1] === "-") {
@@ -198,6 +224,7 @@ class InsertClass {
     return;
   }
 
+ 
   insertCharacter() {
     //this.skipThisFunction = false;
     //this.skipSecondFunction = false;
@@ -246,14 +273,25 @@ class InsertClass {
     //MODIFIED
     nestedArray[currentIndex.y][currentIndex.x] = gKey;
 
+    /*
     console.log("10: ", nestedArray);
    
-          if(this.skipThisFunction == false && this.skipThirdFunction == false){
+    if(this.copyOfY != verticalCursorPosition/10){
+      this.skipThisFunction = false;
+      this.skipThirdFunction = false;
+      this.skipThisFunction = false;
+      alert("not")
+
+    }
+    this.copyOfY = verticalCursorPosition/10
+          
+    
+    if(this.skipThisFunction == false && this.skipThirdFunction == false){
          
             if(nestedArray[verticalCursorPosition/10][WIDTH-1] === '-'){
             this.drawGridAndCursor()
             this.skipThisFunction = true;
-            //alert("1a")
+            alert("1a")
             return;
           }
         }
@@ -261,16 +299,23 @@ class InsertClass {
           if(this.skipThisFunction == true && this.skipSecondFunction  === false && nestedArray[verticalCursorPosition/10][WIDTH-1] != '-'){
             this.drawGridAndCursor()
             this.skipSecondFunction = true;
-            //alert("2a");
+            alert("2a");
             return
           }
- 
+
+          alert("3a");
+ */
   console.log("*:", nestedArray);
   //needs y
-  this.findBeginningX(0, x);
+  let yValue = verticalCursorPosition/10;
+  
+  while(yValue<4){
+  this.findBeginningX(yValue);
   // once every y
   
-  this.removeWordAndWriteRowsAfter();
+  this.removeWordAndWriteRowsAfter(yValue);
+  yValue++;
+  }
   //this.skipThisFunction = false;
   //this.skipSecondFunction = false;
   //this.skipThirdFunction = false;
@@ -278,7 +323,7 @@ class InsertClass {
     console.log("!: ", nestedArray[verticalCursorPosition / 10][WIDTH - 1]);
 
     if(nestedArray[verticalCursorPosition/10][horizontalCursorPosition/5] == '-'){
-      alert("1");
+      //alert("1");
     } 
 
     this.drawGridAndCursor()
