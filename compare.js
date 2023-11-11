@@ -1,5 +1,6 @@
 // 10/20/23 - from moveRemoveWord 
 // Check for all cases of data transfer to next line, set up all Y loops, and work multiple border line cases 
+//10/11/23 - put three characters on right than one on left.  Next turn put another a on left.  Line 231, WIDTH is WIDTH-1 
 class InsertClass {
   constructor() {
     this.indexOfXForLineBeforeLastRowSpace = 0;
@@ -87,7 +88,7 @@ class InsertClass {
     console.log("C:", this.indexOfXForLineBeforeLastRowSpace);
     for (let x = this.indexOfXForLineBeforeLastRowSpace; x < WIDTH  ; x++) {
       ///////////////
-      nestedArray[yValue][x] = "Y";
+      nestedArray[yValue][x] = "S";
     }
     console.log("0:", nestedArray);
     //alert("1");
@@ -122,8 +123,9 @@ class InsertClass {
     // -a-------
     // a
     if (
-      nestedArray[yValue][WIDTH - 1] === "-" ||
-      nestedArray[yValue][WIDTH - 1] === "Y"
+      nestedArray[yValue][WIDTH - 1] === "-" 
+      //||
+      //nestedArray[yValue][WIDTH - 1] === "Y"
        
     ) {
       //alert("-!");
@@ -188,7 +190,7 @@ class InsertClass {
 
     
     //backup copy of nestedArray
-    for(let x = 0; x<WIDTH-1; x++){
+    for(let x = 0; x<WIDTH; x++){
     for(let y = 0; y<HEIGHT-2; y++){
 
       //in index1.html
@@ -198,7 +200,7 @@ class InsertClass {
 
 
     //put all rows one row down, start on movestring row
-    for(let x = 0; x<WIDTH-1; x++){
+    for(let x = 0; x<WIDTH; x++){
     
     //move down row after row with word to move.  Keep that filled to put moved word there with no other characters
     //Lower all rows beneath string where moved string goes.  Do this by one row.
@@ -225,10 +227,10 @@ class InsertClass {
     console.log("5:", nestedArray);
     
     let lengthOfMovedWord = indexOfLength + 1;
-
-    for (let x = lengthOfMovedWord-1 ; x < WIDTH ; x++) {
+    console.log({lengthOfMovedWord});
+    for (let x = lengthOfMovedWord-1 ; x < WIDTH-1 ; x++) {
       
-      nestedArray[verticalCursorPosition/10+1][x] = 'W';
+      nestedArray[verticalCursorPosition/10+1][x] = 'Z';
       }
     
 
@@ -243,7 +245,7 @@ class InsertClass {
     //  return;
     //}
     //index one before, so width-1
-    for (let x = 0; x < WIDTH-1; x++) {
+    for (let x = 0; x < WIDTH; x++) {
       if (nestedArray[y][x] === "-") {
         //|| nestedArray[verticalCursorPosition/10][x] === 'Y')
 
@@ -283,8 +285,13 @@ class InsertClass {
 
       let y = verticalCursorPosition/10;
       //for (let y = 0; y <= currentColumn + 1; y++) {
-      for (let x = 0; x < maxX; x++) {
-        
+
+      console.log({nestedArray});
+      let i = 0;
+      //this is preventing last column of, '-' to be pushed to next rowa
+      for (let x = 0; x < maxX-1; x++) {
+        i++;
+        console.log({i})
         if (y <= currentIndex.y && x <= currentIndex.x - 1) {
         } else if (y <= currentIndex.y - 1) {
         } else {
@@ -338,7 +345,7 @@ class InsertClass {
   //needs y
   let yValue = verticalCursorPosition/10;
   
-  while(yValue<4){
+  while(yValue<6){
   this.findBeginningX(yValue);
   // once every y
   
