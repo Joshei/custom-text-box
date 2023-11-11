@@ -185,23 +185,55 @@ class InsertClass {
     let lengthIndex = indexOfLength;
     let counter = 1
     
-    //put move string at beginning of array
-    for (let x = 1 ; x <= lengthIndex ; x++) {
-      //fill nestedarray with characters moved
-      //if unmoveable than the content will be unchaged, '-'
-      //if (this.toMoveString[lengthIndex] != "-") {
+
+    
+    //backup copy of nestedArray
+    for(let x = 0; x<WIDTH-1; x++){
+    for(let y = 0; y<HEIGHT-2; y++){
+
+      //in index1.html
+      copyNestedArray1[y][x] = nestedArray[y][x]
+     }
+    }
+
+
+    //put all rows one row down, start on movestring row
+    for(let x = 0; x<WIDTH-1; x++){
+    
+    //move down row after row with word to move.  Keep that filled to put moved word there with no other characters
+    //Lower all rows beneath string where moved string goes.  Do this by one row.
+    //put move string at beginning of array after
+      for(let y = verticalCursorPosition/10+1 ; y < HEIGHT-1; y++){
+        let element = copyNestedArray1[y][x]
+        //leaves row after current for putting juse moved word there and rmoeve all other text.
+        nestedArray[y+1][x] = element
+      }
+    }
+
+    //add movestring to array at one row beneath current row 
+    for (let x = 0 ; x <= lengthIndex ; x++) {
+      
         let element = this.toMoveString[lengthIndex - counter];
         nestedArray[yValue+1][x] = element;
-        //lengthIndex--;
+        
         counter++
-       // moveStringIndex++
       
-
-      //}
     }
+
+    //put nulls in nestedarray after the above row where toMoveString has been placed.
+    //All rows starting on this row were pushed down a roe
     console.log("5:", nestedArray);
-    //this.copyArray();
-    //this.rebuildArrayWithMoveString(lengthIndex);
+    
+    let lengthOfMovedWord = indexOfLength + 1;
+
+    for (let x = lengthOfMovedWord-1 ; x < WIDTH ; x++) {
+      
+      nestedArray[verticalCursorPosition/10+1][x] = 'W';
+      }
+    
+
+
+  
   }
 
   findBeginningX(y) {
