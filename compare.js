@@ -195,12 +195,21 @@ class InsertClass {
     //add movestring to array at one row beneath current row 
     for (let x = 0 ; x < IndexOfLength ; x++) {
       
-        let element = this.toMoveString[IndexOfLength - counter];
+        let element = this.toMoveString[IndexOfLength+x];
         nestedArray[verticalCursorPosition/10+1][x] = element;
         
         counter++
       
     }
+
+    //THIS IS THE START OF FIX FOR ABOVE AND BELOW
+    //for(let x = IndexOfLength; x<WIDTH; x++){
+    //  for(let y = 0; y<HEIGHT; y++){
+    //
+    //  }
+    //}
+
+
 
     //put nulls in nestedarray after the above row where toMoveString has been placed.
     //All rows starting on this row were pushed down a roe
@@ -264,7 +273,8 @@ class InsertClass {
 
       console.log({nestedArray});
       let i = 0;
-      //this is preventing last column of, '-' to be pushed to next row
+      
+      //for(let y = 0; y < maxY; y++){
       for (let x = 0; x < maxX-1; x++) {
         i++;
         console.log({i})
@@ -280,7 +290,7 @@ class InsertClass {
           tempArray[nextY][nextX] = newValue;
         }
       }
-   
+    //}
    
     nestedArray = [...tempArray];
     
