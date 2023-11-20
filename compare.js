@@ -108,17 +108,17 @@ class InsertClass {
        
     ) {
      
-      alert("0");
+      //alert("0");
       this.YCounterArray[yValue] = 0;
       return;
     }
 
     this.YCounterArray[yValue]++; 
-    alert("1");
+    //alert("1");
     
     if(this.YCounterArray[yValue] == 1)
     {
-      alert("2");
+      //alert("2");
       return
     }
 
@@ -126,7 +126,7 @@ class InsertClass {
     
     let x2 = 0;
 
-    alert("3");
+    //alert("3");
     
     //CREATE STRING OF CHARACTERS THAT ARE TO BE REMOVED FROM CURRENT ROW
     console.log("A:", this.indexOfXForLineBeforeLastRowSpace);
@@ -301,6 +301,7 @@ class InsertClass {
   //needs y
   let yValue = verticalCursorPosition/10;
   
+  /*
   while(yValue<6){
   this.findBeginningX(yValue);
   // once every y
@@ -308,9 +309,8 @@ class InsertClass {
   this.removeWordAndWriteRowsAfter(yValue);
   yValue++;
   }
-  //this.skipThisFunction = false;
-  //this.skipSecondFunction = false;
-  //this.skipThirdFunction = false;
+  */
+  
 
     console.log("!: ", nestedArray[verticalCursorPosition / 10][WIDTH - 1]);
 
