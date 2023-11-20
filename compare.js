@@ -14,7 +14,7 @@ class InsertClass {
     this.skipThisFunction = false;
     this.skipSecondFunction = false;
     this.skipThirdFunction = false;
-    this.toMoveString = ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"];
+    this.toMoveString = ["5", "5", "5", "5", "5", "5", "5", "5", "5", "5"];
     this.copyOfY = 0;
     this.YCounter = 0;
     this.YCounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -88,7 +88,7 @@ class InsertClass {
     console.log("C:", this.indexOfXForLineBeforeLastRowSpace);
     for (let x = this.indexOfXForLineBeforeLastRowSpace; x < WIDTH  ; x++) {
       ///////////////
-      nestedArray[yValue][x] = "S";
+      nestedArray[yValue][x] = "Y";
     }
     console.log("0:", nestedArray);
     //alert("1");
@@ -164,6 +164,7 @@ class InsertClass {
     console.log("2: ", this.toMoveString);
     console.log("3:", this.indexOfXForLineBeforeLastRowSpace);
     console.log("AA:", nestedArray);
+    console.log({yValue});
     this.fillMovedStringWithYs(yValue);
 
     //----------------------------------------------
@@ -171,20 +172,22 @@ class InsertClass {
     //let length = toMoveString.length;
 
     //find length of string  - FIX THIS SO ABORT IF MOVETEXT.LENGHT == 0, CHECK LAST CHARACTER, OK? and FIX ONLY LAST CHARACTER, WORKS THOUGH
-    let indexOfLength = 0;
+    //let indexOfLength = 0;
+    
+    let index = 0;
     for(let i = 0; i < WIDTH ; i++){
 
       if (this.toMoveString[i] === '-'){
-        break;
+        index++
 
       }
-      indexOfLength++;
+      //indexOfLength++;
     }
 
-
-
+    let  IndexOfLength = (WIDTH-1) - index
+    //alert({IndexOfLength})
     ////////////////////////////
-    let lengthIndex = indexOfLength;
+   
     let counter = 1
     
 
@@ -205,18 +208,20 @@ class InsertClass {
     //move down row after row with word to move.  Keep that filled to put moved word there with no other characters
     //Lower all rows beneath string where moved string goes.  Do this by one row.
     //put move string at beginning of array after
-      for(let y = verticalCursorPosition/10+1 ; y < HEIGHT-1; y++){
-        let element = copyNestedArray1[y][x]
+      
+    //y is set at row to put movestring 
+    for(let y = verticalCursorPosition/10 ; y < HEIGHT-2; y++){
+        let element = copyNestedArray1[y+1][x]
         //leaves row after current for putting juse moved word there and rmoeve all other text.
-        nestedArray[y+1][x] = element
+        nestedArray[y+2][x] = element
       }
     }
 
     //add movestring to array at one row beneath current row 
-    for (let x = 0 ; x <= lengthIndex ; x++) {
+    for (let x = 0 ; x < IndexOfLength ; x++) {
       
-        let element = this.toMoveString[lengthIndex - counter];
-        nestedArray[yValue+1][x] = element;
+        let element = this.toMoveString[IndexOfLength - counter];
+        nestedArray[verticalCursorPosition/10+1][x] = element;
         
         counter++
       
@@ -226,7 +231,7 @@ class InsertClass {
     //All rows starting on this row were pushed down a roe
     console.log("5:", nestedArray);
     
-    let lengthOfMovedWord = indexOfLength + 1;
+    let lengthOfMovedWord = IndexOfLength + 1;
     console.log({lengthOfMovedWord});
     for (let x = lengthOfMovedWord-1 ; x < WIDTH-1 ; x++) {
       
@@ -245,6 +250,7 @@ class InsertClass {
     //  return;
     //}
     //index one before, so width-1
+  this.indexOfXForLineBeforeLastRowSpace = 0
     for (let x = 0; x < WIDTH; x++) {
       if (nestedArray[y][x] === "-") {
         //|| nestedArray[verticalCursorPosition/10][x] === 'Y')
@@ -253,6 +259,7 @@ class InsertClass {
         console.log("G:", this.indexOfXForLineBeforeLastRowSpace);
        
         this.indexOfXForLineBeforeLastRowSpace = x + 1 ;
+        
       }
     }
     console.log("X:", nestedArray);
@@ -284,20 +291,21 @@ class InsertClass {
     this.RemoveBeforeWidth = false;
 
       let y = verticalCursorPosition/10;
-      //for (let y = 0; y <= currentColumn + 1; y++) {
+     
 
       console.log({nestedArray});
       let i = 0;
-      //this is preventing last column of, '-' to be pushed to next rowa
+      //this is preventing last column of, '-' to be pushed to next row
       for (let x = 0; x < maxX-1; x++) {
         i++;
         console.log({i})
         if (y <= currentIndex.y && x <= currentIndex.x - 1) {
+          
         } else if (y <= currentIndex.y - 1) {
         } else {
           let { nextY, nextX } = this.getNextTarget(y, x);
 
-          //console.log(x,y, nestedArray[x][y], "==>", nextX, nextY,  tempArray[nextX][nextY] );
+         
           let newValue = nestedArray[y][x];
           console.log("10A: ", tempArray);
           tempArray[nextY][nextX] = newValue;
