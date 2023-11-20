@@ -14,7 +14,7 @@ class InsertClass {
     this.skipThisFunction = false;
     this.skipSecondFunction = false;
     this.skipThirdFunction = false;
-    this.toMoveString = ["5", "5", "5", "5", "5", "5", "5", "5", "5", "5"];
+    this.toMoveString = ["-", "-", "-", "-", "-", "-", "-", "-", "-", "-"];
     this.copyOfY = 0;
     this.YCounter = 0;
     this.YCounterArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -81,7 +81,7 @@ class InsertClass {
     }
   } */
  
-  //fill after indexOfXForLineBeforeLastRowSpace with spaces - Y for now
+  //FILL ONE VALUE RIGHT OF COPIED MOVESTRING WITH Ys FOR NOW
   fillMovedStringWithYs(yValue) {
     
     console.log("0:", nestedArray);
@@ -94,66 +94,41 @@ class InsertClass {
     //alert("1");
   }
 
-  /* ///rewrite array after inserted movestring
-  rebuildArrayWithMoveString(lengthOftoMoveString) {
-    console.log("1Y:", nestedArray);
-    let x1 = lengthOftoMoveString - 1;
-    //for (let y = 0; y < HEIGHT - 1; y++) {
-    let y = 0;  
-    for (let x = 0; x < WIDTH; x++) {
-        let element = copyNestedArray[y+1][x];
-        nestedArray[y+1][x1] = element;
-        x1++;
-      }
-      //subtracts to zero
-      
-    //}
-    console.log("1X:", nestedArray);
-    console.log("1Z:", this.toMoveString);
-  }
- */
   
   removeWordAndWriteRowsAfter(yValue) {
 
-    //let yValue = verticalCursorPosition / 10;
-    //for (let yValue = verticalCursorPosition/10; yValue< HEIGHT-1 ; yValue++ ){
+    
     console.log({nestedArray});
     
     
-    // -a-------
-    // a
+    //WHEN LAST CHARACTER IS NO LONGER, "-" ON THE NEXT KEYPRESS FIND WAY TO CODE
     if (
       nestedArray[yValue][WIDTH - 1] === "-" 
-      //||
-      //nestedArray[yValue][WIDTH - 1] === "Y"
+     
        
     ) {
-      //alert("-!");
-      //alert("1");
+     
+      alert("0");
       this.YCounterArray[yValue] = 0;
       return;
     }
 
-    //(pur char on last position)if here with no alert 1 than character is pushed to next column first
-    //next character will push letter off row and return to first if than
     this.YCounterArray[yValue]++; 
-    //alert("2");
+    alert("1");
     
     if(this.YCounterArray[yValue] == 1)
     {
-      //alert("3");
+      alert("2");
       return
     }
 
-    //if (this.indexOfXForLineBeforeLastRowSpace == 8){
-    //  
-    //}
+    
     
     let x2 = 0;
 
-    //alert("4");
+    alert("3");
     
-    //build movestring
+    //CREATE STRING OF CHARACTERS THAT ARE TO BE REMOVED FROM CURRENT ROW
     console.log("A:", this.indexOfXForLineBeforeLastRowSpace);
     
     for (let x = this.indexOfXForLineBeforeLastRowSpace ; x < WIDTH; x++) {
@@ -165,44 +140,39 @@ class InsertClass {
     console.log("3:", this.indexOfXForLineBeforeLastRowSpace);
     console.log("AA:", nestedArray);
     console.log({yValue});
+    //FILL ONE CHRACTER AFTER STRING TO BE MOVED WITH CHARACTER, Y.
     this.fillMovedStringWithYs(yValue);
 
     //----------------------------------------------
-    //place movestring into array
-    //let length = toMoveString.length;
-
-    //find length of string  - FIX THIS SO ABORT IF MOVETEXT.LENGHT == 0, CHECK LAST CHARACTER, OK? and FIX ONLY LAST CHARACTER, WORKS THOUGH
-    //let indexOfLength = 0;
+    
     
     let index = 0;
     for(let i = 0; i < WIDTH ; i++){
 
+      //FIND TOTAL OF, '-' AT END OF STRING TO BE FOR CACULATION OF LENGTH OF STRING TO BE MOVED 
       if (this.toMoveString[i] === '-'){
         index++
 
       }
-      //indexOfLength++;
+     
     }
-
     let  IndexOfLength = (WIDTH-1) - index
-    //alert({IndexOfLength})
-    ////////////////////////////
-   
     let counter = 1
     
 
     
-    //backup copy of nestedArray
+    //COPY OF NESTED ARRAY
     for(let x = 0; x<WIDTH; x++){
     for(let y = 0; y<HEIGHT-2; y++){
 
-      //in index1.html
+      
       copyNestedArray1[y][x] = nestedArray[y][x]
      }
     }
 
 
     //put all rows one row down, start on movestring row
+    //PUT ALL ROWS ONE ROW DOWN STARTING WITH NEXT ROW BEFORE 
     for(let x = 0; x<WIDTH; x++){
     
     //move down row after row with word to move.  Keep that filled to put moved word there with no other characters
@@ -217,6 +187,11 @@ class InsertClass {
       }
     }
 
+    
+    
+    
+    
+    
     //add movestring to array at one row beneath current row 
     for (let x = 0 ; x < IndexOfLength ; x++) {
       
@@ -245,17 +220,11 @@ class InsertClass {
 
   findBeginningX(y) {
     
-    // alert("find");
-    //if (nestedArray[y][WIDTH - 1] === "-") {
-    //  return;
-    //}
-    //index one before, so width-1
+    //find the index value of the last value ,"-" of the string"
   this.indexOfXForLineBeforeLastRowSpace = 0
     for (let x = 0; x < WIDTH; x++) {
       if (nestedArray[y][x] === "-") {
-        //|| nestedArray[verticalCursorPosition/10][x] === 'Y')
-
-        //because the index is for a string that advances one space to right and goes to next row
+        
         console.log("G:", this.indexOfXForLineBeforeLastRowSpace);
        
         this.indexOfXForLineBeforeLastRowSpace = x + 1 ;
@@ -311,44 +280,13 @@ class InsertClass {
           tempArray[nextY][nextX] = newValue;
         }
       }
-    //}
+   
    
     nestedArray = [...tempArray];
-    //MODIFIED
+    
     nestedArray[currentIndex.y][currentIndex.x] = gKey;
 
-    /*
-    console.log("10: ", nestedArray);
-   
-    if(this.copyOfY != verticalCursorPosition/10){
-      this.skipThisFunction = false;
-      this.skipThirdFunction = false;
-      this.skipThisFunction = false;
-      alert("not")
-
-    }
-    this.copyOfY = verticalCursorPosition/10
-          
     
-    if(this.skipThisFunction == false && this.skipThirdFunction == false){
-         
-            if(nestedArray[verticalCursorPosition/10][WIDTH-1] === '-'){
-            this.drawGridAndCursor()
-            this.skipThisFunction = true;
-            alert("1a")
-            return;
-          }
-        }
-          console.log("3z: ", this.counter);
-          if(this.skipThisFunction == true && this.skipSecondFunction  === false && nestedArray[verticalCursorPosition/10][WIDTH-1] != '-'){
-            this.drawGridAndCursor()
-            this.skipSecondFunction = true;
-            alert("2a");
-            return
-          }
-
-          alert("3a");
- */
   console.log("*:", nestedArray);
   //needs y
   let yValue = verticalCursorPosition/10;
