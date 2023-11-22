@@ -259,15 +259,15 @@ class InsertClass {
     //only inserts to next column
     this.RemoveBeforeWidth = false;
 
-      let y = verticalCursorPosition/10;
+      //let y = verticalCursorPosition/10;
      
 
       console.log({nestedArray});
-      let i = 0;
+      //let i = 0;
       //this is preventing last column of, '-' to be pushed to next row
-      for (let x = 0; x < maxX-1; x++) {
-        i++;
-        console.log({i})
+    for (let y = 0; y <= maxY-1; y++) {
+      for (let x = 0; x <= maxX-1; x++) {
+       
         if (y <= currentIndex.y && x <= currentIndex.x - 1) {
           
         } else if (y <= currentIndex.y - 1) {
@@ -276,10 +276,11 @@ class InsertClass {
 
          
           let newValue = nestedArray[y][x];
-          console.log("10A: ", tempArray);
+         
           tempArray[nextY][nextX] = newValue;
         }
       }
+    }
    
    
     nestedArray = [...tempArray];
@@ -291,6 +292,9 @@ class InsertClass {
   //needs y
   let yValue = verticalCursorPosition/10;
   
+  
+  /* temporarily commented out
+  
   while(yValue<6){
   this.findBeginningX(yValue);
   // once every y
@@ -298,9 +302,7 @@ class InsertClass {
   this.removeWordAndWriteRowsAfter(yValue);
   yValue++;
   }
-  //this.skipThisFunction = false;
-  //this.skipSecondFunction = false;
-  //this.skipThirdFunction = false;
+  */
 
     console.log("!: ", nestedArray[verticalCursorPosition / 10][WIDTH - 1]);
 
